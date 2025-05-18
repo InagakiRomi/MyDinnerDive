@@ -2,10 +2,12 @@ package com.romi.my_dinnerdive.model;
 
 import java.util.Date;
 
+import com.romi.my_dinnerdive.constant.RestaurantCategory;
+
 public class Restaurant {
     private Integer restaurantId;
     private String restaurantName;
-    private String category;
+    private RestaurantCategory category;
     private String imageUrl;
     private Integer visitedCount;
     private Date lastVisitedAt;
@@ -23,10 +25,10 @@ public class Restaurant {
     public void setRestaurantName(String restaurantName) {
         this.restaurantName = restaurantName;
     }
-    public String getCategory() {
+    public RestaurantCategory getCategory() {
         return category;
     }
-    public void setCategory(String category) {
+    public void setCategory(RestaurantCategory category) {
         this.category = category;
     }
     public String getImageUrl() {
