@@ -1,59 +1,49 @@
-package com.romi.my_dinnerdive.model;
+package com.romi.my_dinnerdive.dto;
 
 import java.util.Date;
 
 import com.romi.my_dinnerdive.constant.RestaurantCategory;
 
+import jakarta.validation.constraints.NotNull;
+
 /**
- * 資料模型：Restaurant
- *
- * 對應資料庫中的 {@code restaurants} 資料表，用於封裝單筆餐廳的所有欄位資料。
- * 主要作為資料存取層（DAO）與業務邏輯層（Service）之間的資料傳輸物件（POJO）。
+ * 請求資料模型：RestaurantRequest
+ * 
+ * 用於接收前端送出的 JSON 請求資料，作為建立餐廳資訊的輸入物件。
  */
-public class Restaurant {
+public class RestaurantRequest {
 
     /**
-     * 餐廳的唯一識別碼（Primary Key）
+     * 餐廳名稱，不可為空。
      */
-    private Integer restaurantId;
-
-    /**
-     * 餐廳名稱
-     */
+    @NotNull
     private String restaurantName;
 
     /**
-     * 餐廳類別（枚舉型別）
+     * 餐廳類別（列舉型態），不可為空。
      */
+    @NotNull
     private RestaurantCategory category;
 
     /**
-     * 餐廳圖片的網址
+     * 餐廳圖片 URL，可為空。
      */
     private String imageUrl;
 
     /**
-     * 拜訪次數統計
+     * 拜訪次數，可為空。
      */
     private Integer visitedCount;
 
     /**
-     * 最後一次拜訪的時間
+     * 最後一次拜訪時間，可為空。
      */
     private Date lastVisitedAt;
 
     /**
-     * 餐廳備註
+     * 備註欄，可為空。
      */
     private String note;
-
-    public Integer getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(Integer restaurantId) {
-        this.restaurantId = restaurantId;
-    }
 
     public String getRestaurantName() {
         return restaurantName;
