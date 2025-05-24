@@ -12,7 +12,8 @@ Dinner Dive 是一個協助選擇「要吃什麼」的網頁應用系統。
 
 目前已完成：
 - ✅ 餐廳資訊查詢 API
-- 🔄 餐廳新增  
+- ✅ 餐廳新增
+- ✅ 隨機抽選餐廳
 
 開發中／預計完成：
 - 🔄 餐廳編輯、刪除 API  
@@ -27,10 +28,16 @@ Dinner Dive 是一個協助選擇「要吃什麼」的網頁應用系統。
 
 - Spring Boot 後端框架  
 - RESTful API 設計  
-- 預計整合前端（Thymeleaf）
+- 前端整合（Thymeleaf）
 
 ---
 
 ## 📌 開發備註
 
 本專案仍在開發中，功能將持續擴充與優化，未來版本會加入單元測試。
+
+---
+
+## 🖼️ 畫面展示
+![image](https://github.com/user-attachments/assets/e824b0a9-c855-4db4-80d1-3e2414c43b20)
+
