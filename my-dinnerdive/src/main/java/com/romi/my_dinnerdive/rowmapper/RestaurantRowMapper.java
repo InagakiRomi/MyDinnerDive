@@ -39,6 +39,7 @@ public class RestaurantRowMapper implements RowMapper<Restaurant> {
 
         restaurant.setImageUrl(resultSet.getString("image_url"));
         restaurant.setVisitedCount(resultSet.getInt("visited_count"));
+        restaurant.setLastEat(resultSet.getTimestamp("last_eat"));
         restaurant.setLastVisitedAt(resultSet.getTimestamp("last_visited_at"));
         restaurant.setNote(resultSet.getString("note"));
 
