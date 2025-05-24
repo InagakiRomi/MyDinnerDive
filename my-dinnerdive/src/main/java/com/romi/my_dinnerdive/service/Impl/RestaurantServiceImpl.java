@@ -1,7 +1,7 @@
 package com.romi.my_dinnerdive.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.romi.my_dinnerdive.dao.RestaurantDao;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
@@ -9,24 +9,16 @@ import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
 
 /**
- * {@link RestaurantService} 的實作類別。
- *
- * 負責處理與餐廳資料相關的業務邏輯，並調用 {@link RestaurantDao} 執行實際的資料存取操作。
+ * 餐廳服務的實作類別，實作商業邏輯與資料處理流程。
  */
-@Component
+@Service
 public class RestaurantServiceImpl implements RestaurantService {
 
-    /**
-     * 注入 DAO 物件，用於資料層操作。
-     */
     @Autowired
     private RestaurantDao restaurantDao;
 
     /**
-     * 根據餐廳 ID 查詢餐廳資料。
-     *
-     * @param restaurantId 餐廳的唯一識別碼
-     * @return 對應的 {@link Restaurant} 物件，若無資料則回傳 null
+     * 根據餐廳 ID 查詢資料。
      */
     @Override
     public Restaurant getRestaurantById(Integer restaurantId) {
@@ -34,13 +26,18 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     /**
-     * 建立一筆新的餐廳資料。
-     *
-     * @param restaurantRequest 請求建立的餐廳資訊
-     * @return 新建立餐廳的主鍵 ID
+     * 建立新的餐廳資料。
      */
     @Override
     public Integer createRestaurant(RestaurantRequest restaurantRequest) {
         return restaurantDao.createRestaurant(restaurantRequest);
+    }
+
+    /**
+     * 隨機取得一筆餐廳資料。
+     */
+    @Override
+    public Restaurant getRandomRestaurant() {
+        return restaurantDao.findRandomRestaurant();
     }
 }
