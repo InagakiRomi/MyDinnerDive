@@ -40,7 +40,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
      */
     @Override
     public Restaurant getRestaurantById(Integer restaurantId) {
-        String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_visited_at, note " +
+        String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
                      "FROM restaurants WHERE restaurant_id = :restaurantId";
 
         Map<String, Object> map = new HashMap<>();
@@ -59,14 +59,14 @@ public class RestaurantDaoImpl implements RestaurantDao {
      */
     @Override
     public Integer createRestaurant(RestaurantRequest restaurantRequest) {
-        String sql = "INSERT INTO restaurants (restaurant_name, category, image_url, visited_count, last_visited_at, note) " +
-                     "VALUES (:restaurantName, :category, :imageUrl, :visitedCount, :lastVisitedAt, :note)";
+        String sql = "INSERT INTO restaurants (restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note) " +
+                    "VALUES (:restaurantName, :category, :imageUrl, :visitedCount, :lastEat, :lastVisitedAt, :note)";
 
         Map<String, Object> map = new HashMap<>();
         map.put("restaurantName", restaurantRequest.getRestaurantName());
         map.put("category", restaurantRequest.getCategory().name());
         map.put("imageUrl", restaurantRequest.getImageUrl());
-        map.put("visitedCount", restaurantRequest.getVisitedCount());
+        map.put("lastEat", restaurantRequest.getLastEat());
         map.put("visitedCount", restaurantRequest.getVisitedCount() != null ? restaurantRequest.getVisitedCount() : 0);
         map.put("note", restaurantRequest.getNote());
 

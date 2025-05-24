@@ -33,12 +33,17 @@ public class Restaurant {
     private String imageUrl;
 
     /**
-     * 拜訪次數統計
+     * 選擇次數統計
      */
     private Integer visitedCount;
 
     /**
-     * 最後一次拜訪的時間
+     * 最後一次選擇該食物的時間
+     */
+    private Date lastEat;
+
+    /**
+     * 最後一次更新資料的時間
      */
     private Date lastVisitedAt;
 
@@ -85,6 +90,14 @@ public class Restaurant {
 
     public void setVisitedCount(Integer visitedCount) {
         this.visitedCount = visitedCount;
+    }
+
+    public Date getLastEat() {
+        return lastEat;
+    }
+
+    public void setLastEat(Date lastEat) {
+        this.lastEat = lastEat;
     }
 
     public Date getLastVisitedAt() {

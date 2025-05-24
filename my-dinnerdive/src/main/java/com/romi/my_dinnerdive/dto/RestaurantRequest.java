@@ -31,12 +31,17 @@ public class RestaurantRequest {
     private String imageUrl;
 
     /**
-     * 拜訪次數，可為空。
+     * 選擇次數，可為空。
      */
     private Integer visitedCount;
 
     /**
-     * 最後一次拜訪時間，可為空。
+     * 最後一次選擇時間，可為空。
+     */
+    private Date lastEat;
+
+    /**
+     * 最後一次更新時間，可為空。
      */
     private Date lastVisitedAt;
 
@@ -75,6 +80,14 @@ public class RestaurantRequest {
 
     public void setVisitedCount(Integer visitedCount) {
         this.visitedCount = visitedCount;
+    }
+
+    public Date getLastEat() {
+        return lastEat;
+    }
+
+    public void setLastEat(Date lastEat) {
+        this.lastEat = lastEat;
     }
 
     public Date getLastVisitedAt() {
