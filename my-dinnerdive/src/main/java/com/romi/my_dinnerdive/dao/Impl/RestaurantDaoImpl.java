@@ -67,6 +67,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
         map.put("category", restaurantRequest.getCategory().name());
         map.put("imageUrl", restaurantRequest.getImageUrl());
         map.put("visitedCount", restaurantRequest.getVisitedCount());
+        map.put("visitedCount", restaurantRequest.getVisitedCount() != null ? restaurantRequest.getVisitedCount() : 0);
         map.put("note", restaurantRequest.getNote());
 
         map.put("lastVisitedAt", new Date());
