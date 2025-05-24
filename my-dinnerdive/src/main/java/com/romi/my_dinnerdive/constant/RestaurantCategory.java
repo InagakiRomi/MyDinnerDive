@@ -7,9 +7,7 @@ package com.romi.my_dinnerdive.constant;
  * 此列舉有助於限制輸入值，確保資料一致性與類型安全。
  */
 public enum RestaurantCategory {
-    日式,
-    西式,
-    義式,
+    主食,
     輕食,
     飲料
 }
