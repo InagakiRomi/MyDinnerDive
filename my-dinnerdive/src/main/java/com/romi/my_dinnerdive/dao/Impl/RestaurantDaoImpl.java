@@ -64,7 +64,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
         Map<String, Object> map = new HashMap<>();
         map.put("restaurantName", restaurantRequest.getRestaurantName());
-        map.put("category", restaurantRequest.getCategory());
+        map.put("category", restaurantRequest.getCategory().name());
         map.put("imageUrl", restaurantRequest.getImageUrl());
         map.put("visitedCount", restaurantRequest.getVisitedCount());
         map.put("note", restaurantRequest.getNote());
