@@ -1,0 +1,92 @@
+<!--
+    head.html
+    此 Fragment 負責提供 HTML 頁首的內容，包含 meta、title、CSS 及 JavaScript
+-->
+<html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/head :: head">
+
+<!DOCTYPE html>
+<html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>食物抽選器</title>
+
+    <!-- CSS 樣式設定，控制整體畫面外觀 -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            width: 512px;
+            height: 256px;
+            background-color: #404040;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .info {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <!-- JavaScript：向後端發送 /random 請求並更新畫面上的資訊 -->
+    <script>
+        function getRandomRestaurant() {
+            fetch('/random')
+                .then(response => response.json())
+                .then(data => {
+                    // 自動尋找所有帶有 data-field 的 HTML 元素，根據欄位更新對應值
+                    document.querySelectorAll('[data-field]').forEach(el => {
+                        const field = el.getAttribute('data-field');
+                        if (field === 'imageUrl') {
+                            el.src = data[field]; // 圖片元素的 src
+                        } else {
+                            el.innerText = data[field]; // 文字內容
+                        }
+                    });
+                });
+        }
+
+        // 當網頁載入完成後自動執行一次抽選
+        document.addEventListener("DOMContentLoaded", function() {
+            getRandomRestaurant();
+        });
+    </script>
+</head>
+</html>
