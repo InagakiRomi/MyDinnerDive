@@ -1,5 +1,6 @@
 package com.romi.my_dinnerdive.dao.Impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,9 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    // 儲存上次選到的 restaurant_id
+    private Integer lastSelectedRestaurantId = null;
 
     // 共用的欄位 SQL
     private static final String BASE_SELECT_SQL = 
@@ -71,7 +75,16 @@ public class RestaurantDaoImpl implements RestaurantDao {
             return null;
         }
 
-        int randomId = idList.get(ThreadLocalRandom.current().nextInt(idList.size()));
+        // 如果有上次的 ID，先過濾掉
+        List<Integer> filteredList = new ArrayList<>(idList);
+        if (lastSelectedRestaurantId != null && idList.size() > 1) {
+            filteredList.remove(lastSelectedRestaurantId);
+        }
+
+        // 抽出不等於上一次的 ID
+        int randomId = filteredList.get(ThreadLocalRandom.current().nextInt(filteredList.size()));
+        lastSelectedRestaurantId = randomId;
+
         return querySingleRestaurant(randomId);
     }
 
