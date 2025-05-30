@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -26,19 +26,29 @@ public class RestaurantDaoImpl implements RestaurantDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    // 儲存上次選到的 restaurant_id
-    private Integer lastSelectedRestaurantId = null;
-
-    // 共用的欄位 SQL
-    private static final String BASE_SELECT_SQL = 
-        "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note ";
+    /**
+     * 用於儲存上次抽到的餐廳 ID，這樣可以避免連續抽到同一個餐廳。
+     */
+    private ArrayList<Integer> lastId = new ArrayList<>();
 
     /**
      * 根據 ID 查詢餐廳資料。
      */
     @Override
     public Restaurant getRestaurantById(Integer restaurantId) {
-        return querySingleRestaurant(restaurantId);
+        String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
+                     "FROM restaurants WHERE restaurant_id = :restaurantId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("restaurantId", restaurantId);
+
+        List<Restaurant> restaurantList = namedParameterJdbcTemplate.query(sql, map, new RestaurantRowMapper());
+
+        if(!restaurantList.isEmpty()){
+            return restaurantList.get(0);
+        } else{
+            return null;
+        }
     }
 
     /**
@@ -60,8 +70,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
 
-        // 檢查 keyHolder 是否為 null 或沒有 key
-        // 如果是，則拋出 NullPointerException
+        // 檢查 keyHolder 是否為 null 或沒有 key，如果是則拋出 NullPointerException
         Number key = Objects.requireNonNull(keyHolder.getKey(), "找不到 keyHolder 的主鍵，請檢查 SQL 或資料庫設定。");
         return key.intValue();
     }
@@ -74,31 +83,33 @@ public class RestaurantDaoImpl implements RestaurantDao {
         String idSql = "SELECT restaurant_id FROM restaurants";
         List<Integer> idList = namedParameterJdbcTemplate.query(idSql, (rs, rowNum) -> rs.getInt("restaurant_id"));
 
-        if (idList.isEmpty()) {
-            return null;
+        // 如果已經抽完所有餐廳，則清空 lastId 並重新開始抽
+        if(lastId.size() == idList.size()){
+            lastId.clear();
+            System.out.println("所有餐廳已被抽完，重新開始抽籤。");
         }
 
-        // 如果有上次的 ID，先過濾掉
-        List<Integer> filteredList = new ArrayList<>(idList);
-        if (lastSelectedRestaurantId != null && idList.size() > 1) {
-            filteredList.remove(lastSelectedRestaurantId);
+        // 如果有抽過，則過濾掉上次抽到的 ID
+        if(!lastId.isEmpty()){
+            idList.removeAll(lastId);
+            System.out.println("目前有 "+idList.size()+" 個ID尚未開始抽");
         }
 
-        // 抽出不等於上一次的 ID
-        int randomId = filteredList.get(ThreadLocalRandom.current().nextInt(filteredList.size()));
-        lastSelectedRestaurantId = randomId;
+        // 抽出餐廳 ID
+        Random random = new Random();
+        int randomId =random.nextInt(idList.size());
+        randomId = idList.get(randomId);
 
-        return querySingleRestaurant(randomId);
-    }
+        // 儲存本次抽到的餐廳ID
+        lastId.add(randomId);
 
-    /**
-     * 抽出共用查詢邏輯：根據餐廳 ID 查詢一筆資料
-     */
-    private Restaurant querySingleRestaurant(Integer restaurantId) {
-        String sql = BASE_SELECT_SQL + "FROM restaurants WHERE restaurant_id = :restaurantId";
-        Map<String, Object> param = Map.of("restaurantId", restaurantId);
+        // 未抽過的餐廳數量
+        int lastFood = idList.size()-1;
 
-        List<Restaurant> result = namedParameterJdbcTemplate.query(sql, param, new RestaurantRowMapper());
-        return result.isEmpty() ? null : result.get(0);
+        // 顯示資訊
+        System.out.println("本次抽到的食物ID為： "+randomId);
+        System.out.println("目前還有 "+ lastFood + " 個餐廳可以抽");
+        System.out.println("目前被抽過的餐廳ID有： "+ lastId);
+        return getRestaurantById(randomId); 
     }
 }

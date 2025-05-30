@@ -17,7 +17,7 @@ public class RandomController {
     private RestaurantService restaurantService;
 
     /**
-     * 抽選一筆隨機餐廳（未來可給 AJAX 使用）
+     * 抽選一筆隨機餐廳
      */
     @GetMapping("/random")
     public Restaurant getRandomRestaurant() {
