@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,6 @@ public class RestaurantDaoImpl implements RestaurantDao {
         map.put("restaurantName", restaurantRequest.getRestaurantName());
         map.put("category", restaurantRequest.getCategory().name());
         map.put("imageUrl", restaurantRequest.getImageUrl());
-        //map.put("visitedCount", restaurantRequest.getVisitedCount());
         map.put("lastEat", restaurantRequest.getLastEat());
         map.put("lastVisitedAt", new Date());
         map.put("note", restaurantRequest.getNote());
@@ -60,7 +60,10 @@ public class RestaurantDaoImpl implements RestaurantDao {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
 
-        return keyHolder.getKey().intValue();
+        // 檢查 keyHolder 是否為 null 或沒有 key
+        // 如果是，則拋出 NullPointerException
+        Number key = Objects.requireNonNull(keyHolder.getKey(), "找不到 keyHolder 的主鍵，請檢查 SQL 或資料庫設定。");
+        return key.intValue();
     }
 
     /**
