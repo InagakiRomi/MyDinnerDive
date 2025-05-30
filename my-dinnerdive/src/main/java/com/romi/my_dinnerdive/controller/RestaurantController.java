@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
@@ -50,7 +51,8 @@ public class RestaurantController {
      * @return 回傳建立後的餐廳資料與 HTTP 201 狀態碼
      */
     @PostMapping("/restaurants")
-    public ResponseEntity<Restaurant> createRestaurant(@RequestBody @Valid RestaurantRequest restaurantRequest){
+    public ResponseEntity<Restaurant> createRestaurant(@RequestBody @Valid RestaurantRequest restaurantRequest,
+                                                       @RequestParam(defaultValue = "0") Integer visitedCount) {
         Integer restaurantId = restaurantService.createRestaurant(restaurantRequest);
         Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
         return ResponseEntity.status(HttpStatus.CREATED).body(restaurant);
