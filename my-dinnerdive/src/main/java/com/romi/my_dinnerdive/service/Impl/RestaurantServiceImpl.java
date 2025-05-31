@@ -3,12 +3,15 @@ package com.romi.my_dinnerdive.service.Impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.romi.my_dinnerdive.dao.RestaurantDao;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
+import com.romi.my_dinnerdive.logging.LoggingDemo;
 import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
 
@@ -20,6 +23,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Autowired
     private RestaurantDao restaurantDao;
+
+    @Autowired
+    private LoggingDemo loggingDemo;
 
     /**
      * 用於儲存上次抽到的餐廳 ID，這樣可以避免連續抽到同一個餐廳。
@@ -54,13 +60,13 @@ public class RestaurantServiceImpl implements RestaurantService {
      */
     @Override
     public Restaurant getRandomRestaurant() {
-
         List<Integer> idList = restaurantDao.getAllRestaurantIds();
+        Logger logger = loggingDemo.printRandomRestaurantLog();
         
         // 如果已經抽完所有餐廳，則清空 lastId 並重新開始抽
         if(lastId.size() == idList.size()){
             lastId.clear();
-            System.out.println("所有餐廳已被抽完，重新開始抽籤。");
+            logger.log(Level.INFO, "已抽完所有餐廳重新開始抽");
         }
 
         // 如果有抽過，則過濾掉上次抽到的 ID
@@ -80,9 +86,9 @@ public class RestaurantServiceImpl implements RestaurantService {
         int lastFood = idList.size()-1;
 
         // 顯示資訊
-        System.out.println("本次抽到的食物ID為： "+randomId);
-        System.out.println("目前還有 "+ lastFood + " 個餐廳可以抽");
-        System.out.println("目前被抽過的餐廳ID有： "+ lastId);
+        logger.log(Level.FINE,"本次抽到的食物ID為： " + randomId);
+        logger.log(Level.FINE,"目前還有 " + lastFood + " 個餐廳可以抽");
+        logger.log(Level.FINE,"目前被抽過的餐廳ID有： " + lastId);
         return getRestaurantById(randomId);
     }
 }
