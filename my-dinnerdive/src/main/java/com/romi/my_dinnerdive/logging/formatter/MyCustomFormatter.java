@@ -15,7 +15,6 @@ public class MyCustomFormatter extends Formatter{
     private static final String GREEN = "\u001B[32m";
     private static final String YELLOW = "\u001B[33m";
     private static final String BLUE = "\u001B[34m";
-    private static final String PURPLE = "\u001B[35m";
     private static final String CYAN = "\u001B[36m";
     private static final String WHITE = "\u001B[37m";
 
@@ -24,27 +23,23 @@ public class MyCustomFormatter extends Formatter{
         StringBuilder sb = new StringBuilder();
         String levelColor = getColorForLevel(record.getLevel());
 
-        sb.append(BLUE)
-          .append("[")
+        sb.append(WHITE)
           .append(dateFormat.format(new Date(record.getMillis())))
-          .append("]")
           .append(RESET);
 
         sb.append(" ");
         sb.append(levelColor)
-          .append("[")
           .append(record.getLevel().getName())
-          .append("]")
           .append(RESET);
 
         sb.append(" ");
-        sb.append(PURPLE)
+        sb.append(YELLOW)
           .append("[")
           .append(record.getLoggerName())
           .append("]")
           .append(RESET);
 
-        sb.append(" ");
+        sb.append(" : ");
         sb.append(WHITE)
           .append(formatMessage(record))
           .append(RESET)
@@ -58,7 +53,7 @@ public class MyCustomFormatter extends Formatter{
         if (level == Level.WARNING) return YELLOW;
         if (level == Level.INFO) return GREEN;
         if (level == Level.CONFIG) return CYAN;
-        if (level == Level.FINE || level == Level.FINER || level == Level.FINEST) return WHITE;
+        if (level == Level.FINE || level == Level.FINER || level == Level.FINEST) return BLUE;
         return WHITE;
     }
 }
