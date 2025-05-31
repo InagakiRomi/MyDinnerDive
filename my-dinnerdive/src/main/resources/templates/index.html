@@ -10,10 +10,10 @@
 
     <!-- 功能按鈕列 -->
     <section style="margin-top: 50px; padding-left: 20px;">
-        <button class="nav-btn">餐廳一覽</button>
-        <button class="nav-btn">新增餐廳</button>
-        <button class="nav-btn">修改餐廳</button>
-        <button class="nav-btn">刪除餐廳</button>
+        <button class="nav-btn" th:onclick="'location.href=\'' + @{/dinnerHome/read} + '\''">餐廳一覽</button>
+        <button class="nav-btn" th:onclick="'location.href=\'' + @{/dinnerHome/create} + '\''">新增餐廳</button>
+        <button class="nav-btn" th:onclick="'location.href=\'' + @{/dinnerHome/update} + '\''">修改餐廳</button>
+        <button class="nav-btn" th:onclick="'location.href=\'' + @{/dinnerHome/delete} + '\''">刪除餐廳</button>
     </section>
 
     <!-- 餐廳圖片 -->
