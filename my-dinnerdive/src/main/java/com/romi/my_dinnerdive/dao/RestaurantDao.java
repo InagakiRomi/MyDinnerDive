@@ -1,5 +1,7 @@
 package com.romi.my_dinnerdive.dao;
 
+import java.util.List;
+
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
 import com.romi.my_dinnerdive.model.Restaurant;
 
@@ -25,9 +27,9 @@ public interface RestaurantDao {
     Integer createRestaurant(RestaurantRequest restaurantRequest);
 
     /**
-     * 隨機取得一筆餐廳資料。
+     * 取得所有餐廳資料ID。
      *
-     * @return 隨機選出的餐廳資料，若無資料則回傳 null
+     * @return 所有餐廳資料ID，若無資料則回傳 null
      */
-    Restaurant findRandomRestaurant();
+    List<Integer> getAllRestaurantIds();
 }

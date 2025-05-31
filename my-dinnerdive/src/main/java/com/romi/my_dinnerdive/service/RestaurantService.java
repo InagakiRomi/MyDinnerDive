@@ -1,5 +1,7 @@
 package com.romi.my_dinnerdive.service;
 
+import java.util.List;
+
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
 import com.romi.my_dinnerdive.model.Restaurant;
 
@@ -24,6 +26,13 @@ public interface RestaurantService {
      * @return 新建立資料的主鍵 ID
      */
     Integer createRestaurant(RestaurantRequest restaurantRequest);
+
+    /**
+     * 取得所有餐廳資料ID。
+     *
+     * @return 所有餐廳資料ID，若無資料則回傳 null
+     */
+    List<Integer> getAllRestaurantIds();
 
     /**
      * 隨機取得一筆餐廳資料。
