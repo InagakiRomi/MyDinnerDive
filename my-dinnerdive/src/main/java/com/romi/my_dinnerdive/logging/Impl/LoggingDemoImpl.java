@@ -1,11 +1,10 @@
 package com.romi.my_dinnerdive.logging.Impl;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.*;
 
 import org.springframework.stereotype.Component;
 import com.romi.my_dinnerdive.logging.LoggingDemo;
+import com.romi.my_dinnerdive.logging.formatter.MyCustomFormatter;
 
 @Component
 public class LoggingDemoImpl implements LoggingDemo{
@@ -34,25 +33,8 @@ public class LoggingDemoImpl implements LoggingDemo{
             consoleHandler.setLevel(Level.ALL);
 
             consoleHandler.setFormatter(new MyCustomFormatter());
-            
+
             logger.addHandler(consoleHandler);
-        }
-    }
-
-    static class MyCustomFormatter extends Formatter {
-        private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
-        private final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-
-        @Override
-        public String format(LogRecord record) {
-            StringBuilder sb = new StringBuilder();
-
-            sb.append("[").append(dateFormat.format(new Date(record.getMillis()))).append("]");
-            sb.append(" [").append(record.getLevel().getName()).append("]");
-            sb.append(" [").append(record.getLoggerName()).append("] ");
-            sb.append(formatMessage(record)).append("\n");
-
-            return sb.toString();
         }
     }
 }
