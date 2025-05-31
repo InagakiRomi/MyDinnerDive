@@ -1,32 +1,33 @@
-<!--
-    index.html
-    主畫面：整合所有 fragment 並呈現功能按鈕
--->
 <!DOCTYPE html>
 <html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head"></head>
 <body>
 
-<!-- 標題 -->
-<h1>餐廳抽選器</h1>
+<main>
+    <header>
+        <h1>餐廳抽選器</h1>
+    </header>
 
-<!-- 跳轉業面按鈕 -->
-<div style="margin-top: 50px; padding-left: 20px;">
-    <button style="background-color: orange; color: white; margin-right: 10px;">餐廳一覽</button>
-    <button style="background-color: orange; color: white; margin-right: 10px;">新增餐廳</button>
-    <button style="background-color: orange; color: white; margin-right: 10px;">修改餐廳</button>
-    <button style="background-color: orange; color: white; margin-right: 10px;">刪除餐廳</button>
-</div>
+    <!-- 功能按鈕列 -->
+    <section style="margin-top: 50px; padding-left: 20px;">
+        <button class="nav-btn">餐廳一覽</button>
+        <button class="nav-btn">新增餐廳</button>
+        <button class="nav-btn">修改餐廳</button>
+        <button class="nav-btn">刪除餐廳</button>
+    </section>
 
-<!-- 引用圖片區塊 -->
-<div th:replace="fragments/image :: image"></div>
+    <!-- 餐廳圖片 -->
+    <section th:replace="fragments/image :: image"></section>
 
-<!-- 引用餐廳資訊區塊 -->
-<div th:replace="fragments/info :: info"></div>
+    <!-- 餐廳資訊 -->
+    <section th:replace="fragments/info :: info"></section>
 
-<br>
-<button onclick="getRandomRestaurant()">抽！</button>
-<button>就決定吃這個！</button>
+    <!-- 抽選操作按鈕 -->
+    <section style="margin-top: 30px;">
+        <button onclick="getRandomRestaurant()">抽！</button>
+        <button>就決定吃這個！</button>
+    </section>
+</main>
 
 </body>
 </html>

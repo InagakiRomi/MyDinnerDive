@@ -1,80 +1,73 @@
 <!--
-    head.html
-    此 Fragment 負責提供 HTML 頁首的內容，包含 meta、title、CSS 及 JavaScript
+    fragments/head.html
+    網頁 <head> 區塊
 -->
-<html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org"
-      th:replace="fragments/head :: head">
-
-<!DOCTYPE html>
-<html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
     <title>食物抽選器</title>
 
-    <!-- CSS 樣式設定，控制整體畫面外觀 -->
     <style>
-        /* 設定整體網頁的字型、邊距與背景色 */
         body {
-            font-family: Arial, sans-serif; /* 使用 Arial 無襯線字體 */
-            margin: 0;                     /* 頁面邊界為 0 */
-            padding: 20px;                 /* 內距 20px */
-            background-color: #f0f0f0;     /* 淺灰背景 */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
         }
 
-        /* 標題 H1 的樣式 */
         h1 {
-            text-align: left;              /* 靠左對齊 */
-            margin-bottom: 20px;           /* 與下方元素距離 20px */
+            text-align: left;
+            margin-bottom: 20px;
         }
 
-        /* 圖片容器：用來包住圖片，並居中顯示 */
         .image-container {
-            width: 512px;                  /* 固定寬度 */
-            height: 256px;                 /* 固定高度 */
-            background-color: #404040;     /* 深灰背景 */
-            display: flex;                 /* 使用 flex 排版 */
-            justify-content: center;       /* 水平置中圖片 */
-            align-items: center;           /* 垂直置中圖片 */
-            margin-bottom: 20px;           /* 與下方間距 */
-            overflow: hidden;              /* 超出圖片不顯示 */
+            width: 512px;
+            height: 256px;
+            background-color: #404040;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            overflow: hidden;
         }
 
-        /* 圖片本身的樣式設定 */
         .image-container img {
-            max-width: 100%;               /* 圖片寬度不能超過容器 */
-            max-height: 100%;              /* 高度同上 */
-            object-fit: contain;           /* 保持原圖比例縮放 */
-            display: block;                /* 消除底部空隙 */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
         }
 
-        /* 每個資料欄位的顯示區塊 */
         .info {
-            margin-bottom: 10px;           /* 各區塊之間的間距 */
-            text-align: left;              /* 文字靠左對齊 */
+            margin-bottom: 10px;
+            text-align: left;
         }
 
-        /* 所有按鈕的基本樣式 */
         button {
-            font-size: 18px;               /* 按鈕文字大小 */
-            padding: 10px 20px;            /* 內距 */
-            margin-right: 10px;            /* 與其他按鈕間距 */
-            cursor: pointer;               /* 滑鼠移上去顯示手指 */
-            border: none;                  /* 移除邊框 */
-            border-radius: 6px;            /* 圓角邊框 */
-            background-color: #4CAF50;     /* 綠色背景 */
-            color: white;                  /* 白色文字 */
-            transition: background-color 0.2s ease; /* 漸變效果 */
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.2s ease;
         }
 
-        /* 當滑鼠移到按鈕時的樣式變化 */
         button:hover {
-            background-color: #45a049;     /* 深一點的綠色背景 */
+            background-color: #45a049;
+        }
+
+        .nav-btn {
+            background-color: orange;
+        }
+
+        .nav-btn:hover {
+            background-color: #e69500;
         }
     </style>
 
-    <!-- JavaScript：向後端發送 /random 請求並更新畫面上的資訊 -->
     <script>
-        // 圖片清單：這些是前端模擬亂跳用的圖片（不連後端）
         const rollingImages = [
             '/img/food01.jpg',
             '/img/food02.jpg',
@@ -82,46 +75,36 @@
             '/img/food04.jpg'
         ];
 
-        let rollingInterval = null; // 保存 setInterval 的 ID，方便之後清除
+        let rollingInterval = null;
 
-        // 主函式：按下「抽！」按鈕時會執行這個
         function getRandomRestaurant() {
-            // 取得顯示圖片的 <img> 元素（有 data-field="imageUrl"）
             const imgEl = document.querySelector('[data-field="imageUrl"]');
-            let index = 0;
 
-            // 啟動圖片輪播動畫，每 100 毫秒換一張隨機圖片
             rollingInterval = setInterval(() => {
                 const rand = Math.floor(Math.random() * rollingImages.length);
                 imgEl.src = rollingImages[rand];
             }, 50);
 
-            // 2 秒後停止動畫，開始向後端發送 /random 請求
             setTimeout(() => {
-                clearInterval(rollingInterval); // 停止圖片跳動
+                clearInterval(rollingInterval);
 
-                // 向後端發送 API 請求，取得一筆隨機資料
                 fetch('/random')
                     .then(response => response.json())
                     .then(data => {
-                        // 根據資料更新畫面上所有帶 data-field 的欄位
                         document.querySelectorAll('[data-field]').forEach(el => {
                             const field = el.getAttribute('data-field');
-
                             if (field === 'imageUrl') {
-                                el.src = data[field]; // 圖片欄位改 src 屬性
+                                el.src = data[field];
                             } else {
-                                el.innerText = data[field]; // 其他欄位改 innerText 內容
+                                el.innerText = data[field];
                             }
                         });
                     });
-            }, 1000); // 延遲 2 秒後執行
+            }, 1000);
         }
 
-        // 頁面一載入完成就自動執行一次抽選，顯示初始餐廳資訊
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             getRandomRestaurant();
         });
     </script>
 </head>
-</html>

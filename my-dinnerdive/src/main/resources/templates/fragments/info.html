@@ -1,13 +1,12 @@
 <!--
-    info.html
-    餐廳資訊區塊 Fragment。顯示詳細的資料字段。
+    fragments/info.html
+    餐廳資訊區塊 Fragment
 -->
-<div th:fragment="info">
-    <!-- 每個欄位都用 data-field 作為標記，讓 JavaScript 根據 API 回傳內容自動填入 -->
-    <div class="info"><strong>餐廳名稱：</strong><span data-field="restaurantName"></span></div>
-    <div class="info"><strong>餐廳類別：</strong><span data-field="category"></span></div>
-    <div class="info"><strong>選擇次數：</strong><span data-field="visitedCount"></span></div>
-    <div class="info"><strong>最後一次吃的時間：</strong><span data-field="lastEat"></span></div>
-    <div class="info"><strong>最後一次更新資料時間：</strong><span data-field="lastVisitedAt"></span></div>
-    <div class="info"><strong>備註：</strong><span data-field="note"></span></div>
-</div>
+<section th:fragment="info">
+    <div class="info"><label><strong>餐廳名稱：</strong></label><span data-field="restaurantName"></span></div>
+    <div class="info"><label><strong>餐廳類別：</strong></label><span data-field="category"></span></div>
+    <div class="info"><label><strong>選擇次數：</strong></label><span data-field="visitedCount"></span></div>
+    <div class="info"><label><strong>最後一次吃的時間：</strong></label><span data-field="lastEat"></span></div>
+    <div class="info"><label><strong>最後一次更新資料時間：</strong></label><span data-field="lastVisitedAt"></span></div>
+    <div class="info"><label><strong>備註：</strong></label><span data-field="note"></span></div>
+</section>
