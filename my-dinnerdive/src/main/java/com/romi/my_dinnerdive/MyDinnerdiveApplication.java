@@ -1,7 +1,11 @@
 package com.romi.my_dinnerdive;
 
+import java.util.logging.*;
+
+import com.romi.my_dinnerdive.logging.LoggingDemo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * 應用程式進入點：MyDinnerdiveApplication
@@ -17,6 +21,10 @@ public class MyDinnerdiveApplication {
      * @param args 執行參數
      */
     public static void main(String[] args) {
-        SpringApplication.run(MyDinnerdiveApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(MyDinnerdiveApplication.class, args);
+
+        LoggingDemo loggingDemo = context.getBean(LoggingDemo.class);
+        Logger logger = loggingDemo.printMainLog();
+        logger.log(Level.INFO, "可啟動應用程式，請輸入 http://localhost:8080/dinnerHome 來存取應用程式。");
     }
 }
