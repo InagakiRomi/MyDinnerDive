@@ -1,7 +1,13 @@
 package com.romi.my_dinnerdive;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.romi.my_dinnerdive.model.Restaurant;
+import com.romi.my_dinnerdive.service.RestaurantService;
+
 
 /**
  * 前端頁面控制器：ThymeleafController
@@ -11,6 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ThymeleafController {
 
+    @Autowired
+    private RestaurantService restaurantService;
+
     /**
      * 導向首頁畫面（index.html）。
      *
@@ -19,39 +28,46 @@ public class ThymeleafController {
      * @return 字串 "index"，作為 Thymeleaf 視圖名稱
      */
     @GetMapping("/dinnerHome")
-    public String dinnerHome() {
+    public String dinnerHome(Model model) {
+        // 從資料庫隨機獲取餐廳資訊
+        Restaurant restaurant = restaurantService.getRandomRestaurant();
+        
+        // 將餐廳資訊添加到模型中，以便在 Thymeleaf 模板中使用
+        model.addAttribute("restaurants", restaurant);
+
+        // 返回 Thymeleaf 模板名稱
         return "index";
     }
 
     /**
      * 跳轉讀取餐廳頁面
      */
-    @GetMapping("/read")
+    @GetMapping("/readRestaurant")
     public String readPage() {
-        return "dinnerHome/read";
+        return "dinnerHome/readRestaurant";
     }
 
     /**
      * 跳轉新增餐廳頁面
      */
-    @GetMapping("/create")
+    @GetMapping("/createRestaurant")
     public String createPage() {
-        return "dinnerHome/create";
+        return "dinnerHome/createRestaurant";
     }
 
     /**
      * 跳轉修改餐廳頁面
      */
-    @GetMapping("/update")
+    @GetMapping("/updateRestaurant")
     public String updatePage() {
-        return "dinnerHome/update";
+        return "dinnerHome/updateRestaurant";
     }
 
     /**
      * 跳轉刪除餐廳頁面
      */
-    @GetMapping("/delete")
+    @GetMapping("/deleteRestaurant")
     public String deletePage() {
-        return "dinnerHome/delete";
+        return "dinnerHome/deleteRestaurant";
     }
 }

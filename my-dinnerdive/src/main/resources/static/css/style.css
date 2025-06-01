@@ -1,0 +1,39 @@
+/* 跳轉頁面按鈕 */
+.pageBtn {
+    font-size: 1.5rem;  /*文字大小*/
+    color: rgb(245, 245, 245);  /*文字顏色*/
+    background-color: #fa993e;  /*背景顏色*/
+    border: none;  /*邊框*/
+    border-radius: 6px;  /*邊框圓角*/
+    padding: 5px 20px;  /*內距(讓文字和外框保留距離)*/
+    transition: .5s;  /*轉場漸變(讓滑鼠懸停變色效果)*/
+    cursor: pointer;  /*滑鼠游標滑上去變成手指形狀*/
+}
+
+.pageBtn:hover {  
+    background-color: #d97100;  /*背景顏色*/
+}
+
+/* 抽籤按鈕 */
+.randomBtn {
+    font-size: 1.5rem;
+    color: rgb(245, 245, 245);
+    background-color: #36bf36;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 20px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.randomBtn:hover {  
+    background-color: #3ea739;
+}
+
+/* 餐廳圖片顯示 */
+.restaurantImage {
+    width: 480px;
+    height: 272px;
+    background-size: cover;
+    background-position: center;
+}
