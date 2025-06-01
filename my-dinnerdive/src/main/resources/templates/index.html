@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>餐廳抽選器</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
@@ -27,21 +28,6 @@
 
     <!--抽籤功能-->
     <button onclick="getRandomRestaurant()">抽！</button>
-    <script>
-        function getRandomRestaurant() {
-            fetch('/random')
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById('updateImg').src = data.imageUrl;
-                    document.getElementById('updateName').innerText = data.restaurantName;
-                    document.getElementById('updateCategory').innerText = data.category;
-                    document.getElementById('updateVisitedCount').innerText = data.visitedCount;
-                    document.getElementById('updateLastEat').innerText = data.lastEat;
-                    document.getElementById('updateLastVisitedAt').innerText = data.lastVisitedAt;
-                    document.getElementById('updateNote').innerText = data.note;
-                });
-        }
-    </script>
-
+    <script src="/js/randomRestaurant.js"></script>
 </body>
 </html>
