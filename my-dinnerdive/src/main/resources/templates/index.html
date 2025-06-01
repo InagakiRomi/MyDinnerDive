@@ -1,0 +1,23 @@
+<!--入口頁面-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>餐廳抽選器</h1>
+
+    <!--跳轉頁面-->
+    <a href="/create">新增餐廳</a><br>
+
+    <!--顯示餐廳圖片-->
+    <img th:src="@{/img/food01.jpg}" />
+
+    <!--顯示餐廳資訊-->
+    <p th:text="${restaurants.restaurantName}"></p>
+    <p th:text="${restaurants.note}"></p>
+
+</body>
+</html>

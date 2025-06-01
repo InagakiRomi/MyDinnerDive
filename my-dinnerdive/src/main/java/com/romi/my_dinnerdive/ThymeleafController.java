@@ -1,7 +1,11 @@
 package com.romi.my_dinnerdive;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.romi.my_dinnerdive.model.Restaurant;
+
 
 /**
  * 前端頁面控制器：ThymeleafController
@@ -19,7 +23,16 @@ public class ThymeleafController {
      * @return 字串 "index"，作為 Thymeleaf 視圖名稱
      */
     @GetMapping("/dinnerHome")
-    public String dinnerHome() {
+    public String dinnerHome(Model model) {
+        // 從資料庫獲取餐廳資訊
+        Restaurant restaurant = new Restaurant();
+        restaurant.setRestaurantName("美味餐廳");
+        restaurant.setNote("這是一家非常受歡迎的餐廳。");
+        
+        // 將餐廳資訊添加到模型中，以便在 Thymeleaf 模板中使用
+        model.addAttribute("restaurants", restaurant);
+
+        // 返回 Thymeleaf 模板名稱
         return "index";
     }
 
