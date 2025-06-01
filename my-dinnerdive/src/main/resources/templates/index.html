@@ -9,15 +9,22 @@
 
     <h1>餐廳抽選器</h1>
 
-    <!--跳轉頁面-->
-    <button onclick="location.href='/create'">新增餐廳</button>
+    <!--跳轉頁面按鈕-->
+    <button onclick="location.href='/createRestaurant'">新增餐廳</button>
 
     <!--顯示餐廳圖片-->
-    <img th:src="@{/img/food01.jpg}" />
+    <img th:src="@{${restaurants.imageUrl}}" />
 
     <!--顯示餐廳資訊-->
-    <p th:text="${restaurants.restaurantName}"></p>
-    <p th:text="${restaurants.note}"></p>
+    <p th:text="'餐廳名稱：' + ${restaurants.restaurantName}"></p>
+    <p th:text="'餐廳類別：' + ${restaurants.category}"></p>
+    <p th:text="'選擇次數：' + ${restaurants.visitedCount}"></p>
+    <p th:text="'最後選擇時間：' + ${restaurants.lastEat}"></p>
+    <p th:text="'最後更新時間：' + ${restaurants.lastVisitedAt}"></p>
+    <p th:text="'備註：' + ${restaurants.note}"></p>
+
+    <!--底部按鈕-->
+    <button onclick="fetch('/random')">抽！</button>
 
 </body>
 </html>

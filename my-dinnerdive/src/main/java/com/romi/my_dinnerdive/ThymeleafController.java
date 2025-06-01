@@ -1,10 +1,12 @@
 package com.romi.my_dinnerdive;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.romi.my_dinnerdive.model.Restaurant;
+import com.romi.my_dinnerdive.service.RestaurantService;
 
 
 /**
@@ -15,6 +17,9 @@ import com.romi.my_dinnerdive.model.Restaurant;
 @Controller
 public class ThymeleafController {
 
+    @Autowired
+    private RestaurantService restaurantService;
+
     /**
      * 導向首頁畫面（index.html）。
      *
@@ -24,10 +29,8 @@ public class ThymeleafController {
      */
     @GetMapping("/dinnerHome")
     public String dinnerHome(Model model) {
-        // 從資料庫獲取餐廳資訊
-        Restaurant restaurant = new Restaurant();
-        restaurant.setRestaurantName("美味餐廳");
-        restaurant.setNote("這是一家非常受歡迎的餐廳。");
+        // 從資料庫隨機獲取餐廳資訊
+        Restaurant restaurant = restaurantService.getRandomRestaurant();
         
         // 將餐廳資訊添加到模型中，以便在 Thymeleaf 模板中使用
         model.addAttribute("restaurants", restaurant);
@@ -39,32 +42,32 @@ public class ThymeleafController {
     /**
      * 跳轉讀取餐廳頁面
      */
-    @GetMapping("/read")
+    @GetMapping("/readRestaurant")
     public String readPage() {
-        return "dinnerHome/read";
+        return "dinnerHome/readRestaurant";
     }
 
     /**
      * 跳轉新增餐廳頁面
      */
-    @GetMapping("/create")
+    @GetMapping("/createRestaurant")
     public String createPage() {
-        return "dinnerHome/create";
+        return "dinnerHome/createRestaurant";
     }
 
     /**
      * 跳轉修改餐廳頁面
      */
-    @GetMapping("/update")
+    @GetMapping("/updateRestaurant")
     public String updatePage() {
-        return "dinnerHome/update";
+        return "dinnerHome/updateRestaurant";
     }
 
     /**
      * 跳轉刪除餐廳頁面
      */
-    @GetMapping("/delete")
+    @GetMapping("/deleteRestaurant")
     public String deletePage() {
-        return "dinnerHome/delete";
+        return "dinnerHome/deleteRestaurant";
     }
 }
