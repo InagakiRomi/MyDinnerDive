@@ -1,7 +1,8 @@
-button {
-    font-size: 2rem;  /*文字大小*/
+/* 跳轉頁面按鈕 */
+.pageBtn {
+    font-size: 1.5rem;  /*文字大小*/
     color: rgb(245, 245, 245);  /*文字顏色*/
-    background-color: #FA993E;  /*背景顏色*/
+    background-color: #fa993e;  /*背景顏色*/
     border: none;  /*邊框*/
     border-radius: 6px;  /*邊框圓角*/
     padding: 5px 20px;  /*內距(讓文字和外框保留距離)*/
@@ -9,6 +10,22 @@ button {
     cursor: pointer;  /*滑鼠游標滑上去變成手指形狀*/
 }
 
-button:hover {  
+.pageBtn:hover {  
     background-color: #d97100;  /*背景顏色*/
+}
+
+/* 抽籤按鈕 */
+.randomBtn {
+    font-size: 1.5rem;
+    color: rgb(245, 245, 245);
+    background-color: #36bf36;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 20px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.randomBtn:hover {  
+    background-color: #3ea739;
 }

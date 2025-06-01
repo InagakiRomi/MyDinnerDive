@@ -11,7 +11,7 @@
     <h1>餐廳抽選器</h1>
 
     <!--跳轉頁面按鈕-->
-    <button onclick="location.href='/createRestaurant'">新增餐廳</button>
+    <button class="pageBtn" onclick="location.href='/createRestaurant'">新增餐廳</button>
 
     <!--顯示餐廳圖片-->
     <img id="updateImg" th:src="@{${restaurants.imageUrl}}" alt="餐廳圖片" />
@@ -27,7 +27,7 @@
     <!--底部按鈕-->
 
     <!--抽籤功能-->
-    <button onclick="getRandomRestaurant()">抽！</button>
+    <button class="randomBtn" onclick="getRandomRestaurant()">抽！</button>
     <script src="/js/randomRestaurant.js"></script>
 </body>
 </html>
