@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head"></head>
+<head th:replace="~{fragments/head :: head}"></head>
 <body>
 
 <!-- 引入共用的功能按鈕列 navbar（固定在最上方） -->
 <section th:replace="~{fragments/navbar :: navbar}"></section>
-
 
 <!-- 
   為了不讓 main 的內容被固定的 navbar 蓋住，需要設定 padding-top
@@ -19,10 +18,10 @@
     </header>
 
     <!-- 餐廳圖片區塊（引入共用 fragment） -->
-    <section th:replace="fragments/image :: image"></section>
+    <section th:replace="~{fragments/image :: image}"></section>
 
     <!-- 餐廳文字資訊區塊（引入共用 fragment） -->
-    <section th:replace="fragments/info :: info"></section>
+    <section th:replace="~{fragments/info :: info}"></section>
 
     <!-- 抽選操作按鈕區塊 -->
     <section style="margin-top: 30px;">
