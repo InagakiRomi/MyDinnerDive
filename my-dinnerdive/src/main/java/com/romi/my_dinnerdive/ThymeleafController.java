@@ -22,4 +22,36 @@ public class ThymeleafController {
     public String dinnerHome() {
         return "index";
     }
+
+    /**
+     * 跳轉讀取餐廳頁面
+     */
+    @GetMapping("/read")
+    public String readPage() {
+        return "dinnerHome/read";
+    }
+
+    /**
+     * 跳轉新增餐廳頁面
+     */
+    @GetMapping("/create")
+    public String createPage() {
+        return "dinnerHome/create";
+    }
+
+    /**
+     * 跳轉修改餐廳頁面
+     */
+    @GetMapping("/update")
+    public String updatePage() {
+        return "dinnerHome/update";
+    }
+
+    /**
+     * 跳轉刪除餐廳頁面
+     */
+    @GetMapping("/delete")
+    public String deletePage() {
+        return "dinnerHome/delete";
+    }
 }
