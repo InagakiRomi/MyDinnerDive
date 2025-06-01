@@ -29,3 +29,11 @@
 .randomBtn:hover {  
     background-color: #3ea739;
 }
+
+/* 餐廳圖片顯示 */
+.restaurantImage {
+    width: 480px;
+    height: 272px;
+    background-size: cover;
+    background-position: center;
+}
