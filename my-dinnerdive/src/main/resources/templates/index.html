@@ -13,18 +13,35 @@
     <button onclick="location.href='/createRestaurant'">新增餐廳</button>
 
     <!--顯示餐廳圖片-->
-    <img th:src="@{${restaurants.imageUrl}}" />
+    <img id="updateImg" th:src="@{${restaurants.imageUrl}}" alt="餐廳圖片" />
 
     <!--顯示餐廳資訊-->
-    <p th:text="'餐廳名稱：' + ${restaurants.restaurantName}"></p>
-    <p th:text="'餐廳類別：' + ${restaurants.category}"></p>
-    <p th:text="'選擇次數：' + ${restaurants.visitedCount}"></p>
-    <p th:text="'最後選擇時間：' + ${restaurants.lastEat}"></p>
-    <p th:text="'最後更新時間：' + ${restaurants.lastVisitedAt}"></p>
-    <p th:text="'備註：' + ${restaurants.note}"></p>
+    <p>餐廳名稱：<span id="updateName" th:text="${restaurants?.restaurantName}"></span></p>
+    <p>餐廳類別：<span id="updateCategory" th:text="${restaurants?.category}"></span></p>
+    <p>選擇次數：<span id="updateVisitedCount" th:text="${restaurants?.visitedCount}"></span></p>
+    <p>最後選擇時間：<span id="updateLastEat" th:text="${restaurants?.lastEat}"></span></p>
+    <p>最後更新時間：<span id="updateLastVisitedAt" th:text="${restaurants?.lastVisitedAt}"></span></p>
+    <p>備註：<span id="updateNote" th:text="${restaurants?.note}"></span></p>
 
     <!--底部按鈕-->
-    <button onclick="fetch('/random')">抽！</button>
+
+    <!--抽籤功能-->
+    <button onclick="getRandomRestaurant()">抽！</button>
+    <script>
+        function getRandomRestaurant() {
+            fetch('/random')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('updateImg').src = data.imageUrl;
+                    document.getElementById('updateName').innerText = data.restaurantName;
+                    document.getElementById('updateCategory').innerText = data.category;
+                    document.getElementById('updateVisitedCount').innerText = data.visitedCount;
+                    document.getElementById('updateLastEat').innerText = data.lastEat;
+                    document.getElementById('updateLastVisitedAt').innerText = data.lastVisitedAt;
+                    document.getElementById('updateNote').innerText = data.note;
+                });
+        }
+    </script>
 
 </body>
 </html>
