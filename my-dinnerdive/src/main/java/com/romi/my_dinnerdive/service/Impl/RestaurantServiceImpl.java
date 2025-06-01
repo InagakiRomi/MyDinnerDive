@@ -65,7 +65,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         
         // 如果已經抽完所有餐廳，則清空 lastId 並重新開始抽
         if(lastId.size() == idList.size()){
-            lastId.clear();
+            clearRandomRestaurant();
             logger.log(Level.INFO, "已抽完所有餐廳重新開始抽");
         }
 
@@ -90,5 +90,18 @@ public class RestaurantServiceImpl implements RestaurantService {
         logger.log(Level.FINE,"目前還有 " + lastFood + " 個餐廳可以抽");
         logger.log(Level.FINE,"目前被抽過的餐廳ID有： " + lastId);
         return getRestaurantById(randomId);
+    }
+
+    /**
+     * 清空抽籤資料。
+     */
+    @Override
+    public void clearRandomRestaurant() {
+        Logger logger = loggingDemo.printRandomRestaurantLog();
+        
+        if(!lastId.isEmpty()) {
+            lastId.clear();
+            logger.log(Level.INFO, "清空抽籤資料");
+        }
     }
 }

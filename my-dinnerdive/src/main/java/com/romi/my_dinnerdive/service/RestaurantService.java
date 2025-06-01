@@ -40,4 +40,11 @@ public interface RestaurantService {
      * @return 隨機選出的 Restaurant 物件，若無資料則回傳 null
      */
     Restaurant getRandomRestaurant();
+
+    /**
+     * 清空抽籤資料。
+     *
+     * @return 清除後的餐廳資料列表，若無資料則回傳 null
+     */
+    void clearRandomRestaurant();
 }
