@@ -11,16 +11,17 @@
     <h1>餐廳抽選器</h1>
 
     <!--跳轉頁面按鈕-->
-    <button class="pageBtn" onclick="location.href='/createRestaurant'">新增餐廳</button>
-
-    <br>
+    <section>
+        <button class="pageBtn" onclick="location.href='/createRestaurant'">新增餐廳</button>
+    </section>
 
     <!--顯示餐廳圖片-->
-    <img class="restaurantImage" 
-         id="updateImg" 
-         th:src="@{${restaurants.imageUrl}}" 
-         alt="餐廳圖片"
-         style="margin-top: 20px;" />
+    <section>
+        <img class="restaurantImage" 
+             id="updateImg" 
+             th:src="@{${restaurants.imageUrl}}" 
+             alt="餐廳圖片"/>
+    </section>
 
     <!--顯示餐廳資訊-->
     <p>餐廳名稱：<span id="updateName" th:text="${restaurants?.restaurantName}"></span></p>
