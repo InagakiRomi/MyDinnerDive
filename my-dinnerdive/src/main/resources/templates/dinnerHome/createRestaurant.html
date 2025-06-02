@@ -10,14 +10,14 @@
     <h1>新增餐廳</h1>
 
     <!--跳轉頁面按鈕-->
-    <button class="pageBtn" onclick="location.href='/dinnerHome'">回首頁</button>
+    <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button>
 
      <!--使用者輸入資料框-->   
     <form th:action="@{/restaurants}" method="post">
-        <label>餐廳名稱： <input type="text" name="restaurantName"></label><br>
-        <label>餐廳類別： <input type="text" name="category"></label><br>
+        <label>餐廳名稱： <input type="text" required="required" name="restaurantName"></label><br>
+        <label>餐廳類別： <input type="text" required="required" name="category"></label><br>
         <label>備註：    <input type="text" name="note"></label><br>
-        <label>圖片Url： <input type="text" name="imageUrl"></label><br>
+        <label>圖片Url： <input type="url" name="imageUrl"></label><br>
         <button class="randomBtn" type="submit" style="margin-top: 20px;">新增餐廳</button>
     </form>
 </body>
