@@ -15,7 +15,16 @@
      <!--使用者輸入資料框-->   
     <form th:action="@{/restaurants}" method="post">
         <label>餐廳名稱： <input type="text" required="required" name="restaurantName"></label><br>
-        <label>餐廳類別： <input type="text" required="required" name="category"></label><br>
+
+    <form>
+        <label for="category">餐廳類別：</label>
+        <select id="category" name="category">
+            <option value="option1">主食</option>
+            <option value="option2">輕食</option>
+            <option value="option3">飲料</option>
+        </select>
+    </form>
+
         <label>備註：    <input type="text" name="note"></label><br>
         <label>圖片Url： <input type="url" name="imageUrl"></label><br>
         <button class="randomBtn" type="submit" style="margin-top: 20px;">新增餐廳</button>
