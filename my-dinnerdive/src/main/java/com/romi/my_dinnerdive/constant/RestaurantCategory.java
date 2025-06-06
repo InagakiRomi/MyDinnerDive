@@ -7,7 +7,27 @@ package com.romi.my_dinnerdive.constant;
  * 此列舉有助於限制輸入值，確保資料一致性與類型安全。
  */
 public enum RestaurantCategory {
-    主食,
-    輕食,
-    飲料
+
+    主食("主食"),
+    輕食("輕食"),
+    飲料("飲料");
+
+    private final String displayName;
+
+    RestaurantCategory(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public static RestaurantCategory fromDisplayName(String name) {
+        for (RestaurantCategory category : values()) {
+            if (category.displayName.equals(name)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("無效的餐廳分類: " + name);
+    }
 }
