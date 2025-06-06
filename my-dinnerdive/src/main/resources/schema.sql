@@ -6,7 +6,7 @@ CREATE TABLE restaurants (
     category         VARCHAR(32)  NOT NULL,              -- 餐廳類別（如日式、西式等），最長 32 字元，不可為空
     image_url        VARCHAR(256),                       -- 餐廳圖片網址，最長 256 字元，允許為空
     visited_count    INT DEFAULT 0,                      -- 拜訪次數，預設為 0
-    last_eat         TIMESTAMP NULL DEFAULT NULL         -- 最後選擇時間，預設為 NULL
+    last_eat         TIMESTAMP NULL DEFAULT NULL,        -- 最後選擇時間，預設為 NULL
     last_visited_at  TIMESTAMP NULL DEFAULT NULL,        -- 最後更新時間，預設為 NULL
     note             VARCHAR(512)                        -- 備註欄位，最長 512 字元，可為空
 );
