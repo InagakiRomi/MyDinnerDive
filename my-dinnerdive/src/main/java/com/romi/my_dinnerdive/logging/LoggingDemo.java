@@ -13,6 +13,11 @@ public interface LoggingDemo {
     Logger printMainLog();
 
     /**
+     * 打印啟動時撈資料庫的log。
+     */
+    Logger printDataSourceConfig();
+
+    /**
      * 打印隨機抽取餐廳的log。
      */
     Logger printRandomRestaurantLog();

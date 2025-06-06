@@ -19,6 +19,15 @@ public class LoggingDemoImpl implements LoggingDemo{
     }
         
     /**
+     * 打印啟動時撈資料庫的log。
+     */
+    public Logger printDataSourceConfig() {
+        Logger logger = Logger.getLogger("DataSourceConfig");
+        LoggerSettings(logger);
+        return logger;
+    }
+
+    /**
      * 打印隨機抽取餐廳的log。
      */
     public Logger printRandomRestaurantLog() {
