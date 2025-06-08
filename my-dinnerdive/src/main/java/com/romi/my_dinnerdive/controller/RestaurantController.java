@@ -50,7 +50,7 @@ public class RestaurantController {
      * @param restaurantRequest 新增餐廳所需的請求資料，需通過驗證
      * @return 回傳建立後的餐廳資料與 HTTP 201 狀態碼
      */
-    @PostMapping(value = "/restaurants", consumes = "application/json")
+    @PostMapping(value = "/restaurants")
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody @Valid RestaurantRequest restaurantRequest,
                                                        @RequestParam(defaultValue = "0") Integer visitedCount) {
         Integer restaurantId = restaurantService.createRestaurant(restaurantRequest);
