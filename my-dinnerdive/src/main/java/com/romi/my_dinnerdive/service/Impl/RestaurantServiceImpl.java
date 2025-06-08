@@ -56,9 +56,19 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantDao.createRestaurant(restaurantRequest);
     }
 
+
+    /**
+     * 刪除指定 ID 的餐廳資料。
+     */
+    @Override
+    public void deleteRestaurantById(Integer restaurantId){
+        restaurantDao.deleteRestaurantById(restaurantId);
+    }
+
     /**
      * 隨機取得一筆餐廳資料。
      */
+    @Override
     public List<Integer> getAllRestaurantIds(){
         return restaurantDao.getAllRestaurantIds();
     }

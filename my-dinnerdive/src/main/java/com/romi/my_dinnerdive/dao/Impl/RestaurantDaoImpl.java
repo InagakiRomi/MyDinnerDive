@@ -84,6 +84,20 @@ public class RestaurantDaoImpl implements RestaurantDao {
         return key.intValue();
     }
 
+    
+    /**
+     * 刪除指定 ID 的餐廳資料。
+     */
+    @Override
+    public void deleteRestaurantById(Integer restaurantId){
+        String sql = "DELETE FROM restaurants WHERE restaurant_id = :restaurantId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("restaurantId", restaurantId);
+
+        namedParameterJdbcTemplate.update(sql, map);
+    }
+
     /**
      * 取得所有餐廳資料ID。
      */

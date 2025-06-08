@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,5 +72,18 @@ public class RestaurantController {
         Integer restaurantId = restaurantService.createRestaurant(restaurantRequest);
         Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
         return ResponseEntity.status(HttpStatus.CREATED).body(restaurant);
+    }
+
+    /**
+     * 刪除指定 ID 的餐廳資料。
+     *
+     * @param restaurantId 餐廳的唯一識別碼
+     * @return 若刪除成功，回傳 HTTP 204；若餐廳不存在，則回傳 HTTP 404。
+     */
+    @DeleteMapping("/restaurants/{restaurantId}")
+    public ResponseEntity<?> deleteRestaurant(@PathVariable Integer restaurantId) {
+        restaurantService.deleteRestaurantById(restaurantId);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

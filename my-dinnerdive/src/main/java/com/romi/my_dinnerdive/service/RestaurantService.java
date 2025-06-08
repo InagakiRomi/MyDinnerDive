@@ -36,6 +36,13 @@ public interface RestaurantService {
     Integer createRestaurant(RestaurantRequest restaurantRequest);
 
     /**
+     * 刪除指定 ID 的餐廳資料。
+     * 
+     * @return 無回傳值，若無資料則不做任何操作
+     */
+    void deleteRestaurantById(Integer restaurantId);
+
+    /**
      * 取得所有餐廳資料ID。
      *
      * @return 所有餐廳資料ID，若無資料則回傳 null
