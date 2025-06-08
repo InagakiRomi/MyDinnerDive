@@ -40,11 +40,11 @@ public class ThymeleafController {
     }
 
     /**
-     * 跳轉讀取餐廳頁面
+     * 跳轉餐廳一覽頁面
      */
-    @GetMapping("/readRestaurant")
+    @GetMapping("/listRestaurant")
     public String readPage() {
-        return "dinnerHome/readRestaurant";
+        return "dinnerHome/listRestaurant";
     }
 
     /**
@@ -53,21 +53,5 @@ public class ThymeleafController {
     @GetMapping("/createRestaurant")
     public String createPage() {
         return "dinnerHome/createRestaurant";
-    }
-
-    /**
-     * 跳轉修改餐廳頁面
-     */
-    @GetMapping("/updateRestaurant")
-    public String updatePage() {
-        return "dinnerHome/updateRestaurant";
-    }
-
-    /**
-     * 跳轉刪除餐廳頁面
-     */
-    @GetMapping("/deleteRestaurant")
-    public String deletePage() {
-        return "dinnerHome/deleteRestaurant";
     }
 }
