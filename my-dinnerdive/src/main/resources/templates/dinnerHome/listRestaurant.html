@@ -12,28 +12,49 @@
     <!--跳轉頁面按鈕-->
     <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button>
 
-    <table id="content" style="border: 1px solid;"> 
-        <tr> 
-            <th>餐廳名稱</th> 
-            <th>餐廳類別</th> 
-            <th>選擇次數</th> 
-            <th>最後選擇時間</th> 
-            <th>最後更新時間</th>
-            <th>備註</th>
-            <th>操作</th>
-        </tr> 
-        <tr th:each="restaurant : ${restaurants}"> 
-            <td th:text="${restaurant.restaurantName}"></td> 
-            <td th:text="${restaurant.category}"></td> 
-            <td th:text="${restaurant.visitedCount}"></td> 
-            <td th:text="${restaurant.lastEat}"></td> 
-            <td th:text="${restaurant.lastVisitedAt}"></td> 
-            <td th:text="${restaurant.note}"></td> 
-            <td>
-                <a th:href="@{'/update/' + ${restaurant.id}}" target="_blank">修改</a> |
-                <a th:href="@{'/deleteById/' + ${restaurant.id}}" target="_blank">刪除</a>
-            </td> 
-        </tr> 
+    <!--餐廳清單-->
+    <table border="1" style="border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th>餐廳名稱</th>
+                <th>類別</th>
+                <th>選擇次數</th>
+                <th>最後選擇時間</th>
+                <th>最後造訪時間</th>
+                <th>備註</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="restaurant-table-body">
+            <!-- JavaScript 會把資料插入這裡 -->
+        </tbody>
     </table>
+
+    <script>
+        fetch("/restaurants") // 確保這個 API 有回傳 JSON 陣列
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById("restaurant-table-body");
+                data.forEach(restaurant => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${restaurant.restaurantName}</td>
+                        <td>${restaurant.category}</td>
+                        <td>${restaurant.visitedCount}</td>
+                        <td>${restaurant.lastEat || ''}</td>
+                        <td>${restaurant.lastVisitedAt || ''}</td>
+                        <td>${restaurant.note || ''}</td>
+                        <td>
+                            <a href="/update/${restaurant.restaurantId}" target="_blank">修改</a> |
+                            <a href="/deleteById/${restaurant.restaurantId}" target="_blank">刪除</a>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error("資料載入失敗:", error);
+            });
+    </script>
 </body>
 </html>
