@@ -12,5 +12,28 @@
     <!--跳轉頁面按鈕-->
     <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button>
 
+    <table id="content" style="border: 1px solid;"> 
+        <tr> 
+            <th>餐廳名稱</th> 
+            <th>餐廳類別</th> 
+            <th>選擇次數</th> 
+            <th>最後選擇時間</th> 
+            <th>最後更新時間</th>
+            <th>備註</th>
+            <th>操作</th>
+        </tr> 
+        <tr th:each="restaurant : ${restaurants}"> 
+            <td th:text="${restaurant.restaurantName}"></td> 
+            <td th:text="${restaurant.category}"></td> 
+            <td th:text="${restaurant.visitedCount}"></td> 
+            <td th:text="${restaurant.lastEat}"></td> 
+            <td th:text="${restaurant.lastVisitedAt}"></td> 
+            <td th:text="${restaurant.note}"></td> 
+            <td>
+                <a th:href="@{'/update/' + ${restaurant.id}}" target="_blank">修改</a> |
+                <a th:href="@{'/deleteById/' + ${restaurant.id}}" target="_blank">刪除</a>
+            </td> 
+        </tr> 
+    </table>
 </body>
 </html>
