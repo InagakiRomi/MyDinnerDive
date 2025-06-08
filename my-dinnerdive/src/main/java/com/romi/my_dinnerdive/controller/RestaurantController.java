@@ -18,6 +18,8 @@ import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 /**
  * 控制器類別：RestaurantController
@@ -72,6 +74,29 @@ public class RestaurantController {
         Integer restaurantId = restaurantService.createRestaurant(restaurantRequest);
         Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
         return ResponseEntity.status(HttpStatus.CREATED).body(restaurant);
+    }
+
+    /**
+     * 修改指定 ID 的餐廳資料。
+     *
+     * @param restaurantId 餐廳的唯一識別碼
+     * @param restaurantRequest 修改餐廳所需的請求資料，需通過驗證
+     * @return 回傳修改後的餐廳資料與 HTTP 200 狀態碼
+     */
+    @PutMapping("/restaurants/{restaurantId}")
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Integer restaurantId,
+                                                       @RequestBody @Valid RestaurantRequest restaurantRequest) {
+        Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+
+        // 檢查 restaurant 是否存在
+        if (restaurant == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        // 修改商品的數據
+        restaurantService.updateRestaurant(restaurantId, restaurantRequest);
+        Restaurant updatedRestaurant = restaurantService.getRestaurantById(restaurantId);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedRestaurant);
     }
 
     /**

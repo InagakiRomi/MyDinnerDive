@@ -34,6 +34,14 @@ public interface RestaurantDao {
     Integer createRestaurant(RestaurantRequest restaurantRequest);
 
     /**
+     * 修改指定 ID 的餐廳資料。
+     *
+     * @param restaurantId 餐廳的唯一識別碼
+     * @param restaurantRequest 更新的餐廳請求物件
+     */
+    void updateRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest);
+
+    /**
      * 刪除指定 ID 的餐廳資料。
      * 
      * @return 無回傳值，若無資料則不做任何操作

@@ -84,6 +84,27 @@ public class RestaurantDaoImpl implements RestaurantDao {
         return key.intValue();
     }
 
+    /**
+     * 修改指定 ID 的餐廳資料。
+     */
+    public void updateRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
+        String sql = "UPDATE restaurants SET restaurant_name = :restaurantName, category = :category, " +
+                     "image_url = :imageUrl, last_eat = :lastEat, last_visited_at = :lastVisitedAt, note = :note " +
+                     "WHERE restaurant_id = :restaurantId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("restaurantId", restaurantId);
+
+        map.put("restaurantName", restaurantRequest.getRestaurantName());
+        map.put("category", restaurantRequest.getCategory().toString());
+        map.put("imageUrl", restaurantRequest.getImageUrl());
+        map.put("lastEat", restaurantRequest.getLastEat());
+        map.put("note", restaurantRequest.getNote());
+
+        map.put("lastVisitedAt", new Date());
+
+        namedParameterJdbcTemplate.update(sql, map);
+    }
     
     /**
      * 刪除指定 ID 的餐廳資料。

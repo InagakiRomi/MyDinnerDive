@@ -56,6 +56,13 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantDao.createRestaurant(restaurantRequest);
     }
 
+    /**
+     * 修改指定 ID 的餐廳資料。
+     */
+    @Override
+    public void updateRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
+        restaurantDao.updateRestaurant(restaurantId, restaurantRequest);
+    }
 
     /**
      * 刪除指定 ID 的餐廳資料。
