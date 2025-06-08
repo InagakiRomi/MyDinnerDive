@@ -11,6 +11,14 @@ import com.romi.my_dinnerdive.model.Restaurant;
  */
 public interface RestaurantService {
 
+
+    /**
+     * 取得所有餐廳資料。
+     *
+     * @return 所有餐廳資料的列表，若無資料則回傳 null
+     */
+    List<Restaurant> getRestaurants();
+
     /**
      * 根據餐廳 ID 查詢資料。
      *
@@ -47,4 +55,6 @@ public interface RestaurantService {
      * @return 清除後的餐廳資料列表，若無資料則回傳 null
      */
     void clearRandomRestaurant();
+
+
 }

@@ -9,6 +9,13 @@ import com.romi.my_dinnerdive.model.Restaurant;
  * 餐廳 DAO 介面，定義與資料庫互動的方法。
  */
 public interface RestaurantDao {
+    
+    /**
+     * 取得所有餐廳資料。
+     *
+     * @return 所有餐廳資料的列表，若無資料則回傳 null
+     */
+    List<Restaurant> getRestaurants();
 
     /**
      * 根據 ID 查詢餐廳。

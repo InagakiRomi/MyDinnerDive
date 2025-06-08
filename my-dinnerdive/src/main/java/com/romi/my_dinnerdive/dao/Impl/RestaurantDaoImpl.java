@@ -24,6 +24,22 @@ public class RestaurantDaoImpl implements RestaurantDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+
+    /**
+     * 取得所有餐廳資料。
+     */
+    @Override
+    public List<Restaurant> getRestaurants(){
+        String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
+                     "FROM restaurants";
+
+        Map<String, Object> map = new HashMap<>();
+
+        List<Restaurant> restaurantList = namedParameterJdbcTemplate.query(sql, map, new RestaurantRowMapper());
+    
+        return restaurantList;
+    }
+
     /**
      * 根據 ID 查詢餐廳資料。
      */

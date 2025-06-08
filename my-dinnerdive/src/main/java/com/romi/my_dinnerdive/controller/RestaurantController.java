@@ -1,5 +1,7 @@
 package com.romi.my_dinnerdive.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,19 @@ public class RestaurantController {
 
     @Autowired
     private RestaurantService restaurantService;
+
+
+    /**
+     * 查詢所有餐廳 ID。
+     *
+     * @return 若查詢成功，回傳所有餐廳 ID 與 HTTP 200；否則回傳 HTTP 404。
+     */
+    @GetMapping("/restaurants")
+    public ResponseEntity<List<Restaurant>> getRestaurants() {
+        List<Restaurant> restaurantList = restaurantService.getRestaurants();
+
+        return ResponseEntity.status(HttpStatus.OK).body(restaurantList);
+    }
 
     /**
      * 根據餐廳 ID 查詢資料。

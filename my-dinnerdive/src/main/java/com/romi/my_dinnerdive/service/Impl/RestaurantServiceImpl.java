@@ -33,6 +33,14 @@ public class RestaurantServiceImpl implements RestaurantService {
     private ArrayList<Integer> lastId = new ArrayList<>();
 
     /**
+     * 取得所有餐廳資料。
+     */
+    @Override
+    public List<Restaurant> getRestaurants(){
+        return restaurantDao.getRestaurants();
+    }
+
+    /**
      * 根據餐廳 ID 查詢資料。
      */
     @Override
