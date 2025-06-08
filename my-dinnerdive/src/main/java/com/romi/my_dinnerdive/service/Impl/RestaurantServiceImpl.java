@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import com.romi.my_dinnerdive.dao.RestaurantDao;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
 import com.romi.my_dinnerdive.logging.LoggingDemo;
@@ -36,8 +37,8 @@ public class RestaurantServiceImpl implements RestaurantService {
      * 取得所有餐廳資料。
      */
     @Override
-    public List<Restaurant> getRestaurants(){
-        return restaurantDao.getRestaurants();
+    public List<Restaurant> getRestaurants(RestaurantCategory category){
+        return restaurantDao.getRestaurants(category);
     }
 
     /**

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
 import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
@@ -39,8 +40,8 @@ public class RestaurantController {
      * @return 若查詢成功，回傳所有餐廳 ID 與 HTTP 200；否則回傳 HTTP 404。
      */
     @GetMapping("/restaurants")
-    public ResponseEntity<List<Restaurant>> getRestaurants() {
-        List<Restaurant> restaurantList = restaurantService.getRestaurants();
+    public ResponseEntity<List<Restaurant>> getRestaurants(@RequestParam(required = false) RestaurantCategory category) {
+        List<Restaurant> restaurantList = restaurantService.getRestaurants(category);
 
         return ResponseEntity.status(HttpStatus.OK).body(restaurantList);
     }

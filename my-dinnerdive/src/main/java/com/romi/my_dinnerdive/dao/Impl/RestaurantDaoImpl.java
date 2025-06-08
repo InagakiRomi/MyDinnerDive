@@ -13,6 +13,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import com.romi.my_dinnerdive.dao.RestaurantDao;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
 import com.romi.my_dinnerdive.model.Restaurant;
@@ -29,11 +30,16 @@ public class RestaurantDaoImpl implements RestaurantDao {
      * 取得所有餐廳資料。
      */
     @Override
-    public List<Restaurant> getRestaurants(){
+    public List<Restaurant> getRestaurants(RestaurantCategory category){
         String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
-                     "FROM restaurants";
+                     "FROM restaurants WHERE 1=1";
 
         Map<String, Object> map = new HashMap<>();
+
+        if (category != null) {
+            sql += " AND category = :category";
+            map.put("category", category.name());
+        }
 
         List<Restaurant> restaurantList = namedParameterJdbcTemplate.query(sql, map, new RestaurantRowMapper());
     
