@@ -12,5 +12,14 @@
         <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button>
         <button class="pageBtn" onclick="location.href='/listRestaurant'">餐廳一覽</button>
     </section>
+
+    <form method="post" action="/restaurants/{{restaurant.restaurantId}}">
+        <input type="text" name="restaurantName" value="${restaurant.restaurantName}" />
+        <input type="text" name="category" value="${restaurant.category}" />
+        <textarea name="note">${restaurant.note}</textarea>
+        <!-- 更多欄位 -->
+        <button type="submit">儲存修改</button>
+    </form>
+    
 </body>
 </html>
