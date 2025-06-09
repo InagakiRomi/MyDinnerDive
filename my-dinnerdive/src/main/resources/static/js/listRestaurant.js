@@ -12,11 +12,33 @@ fetch("/restaurants")
                 <td>${restaurant.lastVisitedAt || ''}</td>
                 <td>${restaurant.note || ''}</td>
                 <td>
-                    <a href="/update/${restaurant.restaurantId}" target="_blank">修改</a> |
-                    <a href="/deleteById/${restaurant.restaurantId}" target="_blank">刪除</a>
+                    <a href="/restaurants/${restaurant.restaurantId}">修改</a> |
+                    <button class="delete-btn" data-id="${restaurant.restaurantId}">刪除</button>
                 </td>
             `;
             tbody.appendChild(row);
+        });
+
+        //刪除資料
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                const id = this.getAttribute("data-id");
+                if (confirm("確定要刪除這筆資料嗎？")) {
+                    fetch(`/restaurants/${id}`, {
+                        method: "DELETE"
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            this.closest("tr").remove();
+                        } else {
+                            alert("刪除失敗！");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("刪除失敗:", error);
+                    });
+                }
+            });
         });
     })
     .catch(error => {
