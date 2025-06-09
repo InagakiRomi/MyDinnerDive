@@ -14,10 +14,33 @@
     </section>
 
     <form method="post" action="/restaurants/{{restaurant.restaurantId}}">
-        <input type="text" name="restaurantName" value="${restaurant.restaurantName}" />
-        <input type="text" name="category" value="${restaurant.category}" />
-        <textarea name="note">${restaurant.note}</textarea>
-        <!-- 更多欄位 -->
+
+        <label>餐廳名稱：
+            <input type="text" required name="restaurantName" id="restaurantName">
+        </label><br>
+
+        <label for="category">餐廳類別：</label>
+        <select id="category" name="category">
+            <option value="主食">主食</option>
+            <option value="輕食">輕食</option>
+            <option value="飲料">飲料</option>
+        </select><br>
+
+        <label>選擇次數：
+            <input type="text" name="updateVisitedCount" id="updateVisitedCount">
+        </label><br>
+
+        <label>最後選擇時間：
+            <input type="text" name="updateLastEat" id="updateLastEat">
+        </label><br>
+
+        <label>備註：
+            <input type="text" name="note" id="updateNote">
+        </label><br>
+
+        <label>圖片Url：
+            <input type="url" name="imageUrl" id="imageUrl">
+        </label><br>
         <button type="submit">儲存修改</button>
     </form>
     
