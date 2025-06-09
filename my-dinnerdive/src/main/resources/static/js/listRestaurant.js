@@ -12,7 +12,7 @@ fetch("/restaurants")
                 <td>${restaurant.lastVisitedAt || ''}</td>
                 <td>${restaurant.note || ''}</td>
                 <td>
-                    <a href="/restaurants/${restaurant.restaurantId}">修改</a> |
+                    <a href="/restaurants/${restaurant.restaurantId}/edit">修改</a> |
                     <button class="delete-btn" data-id="${restaurant.restaurantId}">刪除</button>
                 </td>
             `;
