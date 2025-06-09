@@ -23,24 +23,12 @@ fetch("/restaurants")
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function () {
                 const id = this.getAttribute("data-id");
-                if (confirm("確定要刪除這筆資料嗎？")) {
-                    fetch(`/restaurants/${id}`, {
+                fetch(`/restaurants/${id}`, {
                         method: "DELETE"
                     })
-                    .then(response => {
-                        if (response.ok) {
-                            this.closest("tr").remove();
-                        } else {
-                            alert("刪除失敗！");
-                        }
+                .then(response => {
+                    this.closest("tr").remove();
                     })
-                    .catch(error => {
-                        console.error("刪除失敗:", error);
-                    });
-                }
             });
         });
-    })
-    .catch(error => {
-        console.error("資料載入失敗:", error);
     });
