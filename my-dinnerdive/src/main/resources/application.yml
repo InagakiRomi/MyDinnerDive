@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod # 使用MySQL資料庫用「prod」； 使用H2資料庫用「dev」
+    active: dev # 使用MySQL資料庫用「prod」； 使用H2資料庫用「dev」
 
   jackson:
     time-zone: GMT+8

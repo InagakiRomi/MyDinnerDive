@@ -26,7 +26,7 @@
 
     <!--顯示餐廳資訊-->
     <p>餐廳名稱：<span id="updateName" th:text="${restaurants?.restaurantName}"></span></p>
-    <p>餐廳類別：<span id="updateCategory" th:text="${restaurants?.category}"></span></p>
+    <p>餐廳類別：<span id="updateCategory" th:text="${restaurants?.category.displayName}"></span></p>
     <p>選擇次數：<span id="updateVisitedCount" th:text="${restaurants?.visitedCount}"></span></p>
     <p>最後選擇時間：<span id="updateLastEat" th:text="${restaurants?.lastEat}"></span></p>
     <p>最後更新時間：<span id="updateLastVisitedAt" th:text="${restaurants?.lastVisitedAt}"></span></p>
