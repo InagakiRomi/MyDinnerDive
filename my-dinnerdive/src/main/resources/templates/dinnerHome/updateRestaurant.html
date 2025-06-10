@@ -13,36 +13,41 @@
         <button class="pageBtn" onclick="location.href='/listRestaurant'">餐廳一覽</button>
     </section>
 
-    <form method="post" action="/restaurants/{{restaurant.restaurantId}}">
+    <form method="post" th:action="@{'/restaurants/' + ${restaurants.restaurantId}}">
 
         <label>餐廳名稱：
-            <input type="text" required name="restaurantName" id="restaurantName">
+            <input type="text" required name="restaurantName" id="restaurantName"
+                th:value="${restaurants.restaurantName}">
         </label><br>
 
-        <label for="category">餐廳類別：</label>
+        <label>餐廳類別：</label>
         <select id="category" name="category">
-            <option value="主食">主食</option>
-            <option value="輕食">輕食</option>
-            <option value="飲料">飲料</option>
+            <option value="主食" th:selected="${restaurants.category == '主食'}">主食</option>
+            <option value="輕食" th:selected="${restaurants.category == '輕食'}">輕食</option>
+            <option value="飲料" th:selected="${restaurants.category == '飲料'}">飲料</option>
         </select><br>
 
         <label>選擇次數：
-            <input type="text" name="updateVisitedCount" id="updateVisitedCount">
+            <input type="text" name="updateVisitedCount" id="updateVisitedCount"
+                th:value="${restaurants.visitedCount}">
         </label><br>
 
         <label>最後選擇時間：
-            <input type="text" name="updateLastEat" id="updateLastEat">
+            <input type="text" name="updateLastEat" id="updateLastEat"
+                th:value="${restaurants.lastEat}">
         </label><br>
 
         <label>備註：
-            <input type="text" name="note" id="updateNote">
+            <input type="text" name="note" id="updateNote"
+                th:value="${restaurants.note}">
         </label><br>
 
         <label>圖片Url：
-            <input type="url" name="imageUrl" id="imageUrl">
+            <input type="url" name="imageUrl" id="imageUrl"
+                th:value="${restaurants.imageUrl}">
         </label><br>
+
         <button type="submit">儲存修改</button>
     </form>
-    
 </body>
 </html>

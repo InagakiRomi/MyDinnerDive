@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
@@ -59,7 +60,9 @@ public class ThymeleafController {
      * 跳轉修改對應ID餐廳頁面
      */
     @GetMapping("/restaurants/{restaurantId}/edit")
-    public String updatePage() {
+    public String updatePage(@PathVariable Integer restaurantId, Model model) {
+        Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+        model.addAttribute("restaurants", restaurant);
         return "dinnerHome/updateRestaurant";
     }
 }
