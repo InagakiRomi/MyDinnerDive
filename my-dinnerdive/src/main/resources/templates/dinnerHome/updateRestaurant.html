@@ -13,7 +13,9 @@
         <button class="pageBtn" onclick="location.href='/listRestaurant'">餐廳一覽</button>
     </section>
 
-    <form method="post" th:action="@{'/restaurants/' + ${restaurants.restaurantId}}">
+    <form id="updateForm">
+
+        <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
 
         <label>餐廳名稱：
             <input type="text" required name="restaurantName" id="restaurantName"
@@ -47,7 +49,8 @@
                 th:value="${restaurants.imageUrl}">
         </label><br>
 
-        <button type="submit">儲存修改</button>
+        <button class="randomBtn" style="margin-top: 20px;" type="submit">儲存修改</button>
     </form>
+    <script src="/js/updateRestaurant.js"></script>
 </body>
 </html>
