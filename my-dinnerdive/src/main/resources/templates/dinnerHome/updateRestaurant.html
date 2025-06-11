@@ -23,10 +23,10 @@
         </label><br>
 
         <label>餐廳類別：</label>
-        <select id="category" name="category">
-            <option value="主食" th:selected="${restaurants.category == '主食'}">主食</option>
-            <option value="輕食" th:selected="${restaurants.category == '輕食'}">輕食</option>
-            <option value="飲料" th:selected="${restaurants.category == '飲料'}">飲料</option>
+        <select id="category" name="category" th:value="${restaurants.category}">
+            <option value="主食">主食</option>
+            <option value="輕食">輕食</option>
+            <option value="飲料">飲料</option>
         </select><br>
 
         <label>選擇次數：

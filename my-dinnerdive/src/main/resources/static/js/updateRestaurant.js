@@ -31,3 +31,11 @@ document.getElementById('updateForm').addEventListener('submit', function (event
             alert("發生錯誤，請稍後再試！");
         });
     });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const categorySelect = document.getElementById("category");
+    const selectedValue = categorySelect.getAttribute("value");
+    if (selectedValue) {
+        categorySelect.value = selectedValue;
+    }
+});
