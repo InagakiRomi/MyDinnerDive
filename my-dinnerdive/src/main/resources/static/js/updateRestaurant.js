@@ -6,9 +6,9 @@ document.getElementById('updateForm').addEventListener('submit', function (event
         const data = {
             restaurantName: document.getElementById('restaurantName').value,
             category: document.getElementById('category').value,
-            visitedCount: parseInt(document.getElementById('updateVisitedCount').value),
-            lastEat: document.getElementById('updateLastEat').value,
-            note: document.getElementById('updateNote').value,
+            visitedCount: parseInt(document.getElementById('visitedCount').value),
+            lastEat: document.getElementById('LastEat').value,
+            note: document.getElementById('Note').value,
             imageUrl: document.getElementById('imageUrl').value
         };
 

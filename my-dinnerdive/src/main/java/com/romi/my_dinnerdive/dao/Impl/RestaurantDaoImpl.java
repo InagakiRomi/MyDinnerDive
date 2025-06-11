@@ -95,7 +95,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
      */
     public void updateRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
         String sql = "UPDATE restaurants SET restaurant_name = :restaurantName, category = :category, " +
-                     "image_url = :imageUrl, last_eat = :lastEat, last_visited_at = :lastVisitedAt, note = :note " +
+                     "visited_count = :visitedCount, last_eat = :lastEat, note = :note, last_visited_at = :lastVisitedAt, image_url = :imageUrl " +
                      "WHERE restaurant_id = :restaurantId";
 
         Map<String, Object> map = new HashMap<>();
@@ -103,9 +103,10 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
         map.put("restaurantName", restaurantRequest.getRestaurantName());
         map.put("category", restaurantRequest.getCategory().toString());
-        map.put("imageUrl", restaurantRequest.getImageUrl());
+        map.put("visitedCount", restaurantRequest.getVisitedCount());
         map.put("lastEat", restaurantRequest.getLastEat());
         map.put("note", restaurantRequest.getNote());
+        map.put("imageUrl", restaurantRequest.getImageUrl());
 
         map.put("lastVisitedAt", new Date());
 

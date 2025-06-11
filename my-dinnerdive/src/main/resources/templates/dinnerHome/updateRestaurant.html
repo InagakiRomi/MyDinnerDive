@@ -30,17 +30,17 @@
         </select><br>
 
         <label>選擇次數：
-            <input type="text" name="updateVisitedCount" id="updateVisitedCount"
+            <input type="number" name="visitedCount" id="visitedCount"
                 th:value="${restaurants.visitedCount}">
         </label><br>
 
         <label>最後選擇時間：
-            <input type="text" name="updateLastEat" id="updateLastEat"
+            <input type="text" name="LastEat" id="LastEat"
                 th:value="${restaurants.lastEat}">
         </label><br>
 
         <label>備註：
-            <input type="text" name="note" id="updateNote"
+            <input type="text" name="note" id="Note"
                 th:value="${restaurants.note}">
         </label><br>
 
