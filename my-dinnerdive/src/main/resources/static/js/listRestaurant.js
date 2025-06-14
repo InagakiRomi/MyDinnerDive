@@ -2,19 +2,30 @@ document.getElementById("filter-form").addEventListener("submit", function (e) {
     e.preventDefault(); // 阻止表單重新載入頁面
 
     const category = document.getElementById("category").value;
-    loadRestaurants(category); // 依分類載入資料
+    const search = document.getElementById("search").value;
+
+    loadRestaurants(category, search); // 加入搜尋條件
 });
 
 // 預設載入全部餐廳
-loadRestaurants("");
+loadRestaurants("", "");
 
-function loadRestaurants(category) {
+function loadRestaurants(category, search) {
     const tbody = document.getElementById("restaurant-table-body");
     tbody.innerHTML = ""; // 清空現有內容
 
     let url = "/restaurants";
+    const params = [];
+
     if (category) {
-        url += "?category=" + encodeURIComponent(category);
+        params.push("category=" + encodeURIComponent(category));
+    }
+    if (search) {
+        params.push("search=" + encodeURIComponent(search));
+    }
+
+    if (params.length > 0) {
+        url += "?" + params.join("&");
     }
 
     fetch(url)
