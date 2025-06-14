@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>新增餐廳</title>
@@ -19,9 +19,7 @@
 
         <label for="category">餐廳類別：</label>
         <select id="category" name="category">
-            <option value="主食">主食</option>
-            <option value="輕食">輕食</option>
-            <option value="飲料">飲料</option>
+            <div th:replace="fragments/categoryButton :: foodCategory"></div>
         </select><br>
 
         <label>備註：
