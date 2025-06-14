@@ -9,8 +9,8 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import com.romi.my_dinnerdive.dao.RestaurantDao;
+import com.romi.my_dinnerdive.dto.RestaurantQueryParams;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
 import com.romi.my_dinnerdive.logging.LoggingDemo;
 import com.romi.my_dinnerdive.model.Restaurant;
@@ -37,8 +37,8 @@ public class RestaurantServiceImpl implements RestaurantService {
      * 取得所有餐廳資料。
      */
     @Override
-    public List<Restaurant> getRestaurants(RestaurantCategory category, String search){
-        return restaurantDao.getRestaurants(category, search);
+    public List<Restaurant> getRestaurants(RestaurantQueryParams restaurantQueryParams){
+        return restaurantDao.getRestaurants(restaurantQueryParams);
     }
 
     /**

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
+import com.romi.my_dinnerdive.dto.RestaurantQueryParams;
 import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
 
@@ -44,7 +45,11 @@ public class RestaurantController {
             @RequestParam(required = false) RestaurantCategory category,
             @RequestParam(required = false) String search
     ) {
-        List<Restaurant> restaurantList = restaurantService.getRestaurants(category, search);
+        RestaurantQueryParams restaurantQueryParams = new RestaurantQueryParams();
+        restaurantQueryParams.setCategory(category);
+        restaurantQueryParams.setSearch(search);
+        
+        List<Restaurant> restaurantList = restaurantService.getRestaurants(restaurantQueryParams);
 
         return ResponseEntity.status(HttpStatus.OK).body(restaurantList);
     }

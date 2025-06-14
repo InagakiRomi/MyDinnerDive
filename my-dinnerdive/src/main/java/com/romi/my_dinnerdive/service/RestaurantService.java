@@ -2,7 +2,7 @@ package com.romi.my_dinnerdive.service;
 
 import java.util.List;
 
-import com.romi.my_dinnerdive.constant.RestaurantCategory;
+import com.romi.my_dinnerdive.dto.RestaurantQueryParams;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
 import com.romi.my_dinnerdive.model.Restaurant;
 
@@ -18,7 +18,7 @@ public interface RestaurantService {
      *
      * @return 所有餐廳資料的列表，若無資料則回傳 null
      */
-    List<Restaurant> getRestaurants(RestaurantCategory category,String search);
+    List<Restaurant> getRestaurants(RestaurantQueryParams restaurantQueryParams);
 
     /**
      * 根據餐廳 ID 查詢資料。
