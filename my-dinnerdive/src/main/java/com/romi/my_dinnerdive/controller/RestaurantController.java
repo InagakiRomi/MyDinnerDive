@@ -40,8 +40,11 @@ public class RestaurantController {
      * @return 若查詢成功，回傳所有餐廳 ID 與 HTTP 200；否則回傳 HTTP 404。
      */
     @GetMapping("/restaurants")
-    public ResponseEntity<List<Restaurant>> getRestaurants(@RequestParam(required = false) RestaurantCategory category) {
-        List<Restaurant> restaurantList = restaurantService.getRestaurants(category);
+    public ResponseEntity<List<Restaurant>> getRestaurants(
+            @RequestParam(required = false) RestaurantCategory category,
+            @RequestParam(required = false) String search
+    ) {
+        List<Restaurant> restaurantList = restaurantService.getRestaurants(category, search);
 
         return ResponseEntity.status(HttpStatus.OK).body(restaurantList);
     }

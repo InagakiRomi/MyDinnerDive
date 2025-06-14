@@ -37,8 +37,8 @@ public class RestaurantServiceImpl implements RestaurantService {
      * 取得所有餐廳資料。
      */
     @Override
-    public List<Restaurant> getRestaurants(RestaurantCategory category){
-        return restaurantDao.getRestaurants(category);
+    public List<Restaurant> getRestaurants(RestaurantCategory category, String search){
+        return restaurantDao.getRestaurants(category, search);
     }
 
     /**

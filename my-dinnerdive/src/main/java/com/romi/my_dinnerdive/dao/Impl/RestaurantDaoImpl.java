@@ -30,7 +30,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
      * 取得所有餐廳資料。
      */
     @Override
-    public List<Restaurant> getRestaurants(RestaurantCategory category){
+    public List<Restaurant> getRestaurants(RestaurantCategory category, String search){
         String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
                      "FROM restaurants WHERE 1=1";
 
@@ -39,6 +39,11 @@ public class RestaurantDaoImpl implements RestaurantDao {
         if (category != null) {
             sql += " AND category = :category";
             map.put("category", category.name());
+        }
+
+        if (search != null) {
+            sql += " AND (restaurant_name LIKE :search OR note LIKE :search)";
+            map.put("search", "%" + search + "%");
         }
 
         List<Restaurant> restaurantList = namedParameterJdbcTemplate.query(sql, map, new RestaurantRowMapper());

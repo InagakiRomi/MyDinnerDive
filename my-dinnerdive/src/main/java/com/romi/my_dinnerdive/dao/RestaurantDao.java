@@ -16,7 +16,7 @@ public interface RestaurantDao {
      *
      * @return 所有餐廳資料的列表，若無資料則回傳 null
      */
-    List<Restaurant> getRestaurants(RestaurantCategory category);
+    List<Restaurant> getRestaurants(RestaurantCategory category, String search);
 
     /**
      * 根據 ID 查詢餐廳。
