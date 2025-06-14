@@ -27,7 +27,19 @@ function loadRestaurants(category, search) {
     if (params.length > 0) {
         url += "?" + params.join("&");
     }
+    
+    // 讀取排序欄位與方式
+    const orderBy = document.getElementById("orderBy").value;
+    const sort = document.getElementById("sort").value;
 
+    params.push("orderBy=" + encodeURIComponent(orderBy));
+    params.push("sort=" + encodeURIComponent(sort));
+
+    if (params.length > 0) {
+        url += "?" + params.join("&");
+    }
+
+    // 取得餐廳資料
     fetch(url)
         .then(response => response.json())
         .then(data => {

@@ -42,12 +42,19 @@ public class RestaurantController {
      */
     @GetMapping("/restaurants")
     public ResponseEntity<List<Restaurant>> getRestaurants(
+            // 查詢條件        
             @RequestParam(required = false) RestaurantCategory category,
-            @RequestParam(required = false) String search
+            @RequestParam(required = false) String search,
+
+            // 排序
+            @RequestParam(defaultValue = "restaurant_id") String orderBy,
+            @RequestParam(defaultValue = "ASC") String sort
     ) {
         RestaurantQueryParams restaurantQueryParams = new RestaurantQueryParams();
         restaurantQueryParams.setCategory(category);
         restaurantQueryParams.setSearch(search);
+        restaurantQueryParams.setOrderBy(orderBy);
+        restaurantQueryParams.setSort(sort);
         
         List<Restaurant> restaurantList = restaurantService.getRestaurants(restaurantQueryParams);
 

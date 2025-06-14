@@ -46,6 +46,8 @@ public class RestaurantDaoImpl implements RestaurantDao {
             map.put("search", "%" + restaurantQueryParams.getSearch() + "%");
         }
 
+        sql = sql + " ORDER BY " + restaurantQueryParams.getOrderBy() + " " + restaurantQueryParams.getSort();
+
         List<Restaurant> restaurantList = namedParameterJdbcTemplate.query(sql, map, new RestaurantRowMapper());
     
         return restaurantList;

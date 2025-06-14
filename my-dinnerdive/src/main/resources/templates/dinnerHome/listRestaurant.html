@@ -26,6 +26,20 @@
         <button type="submit">查詢</button>
     </form>
 
+    <!--排序-->
+    <select id="orderBy" name="orderBy">
+        <option value="restaurant_id">建立順序</option>
+        <option value="category">類別</option>
+        <option value="visited_count">選擇次數</option>
+        <option value="last_eat">最後選擇時間</option>
+        <option value="last_visited_at">最後修改時間</option>
+    </select>
+
+    <select id="sort" name="sort">
+        <option value="ASC">最舊/最少</option>
+        <option value="DESC">最新/最多</option>
+    </select>
+
     <!--餐廳清單-->
     <table border="1" style="border-collapse: collapse; width: 100%;">
         <thead>
