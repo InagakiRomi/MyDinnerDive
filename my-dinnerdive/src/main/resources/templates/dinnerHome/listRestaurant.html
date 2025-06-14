@@ -11,6 +11,18 @@
     <!--跳轉頁面按鈕-->
     <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button>
 
+    <!--篩選-->
+    <form id="filter-form" style="margin-bottom: 20px;">
+        <label for="category">分類：</label>
+        <select id="category" name="category">
+            <option value="">全部</option>
+            <option value="主食">主食</option>
+            <option value="輕食">輕食</option>
+            <option value="飲料">飲料</option>
+        </select>
+        <button type="submit">查詢</button>
+    </form>
+
     <!--餐廳清單-->
     <table border="1" style="border-collapse: collapse; width: 100%;">
         <thead>
