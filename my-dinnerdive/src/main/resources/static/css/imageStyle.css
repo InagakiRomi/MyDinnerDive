@@ -1,0 +1,9 @@
+/* 餐廳圖片顯示 */
+.restaurantImage {
+    width: 480px;
+    height: 272px;
+    margin-top: 20px;   /*上方間距*/
+    background-size: cover;
+    background-position: center;
+    display: block;
+}
