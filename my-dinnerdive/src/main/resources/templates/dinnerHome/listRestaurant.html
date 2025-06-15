@@ -12,10 +12,10 @@
     <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button><br>
 
     <!--篩選-->
-    <label for="search">關鍵字：</label>
-    <input type="text" id="search" name="search" placeholder="輸入餐廳名稱或備註">
-
     <form id="filter-form" style="margin-bottom: 20px;">
+        <label for="search">關鍵字：</label>
+        <input type="text" id="search" name="search" placeholder="輸入餐廳名稱或備註">
+
         <label for="category">分類：</label>
         <select id="category" name="category">
             <option value="">全部</option>
@@ -57,5 +57,12 @@
         </tbody>
     </table>
     <script src="/js/listRestaurant.js"></script>
+
+    <!--分頁按鈕-->
+    <div id="pagination-controls" style="margin-top: 20px;">
+        <button id="prev-page">上一頁</button>
+        <span id="page-info">第 1 頁</span>
+        <button id="next-page">下一頁</button>
+    </div>
 </body>
 </html>

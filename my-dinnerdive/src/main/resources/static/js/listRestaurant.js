@@ -14,7 +14,6 @@ function loadRestaurants(category, search) {
     const tbody = document.getElementById("restaurant-table-body");
     tbody.innerHTML = ""; // 清空現有內容
 
-    let url = "/restaurants";
     const params = [];
 
     if (category) {
@@ -24,17 +23,18 @@ function loadRestaurants(category, search) {
         params.push("search=" + encodeURIComponent(search));
     }
 
-    if (params.length > 0) {
-        url += "?" + params.join("&");
-    }
-    
     // 讀取排序欄位與方式
     const orderBy = document.getElementById("orderBy").value;
     const sort = document.getElementById("sort").value;
 
-    params.push("orderBy=" + encodeURIComponent(orderBy));
-    params.push("sort=" + encodeURIComponent(sort));
+    if (orderBy) {
+        params.push("orderBy=" + encodeURIComponent(orderBy));
+    }
+    if (sort) {
+        params.push("sort=" + encodeURIComponent(sort));
+    }
 
+    let url = "/restaurants";
     if (params.length > 0) {
         url += "?" + params.join("&");
     }
