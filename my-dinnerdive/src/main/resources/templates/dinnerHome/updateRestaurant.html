@@ -13,7 +13,7 @@
         <button class="pageBtn" onclick="location.href='/listRestaurant'">餐廳一覽</button>
     </section>
 
-    <form id="updateForm">
+    <form id="preventForm">
 
         <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
 
@@ -24,7 +24,7 @@
 
         <label>餐廳類別：</label>
         <select id="category" name="category" th:value="${restaurants.category}">
-            <div th:replace="fragments/categoryButton :: foodCategory"></div>
+            <div th:replace="modules/categoryButton :: foodCategory"></div>
         </select><br>
 
         <label>選擇次數：
@@ -47,8 +47,9 @@
                 th:value="${restaurants.imageUrl}">
         </label><br>
 
-        <button class="functionBtn" style="margin-top: 20px;" type="submit">儲存修改</button>
+        <button class="functionBtn" id="update-btn" style="margin-top: 20px;" type="submit">儲存修改</button>
     </form>
+    <script src="/js/modules/preventForm.js"></script>
     <script src="/js/updateRestaurant.js"></script>
 </body>
 </html>

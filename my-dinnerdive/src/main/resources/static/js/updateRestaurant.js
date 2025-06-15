@@ -1,7 +1,8 @@
-document.getElementById('updateForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+const updateButton = document.getElementById("update-btn");
+updateButton.addEventListener("click", updateRestaurant);
 
-        const restaurantId = document.getElementById('restaurantId').value;
+function updateRestaurant(){
+    const restaurantId = document.getElementById('restaurantId').value;
 
         const data = {
             restaurantName: document.getElementById('restaurantName').value,
@@ -22,15 +23,16 @@ document.getElementById('updateForm').addEventListener('submit', function (event
         .then(response => {
             if (response.ok) {
                 window.location.href = "/listRestaurant";
+                alert("修改成功！");
             } else {
-                alert("更新失敗！請確認資料是否正確");
+                alert("修改失敗！請確認資料是否正確");
             }
         })
         .catch(error => {
             console.error("Error:", error);
             alert("發生錯誤，請稍後再試！");
         });
-    });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const categorySelect = document.getElementById("category");

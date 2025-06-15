@@ -19,7 +19,7 @@
 
         <label for="category">餐廳類別：</label>
         <select id="category">
-            <option th:replace="~{fragments/categoryButton :: foodCategory}"></option>
+            <option th:replace="~{modules/categoryButton :: foodCategory}"></option>
         </select>
         <br>
 
@@ -33,7 +33,7 @@
 
         <button class="functionBtn" id = "create-btn" style="margin-top: 20px;">新增餐廳</button>
     </form>
-    <script src="/js/preventForm.js"></script>
+    <script src="/js/modules/preventForm.js"></script>
     <script src="/js/createRestaurant.js"></script>
 </body>
 </html>
