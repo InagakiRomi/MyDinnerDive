@@ -1,7 +1,7 @@
 function getRestaurantId(){
     const restaurantId = document.getElementById('restaurantId').value;
-    var idVar = {"restaurantId": restaurantId};
-    return idVar;
+    //var idVar = {"restaurantId": restaurantId};
+    return restaurantId;
 }
 
 function getRestaurantName(){
