@@ -25,10 +25,19 @@ public class RestaurantDaoImpl implements RestaurantDao {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    @Override
+    public Integer countRestaurant(RestaurantQueryParams restaurantQueryParams){
+        String sql = "SELECT count(*) FROM restaurants WHERE 1=1";
+        Map<String, Object> map = new HashMap<>();
 
-    /**
-     * 取得所有餐廳資料。
-     */
+        // 查詢條件
+        sql = addFilteringSql(sql, map, restaurantQueryParams);
+
+        Integer total = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
+
+        return total;
+    }
+
     @Override
     public List<Restaurant> getRestaurants(RestaurantQueryParams restaurantQueryParams){
         String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
@@ -37,15 +46,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
         Map<String, Object> map = new HashMap<>();
 
         // 查詢條件
-        if (restaurantQueryParams.getCategory() != null) {
-            sql += " AND category = :category";
-            map.put("category", restaurantQueryParams.getCategory().name());
-        }
-
-        if (restaurantQueryParams.getSearch() != null) {
-            sql += " AND (restaurant_name LIKE :search OR note LIKE :search)";
-            map.put("search", "%" + restaurantQueryParams.getSearch() + "%");
-        }
+        sql = addFilteringSql(sql, map, restaurantQueryParams);
 
         // 排序
         sql = sql + " ORDER BY " + restaurantQueryParams.getOrderBy() + " " + restaurantQueryParams.getSort();
@@ -60,9 +61,6 @@ public class RestaurantDaoImpl implements RestaurantDao {
         return restaurantList;
     }
 
-    /**
-     * 根據 ID 查詢餐廳資料。
-     */
     @Override
     public Restaurant getRestaurantById(Integer restaurantId) {
         String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
@@ -80,9 +78,6 @@ public class RestaurantDaoImpl implements RestaurantDao {
         }
     }
 
-    /**
-     * 新增餐廳資料，並回傳自動產生的主鍵 ID。
-     */
     @Override
     public Integer createRestaurant(RestaurantRequest restaurantRequest) {
         String sql = "INSERT INTO restaurants (restaurant_name, category, image_url, last_eat, last_visited_at, note) " +
@@ -104,9 +99,6 @@ public class RestaurantDaoImpl implements RestaurantDao {
         return key.intValue();
     }
 
-    /**
-     * 修改指定 ID 的餐廳資料。
-     */
     public void updateRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
         String sql = "UPDATE restaurants SET restaurant_name = :restaurantName, category = :category, " +
                      "visited_count = :visitedCount, last_eat = :lastEat, note = :note, last_visited_at = :lastVisitedAt, image_url = :imageUrl " +
@@ -126,10 +118,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
         namedParameterJdbcTemplate.update(sql, map);
     }
-    
-    /**
-     * 刪除指定 ID 的餐廳資料。
-     */
+
     @Override
     public void deleteRestaurantById(Integer restaurantId){
         String sql = "DELETE FROM restaurants WHERE restaurant_id = :restaurantId";
@@ -140,12 +129,24 @@ public class RestaurantDaoImpl implements RestaurantDao {
         namedParameterJdbcTemplate.update(sql, map);
     }
 
-    /**
-     * 取得所有餐廳資料ID。
-     */
     @Override
     public List<Integer> getAllRestaurantIds() {
         String idSql = "SELECT restaurant_id FROM restaurants";
         return  namedParameterJdbcTemplate.query(idSql, (rs, rowNum) -> rs.getInt("restaurant_id"));
+    }
+
+    private String addFilteringSql(String sql, Map<String, Object> map, RestaurantQueryParams restaurantQueryParams){
+        // 查詢條件
+        if (restaurantQueryParams.getCategory() != null) {
+            sql += " AND category = :category";
+            map.put("category", restaurantQueryParams.getCategory().name());
+        }
+
+        if (restaurantQueryParams.getSearch() != null) {
+            sql += " AND (restaurant_name LIKE :search OR note LIKE :search)";
+            map.put("search", "%" + restaurantQueryParams.getSearch() + "%");
+        }
+
+        return sql;
     }
 }

@@ -28,62 +28,43 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Autowired
     private LoggingDemo loggingDemo;
 
-    /**
-     * 用於儲存上次抽到的餐廳 ID，這樣可以避免連續抽到同一個餐廳。
-     */
     private ArrayList<Integer> lastId = new ArrayList<>();
 
-    /**
-     * 取得所有餐廳資料。
-     */
+    @Override
+    public Integer countRestaurant(RestaurantQueryParams restaurantQueryParams){
+        return restaurantDao.countRestaurant(restaurantQueryParams);
+    }
+
     @Override
     public List<Restaurant> getRestaurants(RestaurantQueryParams restaurantQueryParams){
         return restaurantDao.getRestaurants(restaurantQueryParams);
     }
 
-    /**
-     * 根據餐廳 ID 查詢資料。
-     */
     @Override
     public Restaurant getRestaurantById(Integer restaurantId) {
         return restaurantDao.getRestaurantById(restaurantId);
     }
 
-    /**
-     * 建立新的餐廳資料。
-     */
     @Override
     public Integer createRestaurant(RestaurantRequest restaurantRequest) {
         return restaurantDao.createRestaurant(restaurantRequest);
     }
 
-    /**
-     * 修改指定 ID 的餐廳資料。
-     */
     @Override
     public void updateRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
         restaurantDao.updateRestaurant(restaurantId, restaurantRequest);
     }
 
-    /**
-     * 刪除指定 ID 的餐廳資料。
-     */
     @Override
     public void deleteRestaurantById(Integer restaurantId){
         restaurantDao.deleteRestaurantById(restaurantId);
     }
 
-    /**
-     * 隨機取得一筆餐廳資料。
-     */
     @Override
     public List<Integer> getAllRestaurantIds(){
         return restaurantDao.getAllRestaurantIds();
     }
 
-    /**
-     * 隨機取得一筆餐廳資料。
-     */
     @Override
     public Restaurant getRandomRestaurant() {
         List<Integer> idList = restaurantDao.getAllRestaurantIds();
@@ -118,9 +99,6 @@ public class RestaurantServiceImpl implements RestaurantService {
         return getRestaurantById(randomId);
     }
 
-    /**
-     * 清空抽籤資料。
-     */
     @Override
     public void clearRandomRestaurant() {
         Logger logger = loggingDemo.printRandomRestaurantLog();

@@ -19,6 +19,7 @@ import com.romi.my_dinnerdive.dto.RestaurantRequest;
 import com.romi.my_dinnerdive.dto.RestaurantQueryParams;
 import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
+import com.romi.my_dinnerdive.util.Page;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
@@ -47,7 +48,7 @@ public class RestaurantController {
      * @return 若查詢成功，回傳所有餐廳 ID 與 HTTP 200；否則回傳 HTTP 404。
      */
     @GetMapping("/restaurants")
-    public ResponseEntity<List<Restaurant>> getRestaurants(
+    public ResponseEntity<Page<Restaurant>> getRestaurants(
             // 查詢條件        
             @RequestParam(required = false) RestaurantCategory category,
             @RequestParam(required = false) String search,
@@ -68,9 +69,20 @@ public class RestaurantController {
         restaurantQueryParams.setLimit(limit);
         restaurantQueryParams.setOffset(offset);
         
+        // 取得 restaurant list
         List<Restaurant> restaurantList = restaurantService.getRestaurants(restaurantQueryParams);
 
-        return ResponseEntity.status(HttpStatus.OK).body(restaurantList);
+        // 取得 restaurant 總數
+        Integer total = restaurantService.countRestaurant(restaurantQueryParams);
+
+        // 分頁
+        Page<Restaurant> page = new Page<>();
+        page.setLimit(limit);
+        page.setOffset(offset);
+        page.setTotal(total);
+        page.setResults(restaurantList);
+
+        return ResponseEntity.status(HttpStatus.OK).body(page);
     }
 
     /**

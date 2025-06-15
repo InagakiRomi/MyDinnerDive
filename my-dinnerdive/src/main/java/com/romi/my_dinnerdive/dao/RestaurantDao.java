@@ -12,6 +12,14 @@ import com.romi.my_dinnerdive.model.Restaurant;
 public interface RestaurantDao {
     
     /**
+     * 根據查詢條件取得符合條件的餐廳總數。
+     *
+     * @param restaurantQueryParams 查詢餐廳所使用的參數（如名稱、類型等）
+     * @return 符合查詢條件的餐廳總數
+     */
+    Integer countRestaurant(RestaurantQueryParams restaurantQueryParams);
+
+    /**
      * 取得所有餐廳資料。
      *
      * @return 所有餐廳資料的列表，若無資料則回傳 null
