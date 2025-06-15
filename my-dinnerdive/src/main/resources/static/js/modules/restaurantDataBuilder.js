@@ -1,7 +1,63 @@
-export function createRestaurant(){
+function getRestaurantId(){
+    const restaurantId = document.getElementById('restaurantId').value;
+    var idVar = {"restaurantId": restaurantId};
+    return idVar;
+}
+
+function getRestaurantName(){
+    const restaurantName =document.getElementById('restaurantName').value;
+    var nameVar = {"restaurantName": restaurantName};
+    return nameVar;
+}
+
+function getCategory(){
+    const category = document.getElementById('category').value;
+    var categoryVar = {"category": category};
+    return categoryVar;
+}
+
+function getVisitedCount() {
+    const visitedCount = parseInt(document.getElementById('visitedCount').value);
+    var visitedCountVar = {"visitedCount": visitedCount};
+    return visitedCountVar;
+}
+
+function getLastEat() {
+    const lastEat = document.getElementById('lastEat').value;
+    var lastEatVar = {"lastEat": lastEat};
+    return lastEatVar;
+}
+
+function getNote() {
+    const note = document.getElementById('note').value;
+    var noteVar = {"note": note};
+    return noteVar;
+}
+
+function getImageUrl() {
+    const imageUrl = document.getElementById('imageUrl').value;
+    var imageUrlVar = {"imageUrl": imageUrl};
+    return imageUrlVar;
+}
+
+function getHeaders(){
     // 設定格式
     let headers = {
     "Content-Type": "application/json",   // 告訴後端：這是 JSON 格式
     "Accept": "application/json",         // 告訴後端：我希望回傳也是 JSON
     }
+
+    return headers;
 }
+
+// 統一導出
+export {
+    getRestaurantId,
+    getRestaurantName,
+    getCategory,
+    getVisitedCount,
+    getLastEat,
+    getNote,
+    getImageUrl,
+    getHeaders
+};
