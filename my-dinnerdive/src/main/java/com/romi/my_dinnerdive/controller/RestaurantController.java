@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,9 @@ import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 
@@ -28,6 +32,8 @@ import org.springframework.web.bind.annotation.PutMapping;
  * 
  * 提供與餐廳相關的 RESTful API，包含查詢特定餐廳資料及新增餐廳紀錄的功能。
  */
+
+@Validated
 @RestController
 public class RestaurantController {
 
@@ -48,13 +54,19 @@ public class RestaurantController {
 
             // 排序
             @RequestParam(defaultValue = "restaurant_id") String orderBy,
-            @RequestParam(defaultValue = "ASC") String sort
+            @RequestParam(defaultValue = "ASC") String sort,
+
+            //分頁
+            @RequestParam(defaultValue = "10") @Max(1000) @Min(0) Integer limit,
+            @RequestParam(defaultValue = "0")  @Min(0) Integer offset
     ) {
         RestaurantQueryParams restaurantQueryParams = new RestaurantQueryParams();
         restaurantQueryParams.setCategory(category);
         restaurantQueryParams.setSearch(search);
         restaurantQueryParams.setOrderBy(orderBy);
         restaurantQueryParams.setSort(sort);
+        restaurantQueryParams.setLimit(limit);
+        restaurantQueryParams.setOffset(offset);
         
         List<Restaurant> restaurantList = restaurantService.getRestaurants(restaurantQueryParams);
 

@@ -36,6 +36,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
         Map<String, Object> map = new HashMap<>();
 
+        // 查詢條件
         if (restaurantQueryParams.getCategory() != null) {
             sql += " AND category = :category";
             map.put("category", restaurantQueryParams.getCategory().name());
@@ -46,7 +47,13 @@ public class RestaurantDaoImpl implements RestaurantDao {
             map.put("search", "%" + restaurantQueryParams.getSearch() + "%");
         }
 
+        // 排序
         sql = sql + " ORDER BY " + restaurantQueryParams.getOrderBy() + " " + restaurantQueryParams.getSort();
+
+        // 分頁
+        sql = sql + " LIMIT :limit OFFSET :offset";
+        map.put("limit", restaurantQueryParams.getLimit());
+        map.put("offset", restaurantQueryParams.getOffset());
 
         List<Restaurant> restaurantList = namedParameterJdbcTemplate.query(sql, map, new RestaurantRowMapper());
     
