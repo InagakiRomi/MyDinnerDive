@@ -8,9 +8,9 @@ package com.romi.my_dinnerdive.constant;
  */
 public enum RestaurantCategory {
 
-    主食("主食"),
-    輕食("輕食"),
-    飲料("飲料");
+    MAIN("主食"),
+    SNACK("輕食"),
+    DRINK("飲料");
 
     private final String displayName;
 
@@ -20,14 +20,5 @@ public enum RestaurantCategory {
 
     public String getDisplayName() {
         return displayName;
-    }
-
-    public static RestaurantCategory fromDisplayName(String name) {
-        for (RestaurantCategory category : values()) {
-            if (category.displayName.equals(name)) {
-                return category;
-            }
-        }
-        throw new IllegalArgumentException("無效的餐廳分類: " + name);
     }
 }
