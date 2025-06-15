@@ -17,7 +17,7 @@
             <input type="text" required name="restaurantName" id="restaurantName" th:value="${restaurants.restaurantName}">
         <br>
 
-        <label for="category"></label>>餐廳類別：</label>
+        <label for="category"></label>餐廳類別：</label>
         <select id="category" name="category" th:value="${restaurants.category}">
             <div th:replace="modules/categoryButton :: foodCategory"></div>
         </select>

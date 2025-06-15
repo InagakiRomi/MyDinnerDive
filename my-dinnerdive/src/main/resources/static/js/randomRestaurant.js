@@ -1,4 +1,7 @@
-function getRandomRestaurant() {
+const randomButton = document.getElementById("random-btn");
+randomButton.addEventListener("click", randomRestaurant);
+
+function randomRestaurant() {
     fetch('/random')
         .then(res => res.json())
         .then(data => {
