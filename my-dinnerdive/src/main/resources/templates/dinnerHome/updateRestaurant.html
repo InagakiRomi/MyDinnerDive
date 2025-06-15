@@ -7,48 +7,42 @@
 </head>
 <body>
     <h1>修改餐廳</h1>
-
-    <section>
         <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button>
         <button class="pageBtn" onclick="location.href='/listRestaurant'">餐廳一覽</button>
-    </section>
 
-    <form id="updateForm">
-
+    <form id="preventForm">
         <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
 
-        <label>餐廳名稱：
-            <input type="text" required name="restaurantName" id="restaurantName"
-                th:value="${restaurants.restaurantName}">
-        </label><br>
+        <label for="restaurantName">餐廳名稱：</label>
+            <input type="text" required name="restaurantName" id="restaurantName" th:value="${restaurants.restaurantName}">
+        <br>
 
-        <label>餐廳類別：</label>
+        <label for="category"></label>餐廳類別：</label>
         <select id="category" name="category" th:value="${restaurants.category}">
-            <div th:replace="fragments/categoryButton :: foodCategory"></div>
-        </select><br>
+            <div th:replace="modules/categoryButton :: foodCategory"></div>
+        </select>
+        <br>
 
-        <label>選擇次數：
-            <input type="number" name="visitedCount" id="visitedCount"
-                th:value="${restaurants.visitedCount}">
-        </label><br>
+        <label for="visitedCount">選擇次數：</label>
+        <input type="number" name="visitedCount" id="visitedCount" th:value="${restaurants.visitedCount}">
+        <br>
 
-        <label>最後選擇時間：
-            <input type="text" name="LastEat" id="LastEat"
-                th:value="${restaurants.lastEat}">
-        </label><br>
+        <label for="lastEat">最後選擇時間：</label>
+        <input type="text" name="lastEat" id="lastEat" th:value="${restaurants.lastEat}">
+        <br>
 
-        <label>備註：
-            <input type="text" name="note" id="Note"
-                th:value="${restaurants.note}">
-        </label><br>
+        <label for="note">備註：</label>
+        <input type="text" name="note" id="note" th:value="${restaurants.note}">
+        <br>
 
-        <label>圖片Url：
-            <input type="url" name="imageUrl" id="imageUrl"
-                th:value="${restaurants.imageUrl}">
-        </label><br>
+        <label for="imageUrl">圖片Url：
+        <input type="url" name="imageUrl" id="imageUrl" th:value="${restaurants.imageUrl}">
+        </label>
+        <br>
 
-        <button class="functionBtn" style="margin-top: 20px;" type="submit">儲存修改</button>
+        <button class="functionBtn" id="update-btn" style="margin-top: 20px;" type="submit">儲存修改</button>
     </form>
-    <script src="/js/updateRestaurant.js"></script>
+    <script src="/js/modules/preventForm.js"></script>
+    <script type="module" src="/js/updateRestaurant.js"></script>
 </body>
 </html>

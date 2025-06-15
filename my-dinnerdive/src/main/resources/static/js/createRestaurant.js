@@ -1,30 +1,38 @@
-        document.getElementById('restaurantForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // 阻止預設提交
+import {
+    getRestaurantName,
+    getCategory,
+    getNote,
+    getImageUrl,
+    getHeaders
+} from './modules/restaurantDataBuilder.js';
 
-            const data = {
-                restaurantName: document.getElementById('restaurantName').value,
-                category: document.getElementById('category').value,
-                note: document.getElementById('note').value,
-                imageUrl: document.getElementById('imageUrl').value
-            };
+const createButton = document.getElementById("create-btn");
+createButton.addEventListener("click", createRestaurant);
 
-            fetch('/restaurants?visitedCount=0', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("餐廳新增成功！");
-                    window.location.href = "/dinnerHome";
-                } else {
-                    alert("新增失敗，請再試一次");
-                }
-            })
-            .catch(error => {
-                console.error('錯誤:', error);
-                alert("系統發生錯誤！");
-            });
-        });
+function createRestaurant(){
+    //轉成json格式
+    var restaurantJson = {
+        ...getRestaurantName(),
+        ...getCategory(),
+        ...getNote(),
+        ...getImageUrl()
+    }
+
+    //傳資料給後端
+    fetch('/restaurants', {
+        method: "POST",
+        headers: getHeaders(),
+        body: JSON.stringify(restaurantJson)
+    })
+    .then((response) => {
+        if (response.ok) {
+            alert("餐廳新增成功！");
+            window.location.href = "/dinnerHome";
+        } else {
+            alert("新增失敗，請再試一次");
+        }
+    })
+    .catch((error) => {
+        alert("系統發生錯誤！");
+    })
+}

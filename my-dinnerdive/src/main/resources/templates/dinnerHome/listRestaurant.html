@@ -12,33 +12,34 @@
     <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button><br>
 
     <!--篩選-->
-    <form id="filter-form" style="margin-bottom: 20px;">
-        <label for="search">關鍵字：</label>
-        <input type="text" id="search" name="search" placeholder="輸入餐廳名稱或備註">
+    <label for="category">餐廳類別：</label>
+    <select id="category" name="category">
+        <option value="">全部</option>
+        <option value="主食">主食</option>
+        <option value="輕食">輕食</option>
+        <option value="飲料">飲料</option>
+    </select>
 
-        <label for="category">分類：</label>
-        <select id="category" name="category">
-            <option value="">全部</option>
-            <option value="主食">主食</option>
-            <option value="輕食">輕食</option>
-            <option value="飲料">飲料</option>
-        </select>
-        <button type="submit">查詢</button>
-    </form>
+    <label for="search">關鍵字：</label>
+    <input type="text" id="search" name="search" placeholder="輸入餐廳名稱或備註內容">
+
+    <button>查詢</button>
 
     <!--排序-->
-    <select id="orderBy" name="orderBy">
-        <option value="restaurant_id">建立順序</option>
-        <option value="category">類別</option>
-        <option value="visited_count">選擇次數</option>
-        <option value="last_eat">最後選擇時間</option>
-        <option value="last_visited_at">最後修改時間</option>
-    </select>
+    <div style="float:right;">
+        <select id="orderBy" name="orderBy">
+            <option value="restaurantIdOrder">建立順序</option>
+            <option value="categoryOrder">類別</option>
+            <option value="visitedCountOrder">選擇次數</option>
+            <option value="lastEatOrder">最後選擇時間</option>
+            <option value="lastVisited_atOrder">最後修改時間</option>
+        </select>
 
-    <select id="sort" name="sort">
-        <option value="ASC">最舊/最少</option>
-        <option value="DESC">最新/最多</option>
-    </select>
+        <select id="sort" name="sort">
+            <option value="ASC">最舊/最少</option>
+            <option value="DESC">最新/最多</option>
+        </select>
+    </div>
 
     <!--餐廳清單-->
     <table border="1" style="border-collapse: collapse; width: 100%;">
@@ -56,12 +57,11 @@
         <tbody id="restaurant-table-body">
         </tbody>
     </table>
-    <script src="/js/listRestaurant.js"></script>
+    <!--<script src="/js/listRestaurant.js"></script>-->
 
     <!--分頁按鈕-->
-    <div id="pagination-controls" style="margin-top: 20px;">
+    <div id="pagination-controls" style="margin-top: 20px; text-align: center;">
         <button id="prev-page">上一頁</button>
-        <span id="page-info">第 1 頁</span>
         <button id="next-page">下一頁</button>
     </div>
 </body>

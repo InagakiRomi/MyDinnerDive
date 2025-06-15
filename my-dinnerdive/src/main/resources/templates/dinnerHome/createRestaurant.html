@@ -11,27 +11,29 @@
     <!--跳轉頁面按鈕-->
     <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button>
 
-    <!-- 表單使用 JS 攔截送出 -->
-    <form id="restaurantForm">
-        <label>餐廳名稱：
-            <input type="text" required name="restaurantName" id="restaurantName">
-        </label><br>
+    <!--新增餐廳資訊-->
+    <form id="preventForm">
+        <label for="restaurantName">餐廳名稱：</label>
+        <input type="text" required id="restaurantName">
+        <br>
 
         <label for="category">餐廳類別：</label>
-        <select id="category" name="category">
-            <div th:replace="fragments/categoryButton :: foodCategory"></div>
-        </select><br>
+        <select id="category">
+            <option th:replace="~{modules/categoryButton :: foodCategory}"></option>
+        </select>
+        <br>
 
-        <label>備註：
-            <input type="text" name="note" id="note">
-        </label><br>
+        <label for="note">備註：</label>
+        <input type="text" id="note">
+        <br>
 
-        <label>圖片Url：
-            <input type="url" name="imageUrl" id="imageUrl">
-        </label><br>
+        <label for="imageUrl">圖片Url：</label>
+        <input type="url" id="imageUrl">
+        <br>
 
-        <button class="functionBtn" type="submit" style="margin-top: 20px;">新增餐廳</button>
-        <!--<script src="/js/createRestaurant.js" defer></script>-->
+        <button class="functionBtn" id = "create-btn" style="margin-top: 20px;">新增餐廳</button>
     </form>
+    <script src="/js/modules/preventForm.js"></script>
+    <script type="module" src="/js/createRestaurant.js"></script>
 </body>
 </html>

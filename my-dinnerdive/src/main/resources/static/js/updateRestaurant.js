@@ -1,36 +1,46 @@
-document.getElementById('updateForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+import {
+    getRestaurantId,
+    getRestaurantName,
+    getCategory,
+    getVisitedCount,
+    getLastEat,
+    getNote,
+    getImageUrl,
+    getHeaders
+} from './modules/restaurantDataBuilder.js';
 
-        const restaurantId = document.getElementById('restaurantId').value;
+const updateButton = document.getElementById("update-btn");
+updateButton.addEventListener("click", updateRestaurant);
 
-        const data = {
-            restaurantName: document.getElementById('restaurantName').value,
-            category: document.getElementById('category').value,
-            visitedCount: parseInt(document.getElementById('visitedCount').value),
-            lastEat: document.getElementById('LastEat').value,
-            note: document.getElementById('Note').value,
-            imageUrl: document.getElementById('imageUrl').value
-        };
+function updateRestaurant(){
 
-        fetch(`/restaurants/${restaurantId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (response.ok) {
-                window.location.href = "/listRestaurant";
-            } else {
-                alert("更新失敗！請確認資料是否正確");
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("發生錯誤，請稍後再試！");
-        });
+    var restaurantJson = {
+        ...getRestaurantName(),
+        ...getCategory(),
+        ...getVisitedCount(),
+        ...getLastEat(),
+        ...getNote(),
+        ...getImageUrl()
+    }
+
+    fetch(`/restaurants/${getRestaurantId()}`, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(restaurantJson)
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "/listRestaurant";
+            alert("修改成功！");
+        } else {
+            alert("修改失敗！請確認資料是否正確");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("發生錯誤，請稍後再試！");
     });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const categorySelect = document.getElementById("category");
