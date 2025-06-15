@@ -14,8 +14,8 @@
     background-color: #d97100;  /*背景顏色*/
 }
 
-/* 抽籤按鈕 */
-.randomBtn {
+/* 功能按鈕 */
+.functionBtn {
     font-size: 1.5rem;
     color: rgb(245, 245, 245);
     background-color: #36bf36;
@@ -26,6 +26,6 @@
     cursor: pointer;
 }
 
-.randomBtn:hover {  
+.functionBtn:hover {  
     background-color: #3ea739;
 }
