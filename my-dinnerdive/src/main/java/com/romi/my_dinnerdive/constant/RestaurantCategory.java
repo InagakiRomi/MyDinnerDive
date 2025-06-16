@@ -21,13 +21,4 @@ public enum RestaurantCategory {
     public String getDisplayName() {
         return displayName;
     }
-
-    public static RestaurantCategory fromDisplayName(String name) {
-        for (RestaurantCategory category : values()) {
-            if (category.displayName.equals(name)) {
-                return category;
-            }
-        }
-        throw new IllegalArgumentException("無效的餐廳分類: " + name);
-    }
 }

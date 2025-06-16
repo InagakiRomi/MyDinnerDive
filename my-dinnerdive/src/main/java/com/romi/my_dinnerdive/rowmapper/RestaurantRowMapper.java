@@ -34,7 +34,7 @@ public class RestaurantRowMapper implements RowMapper<Restaurant> {
         restaurant.setRestaurantName(resultSet.getString("restaurant_name"));
 
         String categoryStr = resultSet.getString("category");
-        RestaurantCategory category = RestaurantCategory.fromDisplayName(categoryStr);
+        RestaurantCategory category = RestaurantCategory.valueOf(categoryStr);
         restaurant.setCategory(category);
 
         restaurant.setImageUrl(resultSet.getString("image_url"));
