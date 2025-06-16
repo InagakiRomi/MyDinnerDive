@@ -7,3 +7,11 @@
     background-position: center;
     display: block;
 }
+
+.listImage {
+    width: 240px;
+    height: 136px;
+    background-size: cover;
+    background-position: center;
+    display: block;
+}
