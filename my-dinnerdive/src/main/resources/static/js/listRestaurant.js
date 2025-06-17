@@ -1,52 +1,56 @@
 document.addEventListener("DOMContentLoaded", listRestaurant);
 
-function listRestaurant(){
-    const data = [
-        {
-            restaurantName: "兩藍拉麵",
-            imageUrl: "https://images.unsplash.com/photo-1614563637806-1d0e645e0940?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            category: "主食",
-            visitedCount: 2,
-            lastEat: "2025-06-06 17:37:50",
-            lastVisitedAt: "2025-06-06 17:37:50",
-            note: "兩藍拉麵好吃啦"
-        },
-        {
-            restaurantName: "兩藍拉麵",
-            imageUrl: "https://images.unsplash.com/photo-1614563637806-1d0e645e0940?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            category: "主食",
-            visitedCount: 2,
-            lastEat: "2025-06-06 17:37:50",
-            lastVisitedAt: "2025-06-06 17:37:50",
-            note: "兩藍拉麵好吃啦"
-        }
-    ];
+async function listRestaurant(){
 
     const tbody = document.getElementById('tableBody');
 
-    data.forEach(restaurants => {
+    const response = await fetch('/restaurants');
+    const result = await response.json();
+    const data = result.results;
+
+    data.forEach(restaurant => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td>${restaurants.restaurantName}</td>
+            <td>${restaurant.restaurantId}</td>
+            <td>${restaurant.restaurantName}</td>
             <td>
                 <img class="listImage"
-                 src="${restaurants.imageUrl}"
-                 alt="餐廳圖片"
-                 width="100"/>
+                        src="${restaurant.imageUrl}"
+                        alt="餐廳圖片"
+                        width="100"/>
             </td>
-            <td>${restaurants.category}</td>
-            <td>${restaurants.visitedCount}</td>
-            <td>${restaurants.lastEat}</td>
-            <td>${restaurants.lastVisitedAt}</td>
-            <td>${restaurants.note}</td>
+            <td>${restaurant.category}</td>
+            <td>${restaurant.visitedCount}</td>
+            <td>${restaurant.lastEat}</td>
+            <td>${restaurant.lastVisitedAt}</td>
+            <td>${restaurant.note}</td>
             <td>
-                <button>修改</button>
-                <button style="margin-left: 5px;">刪除</button>
+                <button onclick="location.href='/restaurants/${restaurant.restaurantId}/edit'">修改</button>
+                <button class="delete-btn" data-id="${restaurant.restaurantId}" style="margin-left: 5px;">刪除</button>
             </td>
         `;
         tbody.appendChild(tr);
     });
-}
+
+    // 刪除資料
+    const deleteButton = document.querySelectorAll(".delete-btn");
+    deleteButton.forEach(button => {
+        button.addEventListener("click", deleteRestaurant);           
+        function deleteRestaurant() {
+            const id = this.getAttribute("data-id");
+            fetch(`/restaurants/${id}`, {
+                method: "DELETE"
+            })
+            .then(response => {
+                if (response.ok) {
+                    this.closest("tr").remove();
+                    alert("刪除成功！");
+                } else {
+                    alert("刪除失敗！請確認資料是否正確");
+                }
+            });
+        }})
+};
 
 /*document.getElementById("filter-form").addEventListener("submit", function (e) {
     e.preventDefault(); // 阻止表單重新載入頁面
@@ -88,38 +92,4 @@ function loadRestaurants(category, search) {
     if (params.length > 0) {
         url += "?" + params.join("&");
     }
-
-    // 取得餐廳資料
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(restaurant => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${restaurant.restaurantName}</td>
-                    <td>${restaurant.category}</td>
-                    <td>${restaurant.visitedCount}</td>
-                    <td>${restaurant.lastEat || ''}</td>
-                    <td>${restaurant.lastVisitedAt || ''}</td>
-                    <td>${restaurant.note || ''}</td>
-                    <td>
-                        <button onclick="location.href='/restaurants/${restaurant.restaurantId}/edit'">修改</button>
-                        <button class="delete-btn" data-id="${restaurant.restaurantId}">刪除</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-
-            // 刪除資料
-            document.querySelectorAll(".delete-btn").forEach(button => {
-                button.addEventListener("click", function () {
-                    const id = this.getAttribute("data-id");
-                    fetch(`/restaurants/${id}`, {
-                        method: "DELETE"
-                    }).then(response => {
-                        this.closest("tr").remove();
-                    });
-                });
-            });
-        });
 }*/
