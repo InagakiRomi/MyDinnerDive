@@ -45,53 +45,23 @@
 
     <!--餐廳清單-->
     <table class="table">
-        <tr>
-            <th>餐廳名稱</th>
-            <th>圖片</th>
-            <th>類別</th>
-            <th>選擇次數</th>
-            <th>最後選擇時間</th>
-            <th>最後修改時間</th>
-            <th>備註</th>
-            <th>操作</th>
-        </tr>
-        <!--測試清單-->
-        <tr> 
-            <td>兩藍拉麵</td> 
-            <td>
-                <img class="listImage"
-                     src="https://images.unsplash.com/photo-1614563637806-1d0e645e0940?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                     alt="餐廳圖片"/>
-            </td> 
-            <td>主食</td> 
-            <td>2</td> 
-            <td>2025-06-06 17:37:50</td> 
-            <td>2025-06-06 17:37:50</td> 
-            <td>兩藍拉麵好吃啦</td> 
-            <td>
-                <button>修改</button>
-                <button style="margin-left: 5px;">刪除</button>
-            </td> 
-        </tr> 
-        <tr> 
-            <td>兩藍拉麵</td> 
-            <td>
-                <img class="listImage"
-                     src="https://images.unsplash.com/photo-1614563637806-1d0e645e0940?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                     alt="餐廳圖片"/>
-            </td> 
-            <td>主食</td> 
-            <td>2</td> 
-            <td>2025-06-06 17:37:50</td> 
-            <td>2025-06-06 17:37:50</td> 
-            <td>兩藍拉麵好吃啦</td> 
-            <td>
-                <button>修改</button>
-                <button style="margin-left: 5px;">刪除</button>
-            </td> 
-        </tr> 
+        <thead>
+            <tr>
+                <th>餐廳名稱</th>
+                <th>圖片</th>
+                <th>類別</th>
+                <th>選擇次數</th>
+                <th>最後選擇時間</th>
+                <th>最後修改時間</th>
+                <th>備註</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody">
+            <!-- 資料列將由 JavaScript 動態插入 -->
+        </tbody>
     </table>
-    <!--<script src="/js/listRestaurant.js"></script>-->
 
     <!--分頁按鈕-->
     <!--<div id="pagination-controls" style="margin-top: 20px; text-align: center; display: flex; justify-content: center; align-items: center; gap: 10px;">
@@ -99,5 +69,7 @@
         <div style="white-space: nowrap;">第1頁 / 共10頁</div>
         <button id="next-page">下一頁</button>
     </div>-->
+
+    <script src="/js/listRestaurant.js"></script>
 </body>
 </html>
