@@ -6,7 +6,7 @@ function randomRestaurant() {
         .then(response => response.json())
         .then(data => {
             const imageUrl = document.getElementById('imageUrl');
-            imageUrl.src = data.imageUrl;
+            imageUrl.src = data.imageUrl || '/images/defaultRestaurant.jpg';
 
             const restaurantName =document.getElementById('restaurantName');
             restaurantName.innerText = data.restaurantName;

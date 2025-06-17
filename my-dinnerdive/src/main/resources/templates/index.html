@@ -16,15 +16,15 @@
     <button class="pageBtn" onclick="location.href='/createRestaurant'">新增餐廳</button>
 
     <!--顯示餐廳圖片-->
-    <img class="restaurantImage"  id="imageUrl" th:src="@{${restaurants.imageUrl}}" alt="餐廳圖片"/>
+    <img class="restaurantImage"  id="imageUrl" src="images/start.jpg" alt="餐廳圖片"/>
 
     <!--顯示餐廳資訊-->
-    <p>餐廳名稱：<span id="restaurantName" th:text="${restaurants?.restaurantName}"></span></p>
-    <p>餐廳類別：<span id="category" th:text="${restaurants?.category}"></span></p>
-    <p>選擇次數：<span id="visitedCount" th:text="${restaurants?.visitedCount}"></span></p>
-    <p>最後選擇時間：<span id="lastEat" th:text="${restaurants?.lastEat}"></span></p>
-    <p>最後更新時間：<span id="lastVisitedAt" th:text="${restaurants?.lastVisitedAt}"></span></p>
-    <p>備註：<span id="note" th:text="${restaurants?.note}"></span></p>
+    <p>餐廳名稱：<span id="restaurantName"></span></p>
+    <p>餐廳類別：<span id="category"></span></p>
+    <p>選擇次數：<span id="visitedCount"></span></p>
+    <p>最後選擇時間：<span id="lastEat"></span></p>
+    <p>最後更新時間：<span id="lastVisitedAt"></span></p>
+    <p>備註：<span id="note"></span></p>
 
     <!--底部按鈕-->
     <!--抽籤功能-->
