@@ -1,5 +1,5 @@
 const preventForm = document.getElementById("preventForm");
-preventForm.addEventListener("click", preventFormSubmit);
+preventForm.addEventListener("submit", preventFormSubmit);
 
 function preventFormSubmit(event) {
     event.preventDefault();
