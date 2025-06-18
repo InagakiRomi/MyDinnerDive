@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", listRestaurant);
 
 async function listRestaurant(){
-
     const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
 
     const response = await fetch('/restaurants');
     const result = await response.json();
@@ -31,28 +31,31 @@ async function listRestaurant(){
         `;
         tbody.appendChild(tr);
     });
-
-    // 刪除資料
-    const deleteButton = document.querySelectorAll(".delete-btn");
-    deleteButton.forEach(button => {
-        button.addEventListener("click", deleteRestaurant);           
-        function deleteRestaurant() {
-            const id = this.getAttribute("data-id");
-            fetch(`/restaurants/${id}`, {
-                method: "DELETE"
-            })
-            .then(response => {
-                if (response.ok) {
-                    this.closest("tr").remove();
-                    alert("刪除成功！");
-                } else {
-                    alert("刪除失敗！請確認資料是否正確");
-                }
-            });
-        }})
 };
 
-/*document.getElementById("filter-form").addEventListener("submit", function (e) {
+const getTableBody = document.getElementById('tableBody')
+getTableBody.addEventListener('click', deleteRestaurant);
+async function deleteRestaurant(event) {
+    const deleteButton = event.target.classList.contains('delete-btn');
+
+    if (deleteButton) {
+        const id = event.target.getAttribute('data-id');
+        fetch(`/restaurants/${id}`, {
+            method: "DELETE"
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("刪除成功！");
+                listRestaurant();
+            } else {
+                alert("刪除失敗！請確認資料是否正確");
+            }
+        });
+    }
+};
+
+/*
+document.getElementById("filter-form").addEventListener("submit", function (e) {
     e.preventDefault(); // 阻止表單重新載入頁面
 
     const category = document.getElementById("category").value;
