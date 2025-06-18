@@ -17,7 +17,7 @@
         <div>
             <!-- 篩選 -->
             <label for="category">餐廳類別：</label>
-            <select id="category" name="category">
+            <select id="category">
                 <option value="">全部</option>
                 <option value="主食">主食</option>
                 <option value="輕食">輕食</option>
@@ -25,14 +25,14 @@
             </select>
 
             <label for="search">關鍵字：</label>
-            <input type="text" id="search" name="search" placeholder="輸入餐廳名稱或備註內容">
+            <input type="text" id="search" placeholder="輸入餐廳名稱或備註內容">
 
             <button type="submit">查詢</button>
         </div>
 
         <!-- 排序 -->
         <div>
-            <select id="orderBy" name="orderBy">
+            <select id="orderBy">
                 <option value="restaurant_id">建立順序</option>
                 <option value="category">類別</option>
                 <option value="visited_count">選擇次數</option>
@@ -40,7 +40,7 @@
                 <option value="last_visited_at">最後修改時間</option>
             </select>
 
-            <select id="sort" name="sort">
+            <select id="sort">
                 <option value="ASC">最舊/最少</option>
                 <option value="DESC">最新/最多</option>
             </select>
