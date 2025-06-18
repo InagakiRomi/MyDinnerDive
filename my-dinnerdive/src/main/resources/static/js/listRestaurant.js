@@ -1,12 +1,44 @@
-document.addEventListener("DOMContentLoaded", listRestaurant);
+document.addEventListener("DOMContentLoaded", function (){
+    listRestaurant();
+    const preventForm = document.getElementById("preventForm");
+    preventForm.addEventListener("submit", preventFormSubmit);
+
+    function preventFormSubmit(event) {
+        event.preventDefault();
+        listRestaurant();
+    }
+})
 
 async function listRestaurant(){
-    const tbody = document.getElementById('tableBody');
-    tbody.innerHTML = '';
 
-    const response = await fetch('/restaurants');
+    const category = document.getElementById("category").value;
+    const search = document.getElementById("search").value;
+    const orderBy = document.getElementById("orderBy").value;
+    const sort = document.getElementById("sort").value;
+
+    const params = new URLSearchParams();
+    if (category){
+        params.append("category", category);
+    } 
+    if (search){
+        params.append("search", search);
+    }
+    if (orderBy){
+        params.append("orderBy", orderBy);
+    }
+    if (sort){
+        params.append("sort", sort);
+    }
+
+    const url = `/restaurants?${params.toString()}`;
+
+    const response = await fetch(url);
     const result = await response.json();
     const data = result.results;
+
+    // 撈取餐廳資訊並顯示
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
 
     data.forEach(restaurant => {
         const tr = document.createElement('tr');
@@ -33,8 +65,8 @@ async function listRestaurant(){
     });
 };
 
-const getTableBody = document.getElementById('tableBody')
-getTableBody.addEventListener('click', deleteRestaurant);
+const tableBody = document.getElementById('tableBody')
+tableBody.addEventListener('click', deleteRestaurant);
 async function deleteRestaurant(event) {
     const deleteButton = event.target.classList.contains('delete-btn');
 
@@ -53,46 +85,3 @@ async function deleteRestaurant(event) {
         });
     }
 };
-
-/*
-document.getElementById("filter-form").addEventListener("submit", function (e) {
-    e.preventDefault(); // 阻止表單重新載入頁面
-
-    const category = document.getElementById("category").value;
-    const search = document.getElementById("search").value;
-
-    loadRestaurants(category, search); // 加入搜尋條件
-});
-
-// 預設載入全部餐廳
-loadRestaurants("", "");
-
-function loadRestaurants(category, search) {
-    const tbody = document.getElementById("restaurant-table-body");
-    tbody.innerHTML = ""; // 清空現有內容
-
-    const params = [];
-
-    if (category) {
-        params.push("category=" + encodeURIComponent(category));
-    }
-    if (search) {
-        params.push("search=" + encodeURIComponent(search));
-    }
-
-    // 讀取排序欄位與方式
-    const orderBy = document.getElementById("orderBy").value;
-    const sort = document.getElementById("sort").value;
-
-    if (orderBy) {
-        params.push("orderBy=" + encodeURIComponent(orderBy));
-    }
-    if (sort) {
-        params.push("sort=" + encodeURIComponent(sort));
-    }
-
-    let url = "/restaurants";
-    if (params.length > 0) {
-        url += "?" + params.join("&");
-    }
-}*/
