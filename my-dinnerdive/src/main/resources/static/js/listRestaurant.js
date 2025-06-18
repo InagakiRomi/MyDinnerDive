@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function (){
     listRestaurant();
-    const preventForm = document.getElementById("preventForm");
+    const preventForm = document.getElementById("listForm");
     preventForm.addEventListener("submit", preventFormSubmit);
 
     function preventFormSubmit(event) {

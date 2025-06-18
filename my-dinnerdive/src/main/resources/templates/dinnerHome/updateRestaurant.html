@@ -14,30 +14,29 @@
         <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
 
         <label for="restaurantName">餐廳名稱：</label>
-            <input type="text" required name="restaurantName" id="restaurantName" th:value="${restaurants.restaurantName}">
+            <input type="text" required id="restaurantName" th:value="${restaurants.restaurantName}">
         <br>
 
-        <label for="category"></label>餐廳類別：</label>
-        <select id="category" name="category" th:value="${restaurants.category}">
-            <div th:replace="modules/categoryButton :: foodCategory"></div>
+        <label for="category">餐廳類別：</label>
+        <select id="category" th:value="${restaurants.category}">
+            <option th:replace="~{modules/categoryButton :: foodCategory}"></option>
         </select>
         <br>
 
         <label for="visitedCount">選擇次數：</label>
-        <input type="number" name="visitedCount" id="visitedCount" th:value="${restaurants.visitedCount}">
+        <input type="number" id="visitedCount" th:value="${restaurants.visitedCount}">
         <br>
 
         <label for="lastEat">最後選擇時間：</label>
-        <input type="text" name="lastEat" id="lastEat" th:value="${restaurants.lastEat}">
+        <input type="text" id="lastEat" th:value="${restaurants.lastEat}">
         <br>
 
         <label for="note">備註：</label>
-        <input type="text" name="note" id="note" th:value="${restaurants.note}">
+        <input type="text" id="note" th:value="${restaurants.note}">
         <br>
 
-        <label for="imageUrl">圖片Url：
-        <input type="url" name="imageUrl" id="imageUrl" th:value="${restaurants.imageUrl}">
-        </label>
+        <label for="imageUrl">圖片Url：</label>
+        <input type="url" id="imageUrl" th:value="${restaurants.imageUrl}">
         <br>
 
         <button class="functionBtn" id="update-btn" style="margin-top: 20px;" type="submit">儲存修改</button>

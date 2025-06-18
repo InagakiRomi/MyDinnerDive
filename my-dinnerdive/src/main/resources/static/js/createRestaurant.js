@@ -7,7 +7,7 @@ import {
 } from './modules/restaurantDataBuilder.js';
 
 document.addEventListener("DOMContentLoaded", function (){
-    const preventForm = document.getElementById("preventForm");
+    const preventForm = document.getElementById("createForm");
     preventForm.addEventListener("submit", preventFormSubmit);
 
     function preventFormSubmit(event) {
@@ -15,9 +15,6 @@ document.addEventListener("DOMContentLoaded", function (){
         createRestaurant();
     }
 })
-
-const createButton = document.getElementById("create-btn");
-createButton.addEventListener("click", createRestaurant);
 
 function createRestaurant(){
     //轉成json格式

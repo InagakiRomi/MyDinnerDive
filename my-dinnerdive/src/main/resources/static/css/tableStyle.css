@@ -10,4 +10,5 @@
 
 .table td {
     border: 1.5px solid #000; /* 關鍵設定 */
+    text-align:center
 }
