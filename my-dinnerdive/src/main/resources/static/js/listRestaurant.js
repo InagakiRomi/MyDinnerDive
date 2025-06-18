@@ -21,7 +21,7 @@ async function listRestaurant(){
             </td>
             <td>${restaurant.category}</td>
             <td>${restaurant.visitedCount}</td>
-            <td>${restaurant.lastEat}</td>
+            <td>${restaurant.lastEat ?? '-'}</td>
             <td>${restaurant.lastVisitedAt}</td>
             <td>${restaurant.note}</td>
             <td>
