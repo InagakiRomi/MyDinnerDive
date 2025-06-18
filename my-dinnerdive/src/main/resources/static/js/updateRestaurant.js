@@ -9,8 +9,22 @@ import {
     getHeaders
 } from './modules/restaurantDataBuilder.js';
 
-const updateButton = document.getElementById("update-btn");
-updateButton.addEventListener("click", updateRestaurant);
+document.addEventListener("DOMContentLoaded", function (){
+    //同步餐廳分類資料庫
+    const categorySelect = document.getElementById("category");
+    const selectedValue = categorySelect.getAttribute("value");
+    if (selectedValue) {
+        categorySelect.value = selectedValue;
+    }
+
+    const preventForm = document.getElementById("updateForm");
+    preventForm.addEventListener("submit", preventFormSubmit);
+
+    function preventFormSubmit(event) {
+        event.preventDefault();
+        updateRestaurant();
+    }
+})
 
 function updateRestaurant(){
 
@@ -41,11 +55,3 @@ function updateRestaurant(){
         alert("發生錯誤，請稍後再試！");
     });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const categorySelect = document.getElementById("category");
-    const selectedValue = categorySelect.getAttribute("value");
-    if (selectedValue) {
-        categorySelect.value = selectedValue;
-    }
-});
