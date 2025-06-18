@@ -6,6 +6,16 @@ import {
     getHeaders
 } from './modules/restaurantDataBuilder.js';
 
+document.addEventListener("DOMContentLoaded", function (){
+    const preventForm = document.getElementById("preventForm");
+    preventForm.addEventListener("submit", preventFormSubmit);
+
+    function preventFormSubmit(event) {
+        event.preventDefault();
+        createRestaurant();
+    }
+})
+
 const createButton = document.getElementById("create-btn");
 createButton.addEventListener("click", createRestaurant);
 

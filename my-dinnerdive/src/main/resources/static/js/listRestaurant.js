@@ -49,6 +49,7 @@ async function listRestaurant(){
                 <img class="listImage"
                         src="${restaurant.imageUrl}"
                         alt="餐廳圖片"
+                        onerror="this.onerror=null;this.src='/images/defaultRestaurant.jpg';"
                         width="100"/>
             </td>
             <td>${restaurant.category}</td>
