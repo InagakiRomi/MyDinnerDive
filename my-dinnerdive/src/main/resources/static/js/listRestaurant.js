@@ -97,6 +97,16 @@ async function listRestaurant(){
         `;
         tbody.appendChild(tr);
     });
+
+    // 更新頁數顯示
+    const pageInfo = document.querySelector(".switchPageBtn div");
+    const currentPage = Math.floor(offset / limit) + 1;
+    const totalPages = Math.ceil(total / limit);
+    pageInfo.textContent = `第${currentPage}頁 / 共${totalPages}頁`;
+
+    // 控制上一頁與下一頁按鈕狀態
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
 };
 
 const tableBody = document.getElementById('tableBody')
