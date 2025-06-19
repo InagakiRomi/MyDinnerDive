@@ -151,4 +151,12 @@ public class RestaurantController {
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    /**
+     * 抽選一筆隨機餐廳
+     */
+    @GetMapping("/random")
+    public Restaurant getRandomRestaurant() {
+        return restaurantService.getRandomRestaurant();
+    }
 }
