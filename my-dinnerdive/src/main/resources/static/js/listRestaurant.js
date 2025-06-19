@@ -1,3 +1,8 @@
+let offset;
+let limit;
+let total;
+let changePage = false;
+
 document.addEventListener("DOMContentLoaded", function (){
     listRestaurant();
     const preventForm = document.getElementById("listForm");
@@ -8,6 +13,24 @@ document.addEventListener("DOMContentLoaded", function (){
         listRestaurant();
     }
 })
+
+const prevButton = document.getElementById("prevPage")
+prevButton.addEventListener("click", function () {
+    if(offset >= limit){
+        offset = offset - limit;
+        changePage = true;
+        listRestaurant();
+    }
+});
+
+const nextButton = document.getElementById("nextPage")
+nextButton.addEventListener("click", function () {
+    if(offset < total-limit){
+        offset = offset + limit;
+        changePage = true;
+        listRestaurant();
+    }
+});
 
 async function listRestaurant(){
 
@@ -30,10 +53,20 @@ async function listRestaurant(){
         params.append("sort", sort);
     }
 
+    if(changePage){
+        params.append("offset", offset);
+        changePage = false;
+    }
+
     const url = `/restaurants?${params.toString()}`;
 
     const response = await fetch(url);
     const result = await response.json();
+
+    offset = result.offset
+    limit = result.limit;
+    total = result.total;
+
     const data = result.results;
 
     // 撈取餐廳資訊並顯示
