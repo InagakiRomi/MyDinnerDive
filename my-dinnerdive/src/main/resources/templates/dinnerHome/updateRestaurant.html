@@ -27,9 +27,11 @@
         <input type="number" id="visitedCount" th:value="${restaurants.visitedCount}" min="0" required>
         <br>
 
-        <label for="lastEat">最後選擇時間：</label>
-        <input type="text" id="lastEat" th:value="${restaurants.lastEat}">
-        <br>
+        <div style="display: none;">
+            <label for="lastEat">最後選擇時間：</label>
+            <input type="text" id="lastEat" th:value="${restaurants.lastEat}">
+            <br>
+        </div>
 
         <label for="note">備註：</label>
         <input type="text" id="note" th:value="${restaurants.note}">
