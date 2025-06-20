@@ -108,9 +108,4 @@ public class RestaurantServiceImpl implements RestaurantService {
             logger.log(Level.INFO, "清空抽籤資料");
         }
     }
-
-    @Override
-    public void getChooseRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
-        restaurantDao.getChooseRestaurant(restaurantId, restaurantRequest);
-    }
 }

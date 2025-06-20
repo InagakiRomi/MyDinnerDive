@@ -63,13 +63,4 @@ public interface RestaurantDao {
      * @return 所有餐廳資料ID，若無資料則回傳 null
      */
     List<Integer> getAllRestaurantIds();
-
-    /**
-     * 選擇一間餐廳並更新其選擇紀錄。
-     * <p>
-     * 此方法會選出一間餐廳作為本次選擇結果，並將該餐廳的選擇次數加一，最後選擇時間更新為目前時間。
-     *
-     * @return 被選中的餐廳物件（Restaurant）
-     */
-    void getChooseRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest);
 }
