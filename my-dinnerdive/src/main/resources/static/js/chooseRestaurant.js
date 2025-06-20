@@ -1,19 +1,27 @@
 import {
     getRestaurantId,
+    getVisitedCount,
+    getLastEat,
     getHeaders
 } from './modules/restaurantDataBuilder.js';
 
 document.addEventListener("DOMContentLoaded", function (){
-    const preventForm = document.getElementById("chooseBtn");
-    preventForm.addEventListener("submit", preventFormSubmit);
+    const chooseBtn  = document.getElementById("choose-btn");
+    chooseBtn.addEventListener("click", preventFormSubmit);
 
     function preventFormSubmit(event) {
         event.preventDefault();
+        alert("！");
         chooseRestaurant();
     }
 })
 
 function chooseRestaurant(){
+
+    var restaurantJson = {
+    ...getVisitedCount(),
+    ...getLastEat()
+    }
 
     fetch(`/choose/${getRestaurantId()}`, {
         method: 'PUT',
