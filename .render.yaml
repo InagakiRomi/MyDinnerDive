@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: my-dinnerdive-service
-    env: docker
-    dockerfilePath: my-dinnerdive/Dockerfile
-    buildContext: ./my-dinnerdive
-    region: Singapore
-    plan: free
-    autoDeploy: false
