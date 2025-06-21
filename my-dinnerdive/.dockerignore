@@ -1,9 +1,0 @@
-target/
-.git/
-.gitignore
-README.md
-*.iml
-*.log
-*.md
-mvnw
-mvnw.cmd
