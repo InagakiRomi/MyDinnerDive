@@ -14,7 +14,7 @@ function randomRestaurant() {
             const category = document.getElementById('category');
             category.innerText = data.category;
 
-            const visitedCount = parseInt(document.getElementById('visitedCount'));
+            const visitedCount = document.getElementById('visitedCount');
             visitedCount.innerText = data.visitedCount;
 
             const lastEat = document.getElementById('lastEat');
