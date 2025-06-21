@@ -167,8 +167,7 @@ public class RestaurantController {
      * 此方法會選出一間餐廳作為本次選擇結果，並將該餐廳的選擇次數加一，最後選擇時間更新為目前時間。
      */
     @PatchMapping("/choose/{restaurantId}")
-    public ResponseEntity<Restaurant> chooseRestaurant(@PathVariable Integer restaurantId,
-                                                       @RequestBody @Valid RestaurantRequest restaurantRequest) {
+    public ResponseEntity<Restaurant> chooseRestaurant(@PathVariable Integer restaurantId) {
         Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
 
         // 檢查 restaurant 是否存在
@@ -177,8 +176,8 @@ public class RestaurantController {
         }
 
         // 修改商品的數據
-        restaurantService.chooseRestaurant(restaurantId, restaurantRequest);
-        Restaurant updatedRestaurant = restaurantService.getRestaurantById(restaurantId);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedRestaurant);
+        restaurantService.chooseRestaurant(restaurantId);
+        Restaurant chooseRestaurant = restaurantService.getRestaurantById(restaurantId);
+        return ResponseEntity.status(HttpStatus.OK).body(chooseRestaurant);
     }
 }

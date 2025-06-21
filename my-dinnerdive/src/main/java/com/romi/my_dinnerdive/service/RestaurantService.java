@@ -87,5 +87,5 @@ public interface RestaurantService {
      *
      * @return 被選中的餐廳物件（Restaurant）
      */
-    void chooseRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest);
+    void chooseRestaurant(Integer restaurantId);
 }

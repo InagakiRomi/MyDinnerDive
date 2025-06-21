@@ -110,8 +110,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void chooseRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
+    public void chooseRestaurant(Integer restaurantId){
         clearRandomRestaurant();
-        restaurantDao.chooseRestaurant(restaurantId, restaurantRequest);
+        restaurantDao.chooseRestaurant(restaurantId);
     }
 }
