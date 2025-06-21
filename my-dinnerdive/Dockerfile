@@ -1,5 +1,5 @@
 # define base docker image
-FROM openjdk:11
+FROM openjdk:17
 LABEL maintainer="javaguides.net"
-ADD target/my-dinnerdive-0.0.1-SNAPSHOT.jar my-dinnerdive.jar
+COPY my-dinnerdive my-dinnerdive.jar
 ENTRYPOINT ["java", "-jar", "my-dinnerdive.jar"]
