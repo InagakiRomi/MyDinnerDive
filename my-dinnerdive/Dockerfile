@@ -1,10 +1,10 @@
-# Build jar
-FROM maven:3.9.6-openjdk-17-slim AS build
+# Build stage
+FROM maven:3.9.6-openjdk-17 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Run jar
+# Runtime stage
 FROM openjdk:17
 WORKDIR /app
 COPY --from=build /app/target/*.jar my-dinnerdive.jar
