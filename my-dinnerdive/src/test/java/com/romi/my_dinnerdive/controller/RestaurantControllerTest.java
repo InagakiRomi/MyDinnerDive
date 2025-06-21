@@ -15,13 +15,12 @@ import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.time.LocalDateTime;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -85,6 +84,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.note", equalTo("布丁五姊妹好喝")));
     }
 
+    // 修改餐廳
     @Transactional
     @Test
     void updateRestaurant_success() throws Exception{
@@ -115,8 +115,113 @@ public class RestaurantControllerTest {
 
     @Transactional
     @Test
-    void deleteRestaurant_success() throws Exception{
+    public void updateProduct_productNotFound() throws Exception {
+        RestaurantRequest restaurantRequest = new RestaurantRequest();
+        restaurantRequest.setRestaurantName("好棒棒喔");
+        restaurantRequest.setCategory(RestaurantCategory.輕食);
+        restaurantRequest.setImageUrl("http://test.food");
+        restaurantRequest.setVisitedCount(6);
+        restaurantRequest.setNote("肌肉猛男開的專賣店");
 
+        String json = objectMapper.writeValueAsString(restaurantRequest);
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .put("/restaurants/{restaurantId}", 2000)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json);
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(404));
+    }
+
+    // 刪除餐廳
+    @Transactional
+    @Test
+    public void deleteProduct_success() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .delete("/restaurants/{restaurantId}", 5);
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(204));
+    }
+
+    @Transactional
+    @Test
+    public void deleteProduct_deleteNonExistingProduct() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .delete("/restaurants/{restaurantId}", 20000);
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(204));
+    }
+
+    // 查詢商品列表
+    @Test
+    public void getProducts() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/restaurants");
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.limit", notNullValue()))
+                .andExpect(jsonPath("$.offset", notNullValue()))
+                .andExpect(jsonPath("$.total", notNullValue()))
+                .andExpect(jsonPath("$.results", hasSize(10)));
+    }
+
+    @Test
+    public void getProducts_filtering() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/restaurants")
+                .param("search", "奶")
+                .param("category", "飲料");
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.limit", notNullValue()))
+                .andExpect(jsonPath("$.offset", notNullValue()))
+                .andExpect(jsonPath("$.total", notNullValue()))
+                .andExpect(jsonPath("$.results", hasSize(3)));
+    }
+
+    @Test
+    public void getProducts_sorting() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/restaurants")
+                .param("orderBy", "restaurant_id")
+                .param("sort", "asc");
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.limit", notNullValue()))
+                .andExpect(jsonPath("$.offset", notNullValue()))
+                .andExpect(jsonPath("$.total", notNullValue()))
+                .andExpect(jsonPath("$.results", hasSize(10)))
+                .andExpect(jsonPath("$.results[0].restaurantId", equalTo(1)))
+                .andExpect(jsonPath("$.results[1].restaurantId", equalTo(2)))
+                .andExpect(jsonPath("$.results[2].restaurantId", equalTo(3)))
+                .andExpect(jsonPath("$.results[3].restaurantId", equalTo(4)))
+                .andExpect(jsonPath("$.results[4].restaurantId", equalTo(5)));
+    }
+
+    @Test
+    public void getProducts_pagination() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/restaurants")
+                .param("limit", "3")
+                .param("offset", "4");
+
+        mockMvc.perform(requestBuilder)
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.limit", notNullValue()))
+                .andExpect(jsonPath("$.offset", notNullValue()))
+                .andExpect(jsonPath("$.total", notNullValue()))
+                .andExpect(jsonPath("$.results", hasSize(3)))
+                .andExpect(jsonPath("$.results[0].restaurantId", equalTo(5)))
+                .andExpect(jsonPath("$.results[1].restaurantId", equalTo(6)));
     }
 
     @Test
