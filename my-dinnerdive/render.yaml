@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: spring-boot-app
+    env: java
+    buildCommand: "./mvnw clean package"
+    startCommand: "java -jar target/my-dinnerdive.jar"
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
