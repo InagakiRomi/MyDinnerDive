@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -158,5 +159,25 @@ public class RestaurantController {
     @GetMapping("/random")
     public Restaurant getRandomRestaurant() {
         return restaurantService.getRandomRestaurant();
+    }
+
+    /**
+     * 選擇一間餐廳並更新其選擇紀錄。
+     * <p>
+     * 此方法會選出一間餐廳作為本次選擇結果，並將該餐廳的選擇次數加一，最後選擇時間更新為目前時間。
+     */
+    @PatchMapping("/choose/{restaurantId}")
+    public ResponseEntity<Restaurant> chooseRestaurant(@PathVariable Integer restaurantId) {
+        Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+
+        // 檢查 restaurant 是否存在
+        if (restaurant == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        // 修改商品的數據
+        restaurantService.chooseRestaurant(restaurantId);
+        Restaurant chooseRestaurant = restaurantService.getRestaurantById(restaurantId);
+        return ResponseEntity.status(HttpStatus.OK).body(chooseRestaurant);
     }
 }
