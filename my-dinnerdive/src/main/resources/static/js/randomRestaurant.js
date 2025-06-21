@@ -1,3 +1,5 @@
+let currentRestaurantId;
+
 const randomButton = document.getElementById("random-btn");
 randomButton.addEventListener("click", randomRestaurant);
 
@@ -5,6 +7,8 @@ function randomRestaurant() {
     fetch('/random')
         .then(response => response.json())
         .then(data => {
+            currentRestaurantId = data.restaurantId;
+            
             const imageUrl = document.getElementById('imageUrl');
             imageUrl.src = data.imageUrl || '/images/defaultRestaurant.jpg';
 
@@ -26,4 +30,8 @@ function randomRestaurant() {
             const note = document.getElementById('note');
             note.innerText = data.note;
         });
+}
+
+export function getCurrentId(){
+    return currentRestaurantId;
 }
