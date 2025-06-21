@@ -136,14 +136,26 @@ public class RestaurantDaoImpl implements RestaurantDao {
     }
 
     @Override
-    public void getChooseRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
-        String sql = "UPDATE restaurants SET visited_count = :visitedCount, last_eat = :lastEat, last_visited_at = :lastVisitedAt " +
+    public void chooseRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
+        String sql = "UPDATE restaurants SET restaurant_name = :restaurantName, category = :category, " +
+                     "visited_count = :visitedCount, last_eat = :lastEat, last_visited_at = :lastVisitedAt " +
                      "WHERE restaurant_id = :restaurantId";
         
         Map<String, Object> map = new HashMap<>();
         map.put("restaurantId", restaurantId);
 
-        map.put("visitedCount", restaurantRequest.getVisitedCount() +1);    
+        map.put("restaurantName", restaurantRequest.getRestaurantName());
+        map.put("category", restaurantRequest.getCategory().toString());
+
+        Integer visitedCount;
+        if (restaurantRequest.getVisitedCount() != null) {
+            visitedCount = restaurantRequest.getVisitedCount();
+        }
+        else{
+            visitedCount = 0;
+        }
+        map.put("visitedCount", visitedCount +1);  
+
         map.put("lastEat", new Date());
         map.put("lastVisitedAt", new Date());
 
