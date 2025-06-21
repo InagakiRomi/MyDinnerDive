@@ -135,6 +135,21 @@ public class RestaurantDaoImpl implements RestaurantDao {
         return  namedParameterJdbcTemplate.query(idSql, (rs, rowNum) -> rs.getInt("restaurant_id"));
     }
 
+    @Override
+    public void getChooseRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
+        String sql = "UPDATE restaurants SET visited_count = :visitedCount, last_eat = :lastEat, last_visited_at = :lastVisitedAt " +
+                     "WHERE restaurant_id = :restaurantId";
+        
+        Map<String, Object> map = new HashMap<>();
+        map.put("restaurantId", restaurantId);
+
+        map.put("visitedCount", restaurantRequest.getVisitedCount() +1);    
+        map.put("lastEat", new Date());
+        map.put("lastVisitedAt", new Date());
+
+        namedParameterJdbcTemplate.update(sql, map);
+    }
+
     private String addFilteringSql(String sql, Map<String, Object> map, RestaurantQueryParams restaurantQueryParams){
         // 查詢條件
         if (restaurantQueryParams.getCategory() != null) {
