@@ -44,7 +44,11 @@ Dinner Dive 是一個協助選擇「要吃什麼」的網頁應用系統。
 ---
 
 ## 🖼️ 介面展示
-![image](https://github.com/user-attachments/assets/e824b0a9-c855-4db4-80d1-3e2414c43b20)
+![image](https://github.com/user-attachments/assets/b84cb530-0d79-45cf-b0a6-08fd1418cc11)  
+![image](https://github.com/user-attachments/assets/c775ed75-5ce4-44d2-9c2e-c4c9dd2f7f93)  
+![image](https://github.com/user-attachments/assets/cd45f44a-1ab9-4a46-8b77-49279b172b1a)
+![image](https://github.com/user-attachments/assets/b71f0a67-8528-4f28-9f43-a8f454ebe126)
+
 
 ---
 
