@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">🍜 新增餐廳</div>
+        <div class="logo">🍜 美食地圖</div>
         <ul class="nav-links">
             <li><a href="/dinnerHome">首頁</a></li>
             <li><a href="/createRestaurant">新增餐廳</a></li>
@@ -17,27 +17,27 @@
     </nav>
 
     <!--新增餐廳資訊-->
-    <form id="createForm">
-        <label for="restaurantName">餐廳名稱：</label>
-        <input type="text" id="restaurantName" required>
-        <br>
+    <div class="form-container">
+        <h1>新增餐廳</h1>
+        <form id="createForm">
+            <label for="restaurantName">餐廳名稱：</label>
+            <input type="text" id="restaurantName" required>
 
-        <label for="category">餐廳類別：</label>
-        <select id="category">
-            <option th:replace="~{modules/categoryButton :: foodCategory}"></option>
-        </select>
-        <br>
+            <label for="category">餐廳類別：</label>
+            <select id="category">
+                <option th:replace="~{modules/categoryButton :: foodCategory}"></option>
+            </select>
 
-        <label for="note">備註：</label>
-        <textarea type="text" id="note"></textarea>
-        <br>
+            <label for="note">備註：</label>
+            <textarea type="text" id="note"></textarea>
 
-        <label for="imageUrl">圖片Url：</label>
-        <input type="url" id="imageUrl">
-        <br>
+            <label for="imageUrl">圖片Url：</label>
+            <input type="url" id="imageUrl">
 
-        <button type="submit" class="functionBtn" style="margin-top: 20px;">新增餐廳</button>
-    </form>
+            <button type="submit" class="functionBtn" style="margin-top: 20px;">新增餐廳</button>
+        </form>
+    </div>
+
     <script type="module" src="/js/createRestaurant.js"></script>
 </body>
 </html>
