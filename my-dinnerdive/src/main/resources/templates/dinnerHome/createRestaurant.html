@@ -5,16 +5,10 @@
     <title>新增餐廳</title>
     <link rel="stylesheet" href="/css/buttonStyle.css">
     <link rel="stylesheet" href="/css/menuStyle.css">
+    <link rel="stylesheet" href="/css/layout/navBar.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">🍜 美食地圖</div>
-        <ul class="navLinks">
-            <li><a href="/dinnerHome">首頁</a></li>
-            <li><a href="/createRestaurant">新增餐廳</a></li>
-            <li><a href="/listRestaurant">餐廳一覽</a></li>
-        </ul>
-    </nav>
+    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
     <!--新增餐廳資訊-->
     <div class="formContainer">

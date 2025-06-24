@@ -6,14 +6,10 @@
     <title>餐廳抽選器</title>
     <link rel="stylesheet" href="/css/buttonStyle.css">
     <link rel="stylesheet" href="/css/imageStyle.css">
+    <link rel="stylesheet" href="/css/layout/navBar.css">
 </head>
 <body>
-
-    <h1>餐廳抽選器</h1>
-
-    <!--跳轉頁面按鈕-->
-    <button class="pageBtn" onclick="location.href='/listRestaurant'">餐廳一覽</button>
-    <button class="pageBtn" onclick="location.href='/createRestaurant'">新增餐廳</button>
+    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
     <!--顯示餐廳圖片-->
     <img id="imageUrl" class="restaurantImage" src="images/start.jpg" alt="餐廳圖片"/>

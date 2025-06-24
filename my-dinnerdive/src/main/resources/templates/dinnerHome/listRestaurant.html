@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>餐廳一覽</title>
-    <link rel="stylesheet" href="/css/buttonStyle.css">
     <link rel="stylesheet" href="/css/imageStyle.css">
     <link rel="stylesheet" href="/css/tableStyle.css">
+    <link rel="stylesheet" href="/css/layout/navBar.css">
 </head>
 <body>
-    <h1>餐廳一覽</h1>
-
-    <!--跳轉頁面按鈕-->
-    <button class="pageBtn" onclick="location.href='/dinnerHome'" style="margin-bottom: 20px;">回首頁</button><br>
+    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
     <form id="listForm">
         <div>
