@@ -16,7 +16,7 @@
             <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
 
             <label for="restaurantName">餐廳名稱：</label>
-                <input type="text" id="restaurantName" th:value="${restaurants.restaurantName}" required>
+                <input type="text" id="restaurantName" th:value="${restaurants.restaurantName}"  required maxlength="64" placeholder="最多可輸入64個字">
             <br>
 
             <label for="category">餐廳類別：</label>
@@ -36,11 +36,11 @@
             </div>
 
             <label for="note">備註：</label>
-            <textarea id="note" th:text="${restaurants.note}"></textarea>
+            <textarea id="note" th:text="${restaurants.note}" required maxlength="512" placeholder="最多可輸入512個字"></textarea>
             <br>
 
             <label for="imageUrl">圖片Url：</label>
-            <input type="url" id="imageUrl" th:value="${restaurants.imageUrl}">
+            <input type="url" id="imageUrl" th:value="${restaurants.imageUrl}" maxlength="256" placeholder="最多可輸入256個字">
             <br>
 
             <button type="submit" class="functionBtn">儲存修改</button>

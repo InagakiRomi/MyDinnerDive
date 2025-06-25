@@ -15,7 +15,7 @@
         <h1>新增餐廳</h1>
         <form id="createForm">
             <label for="restaurantName">餐廳名稱：</label>
-            <input type="text" id="restaurantName" required>
+            <input type="text" id="restaurantName" required maxlength="64" placeholder="最多可輸入64個字">
 
             <label for="category">餐廳類別：</label>
             <select id="category">
@@ -23,10 +23,10 @@
             </select>
 
             <label for="note">備註：</label>
-            <textarea type="text" id="note"></textarea>
+            <textarea type="text" id="note" required maxlength="512" placeholder="最多可輸入512個字"></textarea>
 
             <label for="imageUrl">圖片Url：</label>
-            <input type="url" id="imageUrl">
+            <input type="url" id="imageUrl" maxlength="256" placeholder="最多可輸入256個字">
 
             <button type="submit" class="functionBtn">新增餐廳</button>
         </form>
