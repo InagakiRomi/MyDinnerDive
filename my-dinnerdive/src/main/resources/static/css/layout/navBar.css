@@ -1,8 +1,11 @@
 /* 網頁背景 */
 body {
-    background-color: #fff8f0;
+    background-color: #fff2ee;
     margin: 0;
     padding: 0;
+    font-family: "Noto Sans TC", "Segoe UI", sans-serif;
+    color: #444444;
+    line-height: 1.6;
 }
 
 /* 背景上的圖層 */
@@ -10,16 +13,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #c69441;
+    background-color: #ffc3a0; 
     padding: 15px 30px;
-    color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    color: #5c4033;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 頂端文字 */
 .navBar .logo {
     font-size: 1.8rem;
     font-weight: bold;
+    letter-spacing: 1px;
+    color: #4a2c2a; 
+    text-shadow: 0 1px 1px rgba(255,255,255,0.4);
 }
 
 /* 連結文字樣式 */
@@ -30,11 +36,14 @@ body {
 }
 
 .navBar .navLinks li a {
-    color: white;
+    color: #5c4033;
     text-decoration: none;
     font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .navBar .navLinks li a:hover {
-    text-decoration: underline;
+    color: #d24d57;
+    text-decoration: none;
 }

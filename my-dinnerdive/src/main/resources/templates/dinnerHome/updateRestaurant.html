@@ -3,45 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>修改餐廳</title>
-    <link rel="stylesheet" href="/css/buttonStyle.css">
     <link rel="stylesheet" href="/css/layout/navBar.css">
+    <link rel="stylesheet" href="/css/forms/formCommon.css">
 </head>
 <body>
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
-    <form id="updateForm">
-        <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
+    <div class="formContainer">
+        <h1>修改餐廳</h1>
+        <form id="updateForm">
+            <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
 
-        <label for="restaurantName">餐廳名稱：</label>
-            <input type="text" id="restaurantName" th:value="${restaurants.restaurantName}" required>
-        <br>
-
-        <label for="category">餐廳類別：</label>
-        <select id="category" th:value="${restaurants.category}">
-            <option th:replace="~{modules/categoryButton :: foodCategory}"></option>
-        </select>
-        <br>
-
-        <label for="visitedCount">選擇次數：</label>
-        <input type="number" id="visitedCount" th:value="${restaurants.visitedCount}" min="0" required>
-        <br>
-
-        <div style="display: none;">
-            <label for="lastEat">最後選擇時間：</label>
-            <input type="text" id="lastEat" th:value="${restaurants.lastEat}">
+            <label for="restaurantName">餐廳名稱：</label>
+                <input type="text" id="restaurantName" th:value="${restaurants.restaurantName}" required>
             <br>
-        </div>
 
-        <label for="note">備註：</label>
-        <textarea type="text" id="note" th:value="${restaurants.note}"></textarea>
-        <br>
+            <label for="category">餐廳類別：</label>
+            <select id="category" th:value="${restaurants.category}">
+                <option th:replace="~{modules/categoryButton :: foodCategory}"></option>
+            </select>
+            <br>
 
-        <label for="imageUrl">圖片Url：</label>
-        <input type="url" id="imageUrl" th:value="${restaurants.imageUrl}">
-        <br>
+            <label for="visitedCount">選擇次數：</label>
+            <input type="number" id="visitedCount" th:value="${restaurants.visitedCount}" min="0" required>
+            <br>
 
-        <button type="submit" class="functionBtn" style="margin-top: 20px;">儲存修改</button>
-    </form>
+            <div style="display: none;">
+                <label for="lastEat">最後選擇時間：</label>
+                <input type="text" id="lastEat" th:value="${restaurants.lastEat}">
+                <br>
+            </div>
+
+            <label for="note">備註：</label>
+            <textarea type="text" id="note" th:value="${restaurants.note}"></textarea>
+            <br>
+
+            <label for="imageUrl">圖片Url：</label>
+            <input type="url" id="imageUrl" th:value="${restaurants.imageUrl}">
+            <br>
+
+            <button type="submit" style="margin-top: 20px;">儲存修改</button>
+        </form>
+    </div>
     <script type="module" src="/js/updateRestaurant.js"></script>
 </body>
 </html>
