@@ -8,11 +8,3 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     object-fit: cover;
 }
-
-/* 表單餐廳圖片顯示 */
-.listImage {
-    width: 240px;
-    height: 136px;
-    background-size: cover;
-    background-position: center;
-}
