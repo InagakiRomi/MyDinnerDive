@@ -1,13 +1,15 @@
-/* 餐廳圖片顯示 */
+/* 首頁餐廳圖片顯示 */
 .restaurantImage {
     width: 480px;
-    height: 272px;
-    margin-top: 20px;   /*上方間距*/
-    background-size: cover;
-    background-position: center;
+    height: 320px;
+    margin: 20px auto;
     display: block;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
 }
 
+/* 表單餐廳圖片顯示 */
 .listImage {
     width: 240px;
     height: 136px;
