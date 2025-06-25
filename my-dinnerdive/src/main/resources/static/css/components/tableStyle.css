@@ -110,7 +110,9 @@ form#listForm input[type="text"] {
 }
 
 /* ==== 表單寬度固定 ==== */
+
+/* 操作 */
 .table th:nth-child(9),
 .table td:nth-child(9) {
-    width: 200px; /* 操作 */
+    width: 200px; 
 }

@@ -36,7 +36,7 @@
             </div>
 
             <label for="note">備註：</label>
-            <textarea type="text" id="note" th:value="${restaurants.note}"></textarea>
+            <textarea id="note" th:text="${restaurants.note}"></textarea>
             <br>
 
             <label for="imageUrl">圖片Url：</label>
