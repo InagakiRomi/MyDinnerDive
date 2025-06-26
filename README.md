@@ -33,19 +33,21 @@ Dinner Dive 是我為練習後端整合開發而實作的 Web 系統，透過「
 - 使用者個人化抽選偏好
 
 ---
-
+<!-- 
 ## 📽️ 展示動畫
 
 ![錄製_2025_06_22_12_21_56_8](https://github.com/user-attachments/assets/02b07827-a52c-44f5-bd58-d85f3794cc69)
 
 ---
+-->
 
 ## 🖼️ 介面展示
 
-![image](https://github.com/user-attachments/assets/b84cb530-0d79-45cf-b0a6-08fd1418cc11)  
-![image](https://github.com/user-attachments/assets/c775ed75-5ce4-44d2-9c2e-c4c9dd2f7f93)  
-![image](https://github.com/user-attachments/assets/cd45f44a-1ab9-4a46-8b77-49279b172b1a)  
-![image](https://github.com/user-attachments/assets/b71f0a67-8528-4f28-9f43-a8f454ebe126)
+![image](https://github.com/user-attachments/assets/908bb8ab-d677-4683-8e0f-8f2865b47307)
+![image](https://github.com/user-attachments/assets/9fb1b528-a3a8-45b1-b145-cc70ae078a69)
+![image](https://github.com/user-attachments/assets/16f19ef1-a0a8-4eaa-ad84-58b629a16695)
+![image](https://github.com/user-attachments/assets/fa7925cb-cb09-44be-953b-b493ac767d4c)
+![image](https://github.com/user-attachments/assets/3e4cd6c7-8972-40fa-9619-9df700e34717)
 
 ---
 
