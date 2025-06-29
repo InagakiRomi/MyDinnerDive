@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class User {
     private Integer userId;
-    private String email;
+    private String account;
 
     @JsonIgnore
     private String password;
-    
+
     private Date createdDate;
     private Date lastModifiedDate;
 
@@ -20,11 +20,11 @@ public class User {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
-    public String getEmail() {
-        return email;
+    public String getAccount() {
+        return account;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAccount(String account) {
+        this.account = account;
     }
     public String getPassword() {
         return password;

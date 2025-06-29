@@ -19,10 +19,10 @@ public interface UserDao {
     /**
      * 根據電子郵件獲取使用者資訊。
      *
-     * @param email 使用者的電子郵件
+     * @param account 使用者的電子郵件
      * @return 對應的 User 物件，如果找不到則返回 null
      */
-    User getUserByEmail(String email);
+    User getUserByAccount(String account);
 
     /**
      * 註冊新使用者。

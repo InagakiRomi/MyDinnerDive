@@ -33,11 +33,12 @@ public class UserSericeImpl implements UserService{
     public Integer register(UserRegisterRequest userRegisterRequest){
 
         Logger logger = loggingDemo.printUserLog();
-        // 檢查註冊的 email
-        User user = userDao.getUserByEmail(userRegisterRequest.getEmail());
+        
+        // 檢查註冊的帳號
+        User user = userDao.getUserByAccount(userRegisterRequest.getAccount());
         
         if(user != null){
-            logger.log(Level.WARNING, MessageFormat.format("該 email {0} 已經被註冊", userRegisterRequest.getEmail()));
+            logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 已經被註冊", userRegisterRequest.getAccount()));
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 

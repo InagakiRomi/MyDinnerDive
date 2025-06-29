@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS restaurants (
 CREATE TABLE IF NOT EXISTS users
 (
     user_id            INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    email              VARCHAR(256) NOT NULL UNIQUE,
+    account              VARCHAR(256) NOT NULL UNIQUE,
     password           VARCHAR(256) NOT NULL,
     created_date       TIMESTAMP    NOT NULL,
     last_modified_date TIMESTAMP    NOT NULL
