@@ -9,29 +9,26 @@ import com.romi.my_dinnerdive.logging.formatter.MyCustomFormatter;
 @Component
 public class LoggingDemoImpl implements LoggingDemo{
 
-    /**
-     * 打印執行應用程式log。
-     */
     public Logger printMainLog() {
         Logger logger = Logger.getLogger("Main");
         LoggerSettings(logger);
         return logger;
     }
         
-    /**
-     * 打印啟動時撈資料庫的log。
-     */
     public Logger printDataSourceConfig() {
         Logger logger = Logger.getLogger("DataSourceConfig");
         LoggerSettings(logger);
         return logger;
     }
 
-    /**
-     * 打印隨機抽取餐廳的log。
-     */
     public Logger printRandomRestaurantLog() {
         Logger logger = Logger.getLogger("RandomRestaurant");
+        LoggerSettings(logger);
+        return logger;
+    }
+
+    public Logger printUserLog() {
+        Logger logger = Logger.getLogger("User");
         LoggerSettings(logger);
         return logger;
     }

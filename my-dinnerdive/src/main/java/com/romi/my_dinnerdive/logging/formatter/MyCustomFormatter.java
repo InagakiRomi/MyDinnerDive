@@ -19,6 +19,7 @@ public class MyCustomFormatter extends Formatter{
     // 色彩輸出碼
     private static final String RESET = "\u001B[0m";
     private static final String RED = "\u001B[31m";
+    private static final String ORANGE = "\u001B[38;5;208m";
     private static final String GREEN = "\u001B[32m";
     private static final String YELLOW = "\u001B[33m";
     private static final String BLUE = "\u001B[34m";
@@ -69,7 +70,7 @@ public class MyCustomFormatter extends Formatter{
      */
     private String getColorForLevel(Level level) {
         if (level == Level.SEVERE) return RED;
-        if (level == Level.WARNING) return YELLOW;
+        if (level == Level.WARNING) return ORANGE;
         if (level == Level.INFO) return GREEN;
         if (level == Level.CONFIG) return CYAN;
         if (level == Level.FINE || level == Level.FINER || level == Level.FINEST) return BLUE;

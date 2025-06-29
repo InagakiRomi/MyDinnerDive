@@ -21,4 +21,10 @@ public interface LoggingDemo {
      * 打印隨機抽取餐廳的log。
      */
     Logger printRandomRestaurantLog();
+
+    
+    /**
+     * 帳號相關的log。
+     */
+    public Logger printUserLog();
 }
