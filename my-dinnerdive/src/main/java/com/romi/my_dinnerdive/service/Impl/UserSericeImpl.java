@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.romi.my_dinnerdive.dao.UserDao;
@@ -44,8 +45,8 @@ public class UserSericeImpl implements UserService{
         }
 
         //使用 MD5 生成密碼的雜湊值
-        // String hashedPassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getPassword().getBytes());
-        // userRegisterRequest.setPassword(hashedPassword);
+        String hashedPassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getPassword().getBytes());
+        userRegisterRequest.setPassword(hashedPassword);
 
         // 創建帳號
         return userDao.createUser(userRegisterRequest);
@@ -64,10 +65,10 @@ public class UserSericeImpl implements UserService{
         }
   
         //使用 MD5 生成密碼的雜湊值
-        //String hashedPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getPassword().getBytes());
+        String hashedPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getPassword().getBytes());
 
         //比較密碼
-        if(user.getPassword().equals(userLoginRequest.getPassword())){
+        if(user.getPassword().equals(hashedPassword)){
             return user;
         }else{
             logger.log(Level.WARNING, MessageFormat.format("帳號 {0} 的密碼不正確", userLoginRequest.getAccount()));
