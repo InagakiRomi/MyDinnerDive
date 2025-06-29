@@ -1,5 +1,6 @@
 package com.romi.my_dinnerdive.service;
 
+import com.romi.my_dinnerdive.dto.UserLoginRequest;
 import com.romi.my_dinnerdive.dto.UserRegisterRequest;
 import com.romi.my_dinnerdive.model.User;
 
@@ -25,4 +26,12 @@ public interface UserService {
      * @return 新使用者的 ID
      */
     Integer register(UserRegisterRequest userRegisterRequest);
+
+    /**
+     * 使用者登入。
+     *
+     * @param userLoginRequest 包含使用者登入資訊的請求物件
+     * @return 對應的 User 物件，如果登入失敗則返回 null
+     */
+    User login(UserLoginRequest userLoginRequest);
 }

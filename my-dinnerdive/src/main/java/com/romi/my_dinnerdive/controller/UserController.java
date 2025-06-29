@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.romi.my_dinnerdive.dto.UserLoginRequest;
 import com.romi.my_dinnerdive.dto.UserRegisterRequest;
 import com.romi.my_dinnerdive.model.User;
 import com.romi.my_dinnerdive.service.UserService;
@@ -37,5 +38,18 @@ public class UserController {
         User user = userService.getUserById(userId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+
+    /**
+     * 使用者登入。
+     *
+     * @param userLoginRequest 包含使用者登入資訊的請求物件
+     * @return 若登入成功，回傳使用者資料與 HTTP 200；否則回傳 HTTP 400。
+     */
+    @PostMapping("/users/login")
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
+        User user = userService.login(userLoginRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 }
