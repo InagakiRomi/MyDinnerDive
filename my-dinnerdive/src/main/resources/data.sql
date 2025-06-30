@@ -13,6 +13,7 @@ INSERT INTO restaurants
 (11,'斜堡弟','輕食','https://images.unsplash.com/photo-1610970878459-a0e464d7592b?q=80&w=2124&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',0,NULL,'2025-06-14 15:03:47','漢堡店'),
 (12,'謬可','飲料','https://images.unsplash.com/photo-1563636619-e9143da7973b?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',0,NULL,'2025-06-14 15:05:47','招牌是牛奶');
 
--- INSERT INTO users 
--- (user_id, account, member_password, created_date, last_modified_date) VALUES
--- (1,'Test001','202cb962ac59075b964b07152d234b70','2025-06-29 17:12:41','2025-06-30 11:28:27');
+INSERT INTO users 
+(user_id, account, member_password, roles, created_date, last_modified_date) VALUES
+(1,'SS','202cb962ac59075b964b07152d234b70','管理員','2025-06-29 17:12:41','2025-06-30 11:28:27'),
+(2,'123','202cb962ac59075b964b07152d234b70','一般帳號','2025-06-29 17:12:41','2025-06-30 11:28:27');

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/forms/formCommon.css">
 </head>
 <body>
+    <h1 style="text-align: center;">Dinner Dive</h1>
     <div class="formContainer">
         <h1>會員註冊</h1>
         <form id="loginForm">
@@ -14,7 +15,7 @@
             <input type="text" id="account" placeholder="只能輸入英文和數字" maxlength="256" pattern="^[a-zA-Z0-9]*$" required>
 
             <label for="memberPassword">密碼：</label>
-            <input type="text" id="memberPassword" placeholder="只能輸入英文和數字和特殊符號" maxlength="256" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9!@#$%^&*()_+\-=\\[\]{};':&quot;\\|,.&lt;&gt;\/?`~]/g, '')"/>
+            <input type="password" id="memberPassword" placeholder="只能輸入英文和數字和特殊符號" maxlength="256" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9!@#$%^&*()_+\-=\\[\]{};':&quot;\\|,.&lt;&gt;\/?`~]/g, '')"/>
             </select>
 
             <button type="submit" class="functionBtn">註冊</button>
