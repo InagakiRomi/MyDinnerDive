@@ -32,7 +32,7 @@ function memberRegister(){
             alert("註冊成功！");
             window.location.href = "/dinnerHome";
         } else {
-            alert("註冊失敗！");
+            alert("該帳號已經被註冊");
         }
     })
     .catch((error) => {
