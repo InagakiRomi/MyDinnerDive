@@ -37,7 +37,7 @@ public class UserControllerTest {
     public void register_success() throws Exception {
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
         userRegisterRequest.setAccount("test1");
-        userRegisterRequest.setPassword("123");
+        userRegisterRequest.setMemberPassword("123");
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
 
@@ -55,14 +55,14 @@ public class UserControllerTest {
 
         // 檢查資料庫中的密碼不為明碼
         User user = userDao.getUserByAccount(userRegisterRequest.getAccount());
-        assertNotEquals(userRegisterRequest.getPassword(), user.getPassword());
+        assertNotEquals(userRegisterRequest.getMemberPassword(), user.getMemberPassword());
     }
 
     @Test
     public void register_invalidAccountFormat() throws Exception {
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
         userRegisterRequest.setAccount("3#9$$^^");
-        userRegisterRequest.setPassword("123");
+        userRegisterRequest.setMemberPassword("123");
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
 
@@ -80,7 +80,7 @@ public class UserControllerTest {
         // 先註冊一個帳號
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
         userRegisterRequest.setAccount("test2");
-        userRegisterRequest.setPassword("123");
+        userRegisterRequest.setMemberPassword("123");
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
 
@@ -103,14 +103,14 @@ public class UserControllerTest {
         // 先註冊新帳號
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
         userRegisterRequest.setAccount("test3");
-        userRegisterRequest.setPassword("123");
+        userRegisterRequest.setMemberPassword("123");
 
         register(userRegisterRequest);
 
         // 再測試登入功能
         UserLoginRequest userLoginRequest = new UserLoginRequest();
         userLoginRequest.setAccount(userRegisterRequest.getAccount());
-        userLoginRequest.setPassword(userRegisterRequest.getPassword());
+        userLoginRequest.setMemberPassword(userRegisterRequest.getMemberPassword());
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
 
@@ -132,14 +132,14 @@ public class UserControllerTest {
         // 先註冊新帳號
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
         userRegisterRequest.setAccount("test4");
-        userRegisterRequest.setPassword("123");
+        userRegisterRequest.setMemberPassword("123");
 
         register(userRegisterRequest);
 
         // 測試密碼輸入錯誤的情況
         UserLoginRequest userLoginRequest = new UserLoginRequest();
         userLoginRequest.setAccount(userRegisterRequest.getAccount());
-        userLoginRequest.setPassword("unknown");
+        userLoginRequest.setMemberPassword("unknown");
 
         String json = objectMapper.writeValueAsString(userLoginRequest);
 
@@ -156,7 +156,7 @@ public class UserControllerTest {
     public void login_invalidAccountFormat() throws Exception {
         UserLoginRequest userLoginRequest = new UserLoginRequest();
         userLoginRequest.setAccount("hkbudsr324");
-        userLoginRequest.setPassword("123");
+        userLoginRequest.setMemberPassword("123");
 
         String json = objectMapper.writeValueAsString(userLoginRequest);
 
@@ -173,7 +173,7 @@ public class UserControllerTest {
     public void login_accountNotExist() throws Exception {
         UserLoginRequest userLoginRequest = new UserLoginRequest();
         userLoginRequest.setAccount("unknown");
-        userLoginRequest.setPassword("123");
+        userLoginRequest.setMemberPassword("123");
 
         String json = objectMapper.writeValueAsString(userLoginRequest);
 

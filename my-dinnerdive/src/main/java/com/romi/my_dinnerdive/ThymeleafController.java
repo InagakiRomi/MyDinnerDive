@@ -58,4 +58,12 @@ public class ThymeleafController {
         model.addAttribute("restaurants", restaurant);
         return "dinnerHome/updateRestaurant";
     }
+
+    /**
+     * 跳轉帳號頁面
+     */
+    @GetMapping("/memberLogin")
+    public String memberPage() {
+        return "dinnerHome/memberLogin";
+    }
 }

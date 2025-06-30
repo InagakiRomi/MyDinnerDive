@@ -45,8 +45,8 @@ public class UserSericeImpl implements UserService{
         }
 
         //使用 MD5 生成密碼的雜湊值
-        String hashedPassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getPassword().getBytes());
-        userRegisterRequest.setPassword(hashedPassword);
+        String hashedPassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getMemberPassword().getBytes());
+        userRegisterRequest.setMemberPassword(hashedPassword);
 
         // 創建帳號
         return userDao.createUser(userRegisterRequest);
@@ -65,10 +65,10 @@ public class UserSericeImpl implements UserService{
         }
   
         //使用 MD5 生成密碼的雜湊值
-        String hashedPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getPassword().getBytes());
+        String hashedPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getMemberPassword().getBytes());
 
         //比較密碼
-        if(user.getPassword().equals(hashedPassword)){
+        if(user.getMemberPassword().equals(hashedPassword)){
             return user;
         }else{
             logger.log(Level.WARNING, MessageFormat.format("帳號 {0} 的密碼不正確", userLoginRequest.getAccount()));

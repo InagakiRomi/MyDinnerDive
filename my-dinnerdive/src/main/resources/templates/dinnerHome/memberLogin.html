@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>會員登入</title>
+    <link rel="stylesheet" href="/css/components/buttonStyle.css">
+    <link rel="stylesheet" href="/css/layout/navBar.css">
+    <link rel="stylesheet" href="/css/forms/formCommon.css">
+</head>
+<body>
+    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
+
+    <!--新增餐廳資訊-->
+    <div class="formContainer">
+        <h1>會員登入</h1>
+        <form id="loginForm">
+            <label for="account">帳號：</label>
+            <input type="text" id="account" placeholder="只能輸入英文和數字" maxlength="256" pattern="^[a-zA-Z0-9]*$" required>
+
+            <label for="memberPassword">密碼：</label>
+            <input type="text" id="memberPassword" placeholder="只能輸入英文和數字和特殊符號" maxlength="256" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9!@#$%^&*()_+\-=\\[\]{};':&quot;\\|,.&lt;&gt;\/?`~]/g, '')"/>
+            </select>
+
+            <button type="submit" class="functionBtn">登入</button>
+        </form>
+    </div>
+
+    <script type="module" src="/js/memberLogin.js"></script>
+</body>
+</html>

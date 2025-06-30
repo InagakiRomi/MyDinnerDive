@@ -9,7 +9,7 @@ public class User {
     private String account;
 
     @JsonIgnore
-    private String password;
+    private String memberPassword;
 
     private Date createdDate;
     private Date lastModifiedDate;
@@ -26,11 +26,11 @@ public class User {
     public void setAccount(String account) {
         this.account = account;
     }
-    public String getPassword() {
-        return password;
+    public String getMemberPassword() {
+        return memberPassword;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
     }
     public Date getCreatedDate() {
         return createdDate;

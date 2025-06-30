@@ -10,7 +10,7 @@ public class UserRegisterRequest {
     private String account;
 
     @NotNull
-    private String password;
+    private String memberPassword;
 
     public String getAccount() {
         return account;
@@ -18,10 +18,10 @@ public class UserRegisterRequest {
     public void setAccount(String account) {
         this.account = account;
     }
-    public String getPassword() {
-        return password;
+    public String getMemberPassword() {
+        return memberPassword;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
     }
 }
