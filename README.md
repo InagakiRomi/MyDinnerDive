@@ -23,6 +23,7 @@ Dinner Dive 是我為練習後端整合開發而實作的 Web 系統，透過「
 - 支援多條件查詢（分類、關鍵字、排序、分頁）
 - 隨機餐廳抽選邏輯（含抽過排除與分類篩選）
 - 餐廳選擇記錄（會更新最後選擇時間與次數統計）
+- 登入、註冊帳號（MD5加密）
 
 ---
 
@@ -48,6 +49,10 @@ Dinner Dive 是我為練習後端整合開發而實作的 Web 系統，透過「
 ![image](https://github.com/user-attachments/assets/16f19ef1-a0a8-4eaa-ad84-58b629a16695)
 ![image](https://github.com/user-attachments/assets/fa7925cb-cb09-44be-953b-b493ac767d4c)
 ![image](https://github.com/user-attachments/assets/3e4cd6c7-8972-40fa-9619-9df700e34717)
+![image](https://github.com/user-attachments/assets/d82431e2-3761-42be-8653-f9e26e454436)
+![image](https://github.com/user-attachments/assets/bbff1050-6ff5-4f38-b6ba-5b13856af717)
+
+
 
 ---
 
