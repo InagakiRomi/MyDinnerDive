@@ -5,8 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.romi.my_dinnerdive.constant.UserCategory;
 import com.romi.my_dinnerdive.dto.UserLoginRequest;
 import com.romi.my_dinnerdive.dto.UserRegisterRequest;
 import com.romi.my_dinnerdive.model.User;
@@ -32,9 +34,14 @@ public class UserController {
      * @return 若註冊成功，回傳新使用者資料與 HTTP 201；否則回傳 HTTP 400。
      */
     @PostMapping("/users/register")
-    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest){
-        Integer userId = userService.register(userRegisterRequest);
+    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest,
+                                         @RequestParam(defaultValue = "一般帳號") UserCategory roles){
+        
+        if (userRegisterRequest.getRoles() == null) {
+        userRegisterRequest.setRoles(roles);
+        }
 
+        Integer userId = userService.register(userRegisterRequest);
         User user = userService.getUserById(userId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user);

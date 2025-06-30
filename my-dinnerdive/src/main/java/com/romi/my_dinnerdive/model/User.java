@@ -3,6 +3,7 @@ package com.romi.my_dinnerdive.model;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.romi.my_dinnerdive.constant.UserCategory;
 
 public class User {
     private Integer userId;
@@ -11,6 +12,7 @@ public class User {
     @JsonIgnore
     private String memberPassword;
 
+    private UserCategory roles;
     private Date createdDate;
     private Date lastModifiedDate;
 
@@ -31,6 +33,12 @@ public class User {
     }
     public void setMemberPassword(String memberPassword) {
         this.memberPassword = memberPassword;
+    }
+    public UserCategory getRoles() {
+        return roles;
+    }
+    public void setRoles(UserCategory roles) {
+        this.roles = roles;
     }
     public Date getCreatedDate() {
         return createdDate;
