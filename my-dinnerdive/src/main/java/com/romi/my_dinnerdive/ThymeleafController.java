@@ -60,10 +60,18 @@ public class ThymeleafController {
     }
 
     /**
-     * 跳轉帳號頁面
+     * 跳轉帳號註冊頁面
+     */
+    @GetMapping("/memberRegister")
+    public String memberRegister() {
+        return "dinnerHome/memberRegister";
+    }
+    
+    /**
+     * 跳轉帳號登入頁面
      */
     @GetMapping("/memberLogin")
-    public String memberPage() {
+    public String memberLoginPage() {
         return "dinnerHome/memberLogin";
     }
 }
