@@ -30,7 +30,7 @@ function memberRegister(){
     .then((response) => {
         if (response.ok) {
             alert("註冊成功！");
-            window.location.href = "/memberLogin";
+            window.location.href = "/dinnerHome";
         } else {
             alert("註冊失敗！");
         }

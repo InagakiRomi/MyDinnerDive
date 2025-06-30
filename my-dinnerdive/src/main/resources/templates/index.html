@@ -1,36 +1,29 @@
-<!--入口頁面-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>餐廳抽選器</title>
+    <title>會員登入</title>
     <link rel="stylesheet" href="/css/components/buttonStyle.css">
-    <link rel="stylesheet" href="/css/imageStyle.css">
     <link rel="stylesheet" href="/css/layout/navBar.css">
     <link rel="stylesheet" href="/css/forms/formCommon.css">
 </head>
 <body>
-    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
-
     <div class="formContainer">
+        <h1>會員登入</h1>
+        <form id="loginForm">
+            <label for="account">帳號：</label>
+            <input type="text" id="account" placeholder="只能輸入英文和數字" maxlength="256" pattern="^[a-zA-Z0-9]*$" required>
 
-        <!--顯示餐廳圖片-->
-        <img id="imageUrl" class="restaurantImage" src="images/start.jpg" alt="餐廳圖片"/>
-        
-        <!--顯示餐廳資訊-->
-        <p>餐廳名稱：<span id="restaurantName"></span></p>
-        <p>餐廳類別：<span id="category"></span></p>
-        <p>選擇次數：<span id="visitedCount"></span></p>
-        <p>最後選擇時間：<span id="lastEat"></span></p>
-        <p>最後更新時間：<span id="lastVisitedAt"></span></p>
-        <p>備註：<span id="note"></span></p>
+            <label for="memberPassword">密碼：</label>
+            <input type="text" id="memberPassword" placeholder="只能輸入英文和數字和特殊符號" maxlength="256" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9!@#$%^&*()_+\-=\\[\]{};':&quot;\\|,.&lt;&gt;\/?`~]/g, '')"/>
+            </select>
 
-        <!--底部按鈕-->
-        <!--抽籤功能-->
-        <button id="random-btn" class="functionBtn">抽！</button>
-        <button id="choose-btn" class="functionBtn">就決定選這間！</button>
-        <script type="module" src="/js/randomRestaurant.js"></script>
-        <script type="module" src="/js/chooseRestaurant.js"></script>
+            <button type="submit" class="functionBtn">登入</button>
+            <button type="button" class="functionBtn" onclick="window.location.href='/dinnerHome/memberRegister'">還沒有帳號？前往註冊</button>
+            <button type="button" class="functionBtn" onclick="window.location.href='/dinnerHome/randomRestaurant'">直接進入</button>
+        </form>
     </div>
+
+    <script type="module" src="/js/memberLogin.js"></script>
 </body>
 </html>

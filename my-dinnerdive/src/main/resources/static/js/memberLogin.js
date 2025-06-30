@@ -30,7 +30,7 @@ function memberLogin(){
     .then((response) => {
         if (response.ok) {
             alert("登入成功！");
-            window.location.href = "/dinnerHome";
+            window.location.href = "/dinnerHome/randomRestaurant";
         } else {
             alert("尚未註冊或密碼輸入錯誤");
         }

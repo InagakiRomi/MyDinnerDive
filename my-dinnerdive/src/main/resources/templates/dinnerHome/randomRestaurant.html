@@ -1,0 +1,36 @@
+<!--入口頁面-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>餐廳抽選器</title>
+    <link rel="stylesheet" href="/css/components/buttonStyle.css">
+    <link rel="stylesheet" href="/css/imageStyle.css">
+    <link rel="stylesheet" href="/css/layout/navBar.css">
+    <link rel="stylesheet" href="/css/forms/formCommon.css">
+</head>
+<body>
+    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
+
+    <div class="formContainer">
+
+        <!--顯示餐廳圖片-->
+        <img id="imageUrl" class="restaurantImage" src="images/start.jpg" alt="餐廳圖片"/>
+        
+        <!--顯示餐廳資訊-->
+        <p>餐廳名稱：<span id="restaurantName"></span></p>
+        <p>餐廳類別：<span id="category"></span></p>
+        <p>選擇次數：<span id="visitedCount"></span></p>
+        <p>最後選擇時間：<span id="lastEat"></span></p>
+        <p>最後更新時間：<span id="lastVisitedAt"></span></p>
+        <p>備註：<span id="note"></span></p>
+
+        <!--底部按鈕-->
+        <!--抽籤功能-->
+        <button id="random-btn" class="functionBtn">抽！</button>
+        <button id="choose-btn" class="functionBtn">就決定選這間！</button>
+        <script type="module" src="/js/randomRestaurant.js"></script>
+        <script type="module" src="/js/chooseRestaurant.js"></script>
+    </div>
+</body>
+</html>

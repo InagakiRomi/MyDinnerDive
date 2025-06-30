@@ -32,7 +32,15 @@ public class ThymeleafController {
     public String dinnerHome() {
         return "index";
     }
-
+    
+    /**
+     * 跳轉抽選餐廳頁面
+     */
+    @GetMapping("/dinnerHome/randomRestaurant")
+    public String memberLoginPage() {
+        return "dinnerHome/randomRestaurant";
+    }
+    
     /**
      * 跳轉餐廳一覽頁面
      */
@@ -62,16 +70,8 @@ public class ThymeleafController {
     /**
      * 跳轉帳號註冊頁面
      */
-    @GetMapping("/memberRegister")
+    @GetMapping("/dinnerHome/memberRegister")
     public String memberRegister() {
         return "dinnerHome/memberRegister";
-    }
-    
-    /**
-     * 跳轉帳號登入頁面
-     */
-    @GetMapping("/memberLogin")
-    public String memberLoginPage() {
-        return "dinnerHome/memberLogin";
     }
 }
