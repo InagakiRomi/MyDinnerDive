@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 public class UserLoginRequest {
     
     @NotBlank
-    @Pattern(regexp = "^[A-Za-z]+$", message = "帳號只能包含英文大小寫字母")
+    @Pattern(regexp = "^[A-Za-z0-9]+$", message = "帳號只能包含英文與數字")
     private String account;
 
     @NotBlank

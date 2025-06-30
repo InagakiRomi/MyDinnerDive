@@ -61,7 +61,7 @@ public class UserControllerTest {
     @Test
     public void register_invalidAccountFormat() throws Exception {
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
-        userRegisterRequest.setAccount("3gd8e7q34l9");
+        userRegisterRequest.setAccount("3#9$$^^");
         userRegisterRequest.setPassword("123");
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
