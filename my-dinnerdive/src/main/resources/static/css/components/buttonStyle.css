@@ -27,3 +27,31 @@
     transform: scale(0.98);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
+
+/* 快速登入按鈕 */
+.quickLoginBtn {
+    display: block;
+    margin: 20px auto 0 auto;
+    width: 60%;
+    max-width: 400px;
+    background: linear-gradient(135deg, #fddb3a, #fcb045); /* 黃色調 */
+    color: white;
+    border: none;
+    padding: 14px 0;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quickLoginBtn:hover {
+    background: linear-gradient(135deg, #fddb3a, #fcb045); /* 黃色調 */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.quickLoginBtn:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}

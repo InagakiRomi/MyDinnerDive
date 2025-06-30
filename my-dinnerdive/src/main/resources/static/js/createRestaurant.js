@@ -34,7 +34,7 @@ function createRestaurant(){
     .then((response) => {
         if (response.ok) {
             alert("餐廳新增成功！");
-            window.location.href = "/dinnerHome";
+            window.location.href = "/dinnerHome/randomRestaurant";
         } else {
             alert("新增失敗，請再試一次");
         }

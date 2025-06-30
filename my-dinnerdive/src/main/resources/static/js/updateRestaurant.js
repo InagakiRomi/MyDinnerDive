@@ -44,7 +44,7 @@ function updateRestaurant(){
     })
     .then(response => {
         if (response.ok) {
-            window.location.href = "/listRestaurant";
+            window.location.href = "/dinnerHome/listRestaurant";
             alert("修改成功！");
         } else {
             alert("修改失敗！請確認資料是否正確");

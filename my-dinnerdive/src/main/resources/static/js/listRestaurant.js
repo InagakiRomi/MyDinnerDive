@@ -90,7 +90,7 @@ async function listRestaurant(){
             <td>${restaurant.lastVisitedAt}</td>
             <td class="noteCell">${restaurant.note}</td>
             <td>
-                <button onclick="location.href='/restaurants/${restaurant.restaurantId}/edit'">修改</button>
+                <button onclick="location.href='/dinnerHome/restaurants/${restaurant.restaurantId}/edit'">修改</button>
                 <button class="delete-btn" data-id="${restaurant.restaurantId}" style="margin-left: 5px;">刪除</button>
             </td>
         `;

@@ -13,7 +13,7 @@ function chooseRestaurant(){
     })
     .then(response => {
         if (response.ok) {
-            window.location.href = "/dinnerHome";
+            window.location.href = "/dinnerHome/randomRestaurant";
             alert("選擇成功！");
         } else {
             alert("請先點【抽！】選餐廳");

@@ -44,7 +44,7 @@ public class ThymeleafController {
     /**
      * 跳轉餐廳一覽頁面
      */
-    @GetMapping("/listRestaurant")
+    @GetMapping("dinnerHome/listRestaurant")
     public String readPage() {
         return "dinnerHome/listRestaurant";
     }
@@ -52,7 +52,7 @@ public class ThymeleafController {
     /**
      * 跳轉新增餐廳頁面
      */
-    @GetMapping("/createRestaurant")
+    @GetMapping("dinnerHome/createRestaurant")
     public String createPage() {
         return "dinnerHome/createRestaurant";
     }
@@ -60,7 +60,7 @@ public class ThymeleafController {
     /**
      * 跳轉修改對應ID餐廳頁面
      */
-    @GetMapping("/restaurants/{restaurantId}/edit")
+    @GetMapping("dinnerHome/restaurants/{restaurantId}/edit")
     public String updatePage(@PathVariable Integer restaurantId, Model model) {
         Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
         model.addAttribute("restaurants", restaurant);
