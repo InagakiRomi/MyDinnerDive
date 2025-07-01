@@ -1,7 +1,6 @@
 let offset;
 let limit;
 let total;
-let changePage = false;
 
 document.addEventListener("DOMContentLoaded", function (){
     listRestaurant();
@@ -12,13 +11,31 @@ document.addEventListener("DOMContentLoaded", function (){
         event.preventDefault();
         listRestaurant();
     }
+
+    // 自動刷新：分類、排序條件、排序方向
+    const categorySelect = document.getElementById("category");
+    categorySelect.addEventListener("change", function () {
+        offset = 0;
+        listRestaurant();
+    });
+
+    const orderBySelect = document.getElementById("orderBy");
+    orderBySelect.addEventListener("change", function () {
+        offset = 0;
+        listRestaurant();
+    });
+
+    const sortSelect = document.getElementById("sort");
+    sortSelect.addEventListener("change", function () {
+        offset = 0;
+        listRestaurant();
+    });
 })
 
 const prevButton = document.getElementById("prevPage")
 prevButton.addEventListener("click", function () {
     if(offset >= limit){
         offset = offset - limit;
-        changePage = true;
         listRestaurant();
     }
 });
@@ -27,7 +44,6 @@ const nextButton = document.getElementById("nextPage")
 nextButton.addEventListener("click", function () {
     if(offset < total-limit){
         offset = offset + limit;
-        changePage = true;
         listRestaurant();
     }
 });
@@ -53,11 +69,7 @@ async function listRestaurant(){
         params.append("sort", sort);
     }
 
-    if(changePage){
-        params.append("offset", offset);
-        changePage = false;
-    }
-
+    params.append("offset", offset || 0);
     const url = `/restaurants?${params.toString()}`;
 
     const response = await fetch(url);
