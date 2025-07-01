@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function (){
 
     function preventFormSubmit(event) {
         event.preventDefault();
+        offset = 0;
         listRestaurant();
     }
 
