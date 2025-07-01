@@ -39,7 +39,7 @@ public class RestaurantControllerTest {
         mockMvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.restaurantName", equalTo("兩藍拉麵")))
+                .andExpect(jsonPath("$.restaurantName", equalTo("今天吃兩藍")))
                 .andExpect(jsonPath("$.category", equalTo("主食")))
                 .andExpect(jsonPath("$.imageUrl", notNullValue()))
                 .andExpect(jsonPath("$.visitedCount", notNullValue()))
@@ -79,7 +79,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.category", equalTo("飲料")))
                 .andExpect(jsonPath("$.imageUrl", equalTo("http://test.com")))
                 .andExpect(jsonPath("$.visitedCount", equalTo(0)))
-	            .andExpect(jsonPath("$.lastEat", nullValue()))
+	        .andExpect(jsonPath("$.lastEat", nullValue()))
                 .andExpect(jsonPath("$.lastVisitedAt", notNullValue()))
                 .andExpect(jsonPath("$.note", equalTo("布丁五姊妹好喝")));
     }
@@ -182,7 +182,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.limit", notNullValue()))
                 .andExpect(jsonPath("$.offset", notNullValue()))
                 .andExpect(jsonPath("$.total", notNullValue()))
-                .andExpect(jsonPath("$.results", hasSize(3)));
+                .andExpect(jsonPath("$.results", hasSize(4)));
     }
 
     @Test
