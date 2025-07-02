@@ -78,7 +78,7 @@ public interface RestaurantService {
      *
      * @return 隨機選出的 Restaurant 物件，若無資料則回傳 null
      */
-    Restaurant getRandomRestaurant();
+    Restaurant getRandomRestaurant(RestaurantQueryParams restaurantQueryParams);
 
     /**
      * 清空抽籤資料。

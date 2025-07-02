@@ -165,7 +165,19 @@ public class RestaurantController {
      */
     @GetMapping("/random")
     public Restaurant getRandomRestaurant(@RequestParam(required = false) RestaurantCategory category) {
-        return restaurantService.getRandomRestaurant();
+        RestaurantQueryParams params = new RestaurantQueryParams();
+        params.setCategory(category);
+        return restaurantService.getRandomRestaurant(params);
+    }
+
+    /**
+     * 清空抽籤資料。
+     *
+     * @return 清除後的餐廳資料列表，若無資料則回傳 null
+     */
+    @GetMapping("/clearRandom")
+    public void clearRandomRestaurant() {
+        restaurantService.clearRandomRestaurant();
     }
 
     /**

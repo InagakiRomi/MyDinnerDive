@@ -40,6 +40,20 @@ function randomRestaurant() {
         });
 }
 
+function resetRandom() {
+    fetch('/clearRandom', {
+        method: 'POST'
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("抽籤狀態已重設！");
+            window.location.href = "/dinnerHome/randomRestaurant";
+        } else {
+            alert("重抽失敗！");
+        }
+    });
+}
+
 export function getCurrentId(){
     return currentRestaurantId;
 }
