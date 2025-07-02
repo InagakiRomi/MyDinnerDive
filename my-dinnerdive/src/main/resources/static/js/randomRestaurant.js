@@ -4,7 +4,15 @@ const randomButton = document.getElementById("random-btn");
 randomButton.addEventListener("click", randomRestaurant);
 
 function randomRestaurant() {
-    fetch('/random')
+    const category = document.getElementById("categoryLabel").value;
+    const params = new URLSearchParams();
+    if (category){
+        params.append("category", category);
+    } 
+    const url = `/random?${params.toString()}`;
+    // const url = `/random?category=輕食`;
+
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             currentRestaurantId = data.restaurantId;

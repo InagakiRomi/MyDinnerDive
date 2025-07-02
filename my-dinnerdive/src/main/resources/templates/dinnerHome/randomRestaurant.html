@@ -11,7 +11,18 @@
 <body>
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
+
+
     <div class="formContainer">
+
+        <!--抽籤篩選-->
+        <div class="filterContainer">
+            <label for="categoryLabel">篩選類別：</label>
+            <select id="categoryLabel">
+                <option th:replace="~{modules/categoryButton :: foodCategoryAll}"></option>
+            </select>
+        </div>
+
 
         <!--顯示餐廳圖片-->
         <img id="imageUrl" class="restaurantImage" src="/images/start.jpg" alt="餐廳圖片"/>
@@ -24,7 +35,6 @@
         <p>最後更新時間：<span id="lastVisitedAt"></span></p>
         <p>備註：<span id="note"></span></p>
 
-        <!--底部按鈕-->
         <!--抽籤功能-->
         <button id="random-btn" class="functionBtn">抽！</button>
         <button id="choose-btn" class="functionBtn">就決定選這間！</button>

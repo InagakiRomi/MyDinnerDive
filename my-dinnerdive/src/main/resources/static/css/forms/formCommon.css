@@ -35,3 +35,24 @@ form input, form textarea, form select {
 form textarea {
     resize: vertical;
 }
+
+/* 篩選下拉視窗 */
+.filterContainer {
+    margin-bottom: 20px;
+}
+
+.filterContainer label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #4a3b2c;
+}
+
+.filterContainer select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}

@@ -13,10 +13,7 @@
             <!-- 篩選 -->
             <label for="category">餐廳類別：</label>
             <select id="category">
-                <option value="">全部</option>
-                <option value="主食">主食</option>
-                <option value="輕食">輕食</option>
-                <option value="飲料">飲料</option>
+                <option th:replace="~{modules/categoryButton :: foodCategoryAll}"></option>
             </select>
 
             <label for="search">關鍵字：</label>

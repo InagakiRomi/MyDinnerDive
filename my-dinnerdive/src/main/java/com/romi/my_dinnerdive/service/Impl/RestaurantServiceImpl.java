@@ -61,13 +61,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public List<Integer> getAllRestaurantIds(){
-        return restaurantDao.getAllRestaurantIds();
-    }
-
-    @Override
     public Restaurant getRandomRestaurant() {
-        List<Integer> idList = restaurantDao.getAllRestaurantIds();
+        List<Integer> idList = restaurantDao.getAllRestaurantIds(new RestaurantQueryParams());
         Logger logger = loggingDemo.printRandomRestaurantLog();
         
         // 如果已經抽完所有餐廳，則清空 lastId 並重新開始抽
@@ -107,6 +102,11 @@ public class RestaurantServiceImpl implements RestaurantService {
             lastId.clear();
             logger.log(Level.INFO, "清空抽籤資料");
         }
+    }
+
+    @Override
+    public List<Integer> getAllRestaurantIds(RestaurantQueryParams restaurantQueryParams){
+        return restaurantDao.getAllRestaurantIds(restaurantQueryParams);
     }
 
     @Override

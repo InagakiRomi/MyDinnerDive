@@ -22,9 +22,16 @@ public interface RestaurantService {
     Integer countRestaurant(RestaurantQueryParams restaurantQueryParams);
 
     /**
-     * 取得所有餐廳資料。
+     * 取得餐廳列表的 API。
+     * 支援條件查詢、排序與分頁功能。
      *
-     * @return 所有餐廳資料的列表，若無資料則回傳 null
+     * @param category 餐廳分類，可選參數
+     * @param search 搜尋關鍵字，用於餐廳名稱或其他欄位的模糊查詢，可選參數
+     * @param orderBy 排序欄位，預設為 restaurant_id
+     * @param sort 排序方式，"ASC" 為升冪，"DESC" 為降冪，預設為 "ASC"
+     * @param limit 每頁筆數，預設為 10，最大值為 1000，最小值為 0
+     * @param offset 起始頁面偏移值，預設為 0，最小值為 0
+     * @return 回傳包含分頁資訊與餐廳資料的 Page 物件
      */
     List<Restaurant> getRestaurants(RestaurantQueryParams restaurantQueryParams);
 
@@ -64,7 +71,7 @@ public interface RestaurantService {
      *
      * @return 所有餐廳資料ID，若無資料則回傳 null
      */
-    List<Integer> getAllRestaurantIds();
+    List<Integer> getAllRestaurantIds(RestaurantQueryParams restaurantQueryParams);
 
     /**
      * 隨機取得一筆餐廳資料。

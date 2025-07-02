@@ -130,9 +130,21 @@ public class RestaurantDaoImpl implements RestaurantDao {
     }
 
     @Override
-    public List<Integer> getAllRestaurantIds() {
-        String idSql = "SELECT restaurant_id FROM restaurants";
-        return  namedParameterJdbcTemplate.query(idSql, (rs, rowNum) -> rs.getInt("restaurant_id"));
+    public List<Integer> getAllRestaurantIds(RestaurantQueryParams restaurantQueryParams) {
+        String sql = "SELECT restaurant_id FROM restaurants WHERE 1=1";
+
+        Map<String, Object> map = new HashMap<>();
+
+        if (restaurantQueryParams.getCategory() != null) {
+            sql += " AND category = :category";
+            map.put("category", restaurantQueryParams.getCategory());
+        }
+
+        sql = addFilteringSql(sql, map, restaurantQueryParams);
+
+        List<Integer> idList = namedParameterJdbcTemplate.queryForList(sql, map, Integer.class);
+        
+        return idList;
     }
 
     @Override
