@@ -36,15 +36,14 @@ Dinner Dive 是我為練習後端整合開發而實作的 Web 系統，透過「
 
 ## 🖼️ 介面展示
 
-![image](https://github.com/user-attachments/assets/908bb8ab-d677-4683-8e0f-8f2865b47307)
+![image](https://github.com/user-attachments/assets/c9f2722f-5799-4e0d-ab92-53e7654ccf63)
+![image](https://github.com/user-attachments/assets/fb9954c8-6219-4eb1-b5dd-c93fee45ccb4)
 ![image](https://github.com/user-attachments/assets/9fb1b528-a3a8-45b1-b145-cc70ae078a69)
 ![image](https://github.com/user-attachments/assets/16f19ef1-a0a8-4eaa-ad84-58b629a16695)
 ![image](https://github.com/user-attachments/assets/fa7925cb-cb09-44be-953b-b493ac767d4c)
 ![image](https://github.com/user-attachments/assets/3e4cd6c7-8972-40fa-9619-9df700e34717)
-![image](https://github.com/user-attachments/assets/d82431e2-3761-42be-8653-f9e26e454436)
-![image](https://github.com/user-attachments/assets/bbff1050-6ff5-4f38-b6ba-5b13856af717)
-
-
+![image](https://github.com/user-attachments/assets/0dba0b21-7245-4e9f-99cf-8c0c79e2daaa)
+![image](https://github.com/user-attachments/assets/e03d7576-fc75-4686-908c-69f736a0a298)
 
 ---
 
