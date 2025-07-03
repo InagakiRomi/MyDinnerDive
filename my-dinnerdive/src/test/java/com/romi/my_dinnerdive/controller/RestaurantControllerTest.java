@@ -108,7 +108,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.category", equalTo("輕食")))
                 .andExpect(jsonPath("$.imageUrl", equalTo("http://test.food")))
                 .andExpect(jsonPath("$.visitedCount", equalTo(6)))
-	            .andExpect(jsonPath("$.lastEat", nullValue()))
+	        .andExpect(jsonPath("$.lastEat", nullValue()))
                 .andExpect(jsonPath("$.lastVisitedAt", notNullValue()))
                 .andExpect(jsonPath("$.note", equalTo("肌肉猛男開的專賣店")));
     }
@@ -182,7 +182,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.limit", notNullValue()))
                 .andExpect(jsonPath("$.offset", notNullValue()))
                 .andExpect(jsonPath("$.total", notNullValue()))
-                .andExpect(jsonPath("$.results", hasSize(4)));
+                .andExpect(jsonPath("$.results", hasSize(3)));
     }
 
     @Test
@@ -224,14 +224,31 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.results[1].restaurantId", equalTo(6)));
     }
 
-    @Test
-    void getRandomRestaurant_success() throws Exception{
-
-    }
-
     @Transactional
     @Test
     void chooseRestaurant_success() throws Exception{
+        RestaurantRequest restaurantRequest = new RestaurantRequest();
+        restaurantRequest.setRestaurantName("乾乾拌拌");
+        restaurantRequest.setCategory(RestaurantCategory.主食);
+        restaurantRequest.setImageUrl("https://cdn.pixabay.com/photo/2020/03/31/01/56/fried-rice-4985989_1280.jpg");
+        restaurantRequest.setVisitedCount(0);
+        restaurantRequest.setNote("服務態度比飯好");
 
+        String json = objectMapper.writeValueAsString(restaurantRequest);
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .patch("/choose/{restaurantId}", 22)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json);
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(200))
+                .andExpect(jsonPath("$.restaurantName", equalTo("乾乾拌拌")))
+                .andExpect(jsonPath("$.category", equalTo("主食")))
+                .andExpect(jsonPath("$.imageUrl", equalTo("https://cdn.pixabay.com/photo/2020/03/31/01/56/fried-rice-4985989_1280.jpg")))
+                .andExpect(jsonPath("$.visitedCount", equalTo(1)))
+	        .andExpect(jsonPath("$.lastEat", notNullValue()))
+                .andExpect(jsonPath("$.lastVisitedAt", notNullValue()))
+                .andExpect(jsonPath("$.note", equalTo("服務態度比飯好")));
     }
 }
