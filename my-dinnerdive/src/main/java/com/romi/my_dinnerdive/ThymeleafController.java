@@ -37,7 +37,7 @@ public class ThymeleafController {
      * 跳轉抽選餐廳頁面
      */
     @GetMapping("/dinnerHome/randomRestaurant")
-    public String memberLoginPage() {
+    public String randomRestaurantPage() {
         return "dinnerHome/randomRestaurant";
     }
     

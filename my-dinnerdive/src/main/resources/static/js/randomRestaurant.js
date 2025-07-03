@@ -40,14 +40,17 @@ function randomRestaurant() {
         });
 }
 
+
+const resetButton = document.getElementById("categoryLabel");
+resetButton.addEventListener("change", resetRandom);
+
 function resetRandom() {
     fetch('/clearRandom', {
         method: 'POST'
     })
     .then(response => {
         if (response.ok) {
-            alert("抽籤狀態已重設！");
-            window.location.href = "/dinnerHome/randomRestaurant";
+            alert("抽籤紀錄已清除，開始新的抽選！");
         } else {
             alert("重抽失敗！");
         }

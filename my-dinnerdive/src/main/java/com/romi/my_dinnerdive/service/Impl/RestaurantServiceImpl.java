@@ -77,7 +77,8 @@ public class RestaurantServiceImpl implements RestaurantService {
             idList.remove(randomId);
 
             logger.log(Level.FINE,"本次抽到的食物ID為： " + restaurantId);
-        }else{
+        }
+        if(idList.isEmpty()){
             clearRandomRestaurant();
             logger.log(Level.INFO, "已抽完所有餐廳重新開始抽");
         }

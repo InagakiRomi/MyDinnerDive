@@ -175,7 +175,7 @@ public class RestaurantController {
      *
      * @return 清除後的餐廳資料列表，若無資料則回傳 null
      */
-    @GetMapping("/clearRandom")
+    @PostMapping("/clearRandom")
     public void clearRandomRestaurant() {
         restaurantService.clearRandomRestaurant();
     }
