@@ -16,7 +16,7 @@ public class UserRegisterRequest {
      */
     @NotNull
     @Pattern(regexp = "^[A-Za-z0-9]+$", message = "帳號只能包含英文與數字")
-    private String account;
+    private String username;
 
     /**
      * 使用者密碼（不能為 null）
@@ -29,11 +29,11 @@ public class UserRegisterRequest {
      */
     private UserCategory roles;
 
-    public String getAccount() {
-        return account;
+    public String getUsername() {
+        return username;
     }
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getMemberPassword() {
         return memberPassword;

@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public User getUserById(Integer userId){
-        String sql = "SELECT user_id, account, member_password, roles, created_date, last_modified_date " +
+        String sql = "SELECT user_id, username, member_password, roles, created_date, last_modified_date " +
                      "FROM users WHERE user_id = :userId";
 
         Map<String, Object> map = new HashMap<>();
@@ -41,12 +41,12 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public User getUserByAccount(String account){
-        String sql = "SELECT user_id, account, member_password, roles, created_date, last_modified_date " +
-                     "FROM users WHERE account = :account";
+    public User getUserByUsername(String username){
+        String sql = "SELECT user_id, username, member_password, roles, created_date, last_modified_date " +
+                     "FROM users WHERE username = :username";
 
         Map<String, Object> map = new HashMap<>();
-        map.put("account", account);
+        map.put("username", username);
 
         List<User> userList = namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
 
@@ -59,11 +59,11 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public Integer createUser(UserRegisterRequest userRegisterRequest) {
-    String sql = "INSERT INTO users (account, member_password, roles, created_date, last_modified_date) " +
-                 "VALUES (:account, :memberPassword, :roles, :createdDate, :lastModifiedDate)";
+    String sql = "INSERT INTO users (username, member_password, roles, created_date, last_modified_date) " +
+                 "VALUES (:username, :memberPassword, :roles, :createdDate, :lastModifiedDate)";
 
     Map<String, Object> map = new HashMap<>();
-    map.put("account", userRegisterRequest.getAccount());
+    map.put("username", userRegisterRequest.getUsername());
     map.put("memberPassword", userRegisterRequest.getMemberPassword());
     map.put("roles", userRegisterRequest.getRoles().name());
 

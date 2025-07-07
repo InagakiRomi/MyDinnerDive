@@ -5,11 +5,21 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.romi.my_dinnerdive.constant.UserCategory;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-    private String account;
+
+    @Column(nullable = false, unique = true)
+    private String username;
 
     @JsonIgnore
+    @Column(nullable = false)
     private String memberPassword;
 
     private UserCategory roles;
@@ -22,11 +32,11 @@ public class User {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
-    public String getAccount() {
-        return account;
+    public String getUsername() {
+        return username;
     }
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUsername(String username) {
+        this.username = username;
     }
     public String getMemberPassword() {
         return memberPassword;

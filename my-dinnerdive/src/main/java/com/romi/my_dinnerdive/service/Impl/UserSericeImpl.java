@@ -37,10 +37,10 @@ public class UserSericeImpl implements UserService{
         Logger logger = loggingDemo.printUserLog();
 
         // 檢查註冊的帳號
-        User user = userDao.getUserByAccount(userRegisterRequest.getAccount());
+        User user = userDao.getUserByUsername(userRegisterRequest.getUsername());
         
         if(user != null){
-            logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 已經被註冊", userRegisterRequest.getAccount()));
+            logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 已經被註冊", userRegisterRequest.getUsername()));
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
@@ -56,11 +56,11 @@ public class UserSericeImpl implements UserService{
     public User login(UserLoginRequest userLoginRequest){
         Logger logger = loggingDemo.printUserLog();
         
-        User user = userDao.getUserByAccount(userLoginRequest.getAccount());
+        User user = userDao.getUserByUsername(userLoginRequest.getUsername());
 
         //檢查 user 是否存在
         if(user == null){
-            logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 尚未註冊", userLoginRequest.getAccount()));
+            logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 尚未註冊", userLoginRequest.getUsername()));
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
   
@@ -71,7 +71,7 @@ public class UserSericeImpl implements UserService{
         if(user.getMemberPassword().equals(hashedPassword)){
             return user;
         }else{
-            logger.log(Level.WARNING, MessageFormat.format("帳號 {0} 的密碼不正確", userLoginRequest.getAccount()));
+            logger.log(Level.WARNING, MessageFormat.format("帳號 {0} 的密碼不正確", userLoginRequest.getUsername()));
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
