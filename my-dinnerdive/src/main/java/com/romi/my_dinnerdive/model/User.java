@@ -19,7 +19,7 @@ public class User {
     private String username;
 
     @JsonIgnore
-    @Column(nullable = false)
+    @Column(name = "memberPassword")
     private String memberPassword;
 
     private UserCategory roles;

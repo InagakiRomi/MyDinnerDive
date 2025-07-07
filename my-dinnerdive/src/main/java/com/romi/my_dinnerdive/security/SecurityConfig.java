@@ -56,22 +56,19 @@ public class SecurityConfig {
                 // 第二個參數為 true 表示「無論原本請求的是哪個頁面，都一律導向此頁」
                 .defaultSuccessUrl("/dinnerHome/randomRestaurant", true)
 
-                // 登入失敗時重新導向的頁面，可在頁面根據參數顯示錯誤訊息
-                .failureUrl("/dinnerHome?error=true")
-
                 // 允許未登入者訪問上述登入頁面和處理路徑
                 .permitAll()
             )
-            .logout(logout -> logout
-                // 指定觸發登出的 URL（預設是 POST /logout）
-                .logoutUrl("/logout")
+            // .logout(logout -> logout
+            //     // 指定觸發登出的 URL（預設是 POST /logout）
+            //     .logoutUrl("/logout")
 
-                // 登出成功後導向的頁面，可加上 query param 讓前端顯示「成功登出」訊息
-                .logoutSuccessUrl("/dinnerHome?logout=true")
+            //     // 登出成功後導向的頁面，可加上 query param 讓前端顯示「成功登出」訊息
+            //     .logoutSuccessUrl("/dinnerHome?logout=true")
 
-                // 開放所有人（即使已經登出）都可以觸發 logout URL
-                .permitAll()
-            )
+            //     // 開放所有人（即使已經登出）都可以觸發 logout URL
+            //     .permitAll()
+            // )
             .csrf(csrf -> csrf.disable())
             .build();
     }
