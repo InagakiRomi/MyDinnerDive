@@ -10,7 +10,6 @@ function randomRestaurant() {
         params.append("category", category);
     } 
     const url = `/random?${params.toString()}`;
-    // const url = `/random?category=輕食`;
 
     fetch(url)
         .then(response => response.json())
@@ -29,11 +28,11 @@ function randomRestaurant() {
             const visitedCount = document.getElementById('visitedCount');
             visitedCount.innerText = data.visitedCount;
 
-            const lastEat = document.getElementById('lastEat');
-            lastEat.innerText = data.lastEat;
+            const lastSelectedAt = document.getElementById('lastSelectedAt');
+            lastSelectedAt.innerText = data.lastSelectedAt;
 
-            const lastVisitedAt = document.getElementById('lastVisitedAt');
-            lastVisitedAt.innerText = data.lastVisitedAt;
+            const updatedAt = document.getElementById('updatedAt');
+            updatedAt.innerText = data.updatedAt;
 
             const note = document.getElementById('note');
             note.innerText = data.note;

@@ -22,10 +22,10 @@ function getVisitedCount() {
     return visitedCountVar;
 }
 
-function getLastEat() {
-    const lastEat = document.getElementById('lastEat').value;
-    var lastEatVar = {"lastEat": lastEat};
-    return lastEatVar;
+function getLastSelectedAt() {
+    const lastSelectedAt = document.getElementById('lastSelectedAt').value;
+    var lastSelectedAtVar = {"lastSelectedAt": lastSelectedAt};
+    return lastSelectedAtVar;
 }
 
 function getNote() {
@@ -56,7 +56,7 @@ export {
     getRestaurantName,
     getCategory,
     getVisitedCount,
-    getLastEat,
+    getLastSelectedAt,
     getNote,
     getImageUrl,
     getHeaders

@@ -40,7 +40,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
     @Override
     public List<Restaurant> getRestaurants(RestaurantQueryParams restaurantQueryParams){
-        String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
+        String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_selected_at, updated_at, note " +
                      "FROM restaurants WHERE 1=1";
 
         Map<String, Object> map = new HashMap<>();
@@ -63,7 +63,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
     @Override
     public Restaurant getRestaurantById(Integer restaurantId) {
-        String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_eat, last_visited_at, note " +
+        String sql = "SELECT restaurant_id, restaurant_name, category, image_url, visited_count, last_selected_at, updated_at, note " +
                      "FROM restaurants WHERE restaurant_id = :restaurantId";
 
         Map<String, Object> map = new HashMap<>();
@@ -80,15 +80,15 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
     @Override
     public Integer createRestaurant(RestaurantRequest restaurantRequest) {
-        String sql = "INSERT INTO restaurants (restaurant_name, category, image_url, last_eat, last_visited_at, note) " +
-                     "VALUES (:restaurantName, :category, :imageUrl, :lastEat, :lastVisitedAt, :note)";
+        String sql = "INSERT INTO restaurants (restaurant_name, category, image_url, last_selected_at, updated_at, note) " +
+                     "VALUES (:restaurantName, :category, :imageUrl, :lastSelectedAt, :updatedAt, :note)";
 
         Map<String, Object> map = new HashMap<>();
         map.put("restaurantName", restaurantRequest.getRestaurantName());
         map.put("category", restaurantRequest.getCategory().name());
         map.put("imageUrl", restaurantRequest.getImageUrl());
-        map.put("lastEat", restaurantRequest.getLastEat());
-        map.put("lastVisitedAt", new Date());
+        map.put("lastSelectedAt", restaurantRequest.getLastSelectedAt());
+        map.put("updatedAt", new Date());
         map.put("note", restaurantRequest.getNote());
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -101,7 +101,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
     public void updateRestaurant(Integer restaurantId, RestaurantRequest restaurantRequest){
         String sql = "UPDATE restaurants SET restaurant_name = :restaurantName, category = :category, " +
-                     "visited_count = :visitedCount, last_eat = :lastEat, note = :note, last_visited_at = :lastVisitedAt, image_url = :imageUrl " +
+                     "visited_count = :visitedCount, last_selected_at = :lastSelectedAt, note = :note, updated_at = :updatedAt, image_url = :imageUrl " +
                      "WHERE restaurant_id = :restaurantId";
 
         Map<String, Object> map = new HashMap<>();
@@ -110,11 +110,11 @@ public class RestaurantDaoImpl implements RestaurantDao {
         map.put("restaurantName", restaurantRequest.getRestaurantName());
         map.put("category", restaurantRequest.getCategory().toString());
         map.put("visitedCount", restaurantRequest.getVisitedCount());
-        map.put("lastEat", restaurantRequest.getLastEat());
+        map.put("lastSelectedAt", restaurantRequest.getLastSelectedAt());
         map.put("note", restaurantRequest.getNote());
         map.put("imageUrl", restaurantRequest.getImageUrl());
 
-        map.put("lastVisitedAt", new Date());
+        map.put("updatedAt", new Date());
 
         namedParameterJdbcTemplate.update(sql, map);
     }
@@ -150,7 +150,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
     @Override
     public void chooseRestaurant(Integer restaurantId){
         String sql = "UPDATE restaurants SET restaurant_name = :restaurantName, category = :category, " +
-                     "visited_count = :visitedCount, last_eat = :lastEat, last_visited_at = :lastVisitedAt " +
+                     "visited_count = :visitedCount, last_selected_at = :lastSelectedAt, updated_at = :updatedAt " +
                      "WHERE restaurant_id = :restaurantId";
     
         Restaurant restaurant = getRestaurantById(restaurantId);
@@ -160,8 +160,8 @@ public class RestaurantDaoImpl implements RestaurantDao {
         map.put("restaurantName", restaurant.getRestaurantName());
         map.put("category", restaurant.getCategory().toString());
         map.put("visitedCount", restaurant.getVisitedCount() +1);  
-        map.put("lastEat", new Date());
-        map.put("lastVisitedAt", new Date());
+        map.put("lastSelectedAt", new Date());
+        map.put("updatedAt", new Date());
 
         namedParameterJdbcTemplate.update(sql, map);
     }

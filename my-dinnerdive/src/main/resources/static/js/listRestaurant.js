@@ -99,8 +99,8 @@ async function listRestaurant(){
             </td>
             <td>${restaurant.category}</td>
             <td>${restaurant.visitedCount}</td>
-            <td>${restaurant.lastEat ?? '-'}</td>
-            <td>${restaurant.lastVisitedAt}</td>
+            <td>${restaurant.lastSelectedAt ?? '-'}</td>
+            <td>${restaurant.updatedAt}</td>
             <td class="noteCell">${restaurant.note}</td>
             <td>
                 <button onclick="location.href='/dinnerHome/restaurants/${restaurant.restaurantId}/edit'">修改</button>

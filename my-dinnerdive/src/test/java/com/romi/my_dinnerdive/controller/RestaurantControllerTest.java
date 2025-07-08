@@ -43,8 +43,8 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.category", equalTo("主食")))
                 .andExpect(jsonPath("$.imageUrl", notNullValue()))
                 .andExpect(jsonPath("$.visitedCount", notNullValue()))
-                .andExpect(jsonPath("$.lastEat", notNullValue()))
-                .andExpect(jsonPath("$.lastVisitedAt", notNullValue()))
+                .andExpect(jsonPath("$.lastSelectedAt", notNullValue()))
+                .andExpect(jsonPath("$.updatedAt", notNullValue()))
                 .andExpect(jsonPath("$.note", notNullValue()));
     }
 
@@ -79,8 +79,8 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.category", equalTo("飲料")))
                 .andExpect(jsonPath("$.imageUrl", equalTo("http://test.com")))
                 .andExpect(jsonPath("$.visitedCount", equalTo(0)))
-	        .andExpect(jsonPath("$.lastEat", nullValue()))
-                .andExpect(jsonPath("$.lastVisitedAt", notNullValue()))
+	        .andExpect(jsonPath("$.lastSelectedAt", nullValue()))
+                .andExpect(jsonPath("$.updatedAt", notNullValue()))
                 .andExpect(jsonPath("$.note", equalTo("布丁五姊妹好喝")));
     }
 
@@ -108,8 +108,8 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.category", equalTo("輕食")))
                 .andExpect(jsonPath("$.imageUrl", equalTo("http://test.food")))
                 .andExpect(jsonPath("$.visitedCount", equalTo(6)))
-	        .andExpect(jsonPath("$.lastEat", nullValue()))
-                .andExpect(jsonPath("$.lastVisitedAt", notNullValue()))
+	        .andExpect(jsonPath("$.lastSelectedAt", nullValue()))
+                .andExpect(jsonPath("$.updatedAt", notNullValue()))
                 .andExpect(jsonPath("$.note", equalTo("肌肉猛男開的專賣店")));
     }
 
@@ -247,8 +247,8 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.category", equalTo("主食")))
                 .andExpect(jsonPath("$.imageUrl", equalTo("https://cdn.pixabay.com/photo/2020/03/31/01/56/fried-rice-4985989_1280.jpg")))
                 .andExpect(jsonPath("$.visitedCount", equalTo(1)))
-	        .andExpect(jsonPath("$.lastEat", notNullValue()))
-                .andExpect(jsonPath("$.lastVisitedAt", notNullValue()))
+	        .andExpect(jsonPath("$.lastSelectedAt", notNullValue()))
+                .andExpect(jsonPath("$.updatedAt", notNullValue()))
                 .andExpect(jsonPath("$.note", equalTo("服務態度比飯好")));
     }
 }

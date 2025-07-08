@@ -40,12 +40,12 @@ public class Restaurant {
     /**
      * 最後一次選擇該食物的時間
      */
-    private Date lastEat;
+    private Date lastSelectedAt;
 
     /**
      * 最後一次更新資料的時間
      */
-    private Date lastVisitedAt;
+    private Date updatedAt;
 
     /**
      * 餐廳備註
@@ -92,20 +92,20 @@ public class Restaurant {
         this.visitedCount = visitedCount;
     }
 
-    public Date getLastEat() {
-        return lastEat;
+    public Date getLastSelectedAt() {
+        return lastSelectedAt;
     }
 
-    public void setLastEat(Date lastEat) {
-        this.lastEat = lastEat;
+    public void setLastSelectedAt(Date lastSelectedAt) {
+        this.lastSelectedAt = lastSelectedAt;
     }
 
-    public Date getLastVisitedAt() {
-        return lastVisitedAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setLastVisitedAt(Date lastVisitedAt) {
-        this.lastVisitedAt = lastVisitedAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getNote() {

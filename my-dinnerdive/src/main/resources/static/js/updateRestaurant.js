@@ -3,7 +3,7 @@ import {
     getRestaurantName,
     getCategory,
     getVisitedCount,
-    getLastEat,
+    getLastSelectedAt,
     getNote,
     getImageUrl,
     getHeaders
@@ -32,7 +32,7 @@ function updateRestaurant(){
         ...getRestaurantName(),
         ...getCategory(),
         ...getVisitedCount(),
-        ...getLastEat(),
+        ...getLastSelectedAt(),
         ...getNote(),
         ...getImageUrl()
     }
