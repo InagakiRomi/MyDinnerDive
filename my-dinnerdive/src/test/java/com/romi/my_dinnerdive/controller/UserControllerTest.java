@@ -50,7 +50,7 @@ public class UserControllerTest {
                 .andExpect(status().is(201))
                 .andExpect(jsonPath("$.userId", notNullValue()))
                 .andExpect(jsonPath("$.username", equalTo("test1")))
-                .andExpect(jsonPath("$.roles", equalTo("一般帳號")))
+                .andExpect(jsonPath("$.roles", equalTo("USER")))
                 .andExpect(jsonPath("$.createdDate", notNullValue()))
                 .andExpect(jsonPath("$.lastModifiedDate", notNullValue()));
 
@@ -124,7 +124,7 @@ public class UserControllerTest {
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.userId", notNullValue()))
                 .andExpect(jsonPath("$.username", equalTo(userRegisterRequest.getUsername())))
-                .andExpect(jsonPath("$.roles", equalTo("一般帳號")))
+                .andExpect(jsonPath("$.roles", equalTo("USER")))
                 .andExpect(jsonPath("$.createdDate", notNullValue()))
                 .andExpect(jsonPath("$.lastModifiedDate", notNullValue()));
     }

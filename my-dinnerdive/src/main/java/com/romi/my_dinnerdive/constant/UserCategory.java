@@ -2,8 +2,8 @@ package com.romi.my_dinnerdive.constant;
 
 public enum UserCategory {
 
-    一般帳號("一般帳號"),
-    管理員("管理員");
+    ADMIN("管理員"),
+    USER("一般帳號");
 
     private final String displayName;
 

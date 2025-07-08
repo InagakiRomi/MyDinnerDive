@@ -35,7 +35,7 @@ public class UserController {
      */
     @PostMapping("/users/register")
     public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest,
-                                         @RequestParam(defaultValue = "一般帳號") UserCategory roles){
+                                         @RequestParam(defaultValue = "USER") UserCategory roles){
         
         if (userRegisterRequest.getRoles() == null) {
         userRegisterRequest.setRoles(roles);
