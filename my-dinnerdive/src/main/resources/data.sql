@@ -45,6 +45,6 @@ INSERT INTO restaurants
 (43,'吃完不後悔','輕食','https://cdn.pixabay.com/photo/2020/02/22/08/55/the-cake-4869920_1280.jpg',4,'2025-05-20 16:45:33','2025-05-20 16:45:33','打卡專用');
 
 INSERT INTO users 
-(user_id, account, member_password, roles, created_date, last_modified_date) VALUES
+(user_id, username, user_password, roles, created_date, last_modified_date) VALUES
 (1,'SS','202cb962ac59075b964b07152d234b70','管理員','2025-06-29 17:12:41','2025-06-30 11:28:27'),
 (2,'123','202cb962ac59075b964b07152d234b70','一般帳號','2025-06-29 17:12:41','2025-06-30 11:28:27');

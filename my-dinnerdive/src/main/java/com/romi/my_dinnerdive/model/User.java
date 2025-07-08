@@ -7,10 +7,10 @@ import com.romi.my_dinnerdive.constant.UserCategory;
 
 public class User {
     private Integer userId;
-    private String account;
+    private String username;
 
     @JsonIgnore
-    private String memberPassword;
+    private String userPassword;
 
     private UserCategory roles;
     private Date createdDate;
@@ -22,17 +22,17 @@ public class User {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
-    public String getAccount() {
-        return account;
+    public String getUsername() {
+        return username;
     }
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUsername(String username) {
+        this.username = username;
     }
-    public String getMemberPassword() {
-        return memberPassword;
+    public String getUserPassword() {
+        return userPassword;
     }
-    public void setMemberPassword(String memberPassword) {
-        this.memberPassword = memberPassword;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
     public UserCategory getRoles() {
         return roles;

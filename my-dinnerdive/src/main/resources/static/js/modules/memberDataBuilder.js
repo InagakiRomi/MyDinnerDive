@@ -3,16 +3,16 @@ function getUserId(){
     return userId;
 }
 
-function getAccount(){
-    const account =document.getElementById('account').value;
-    var accountVar = {"account": account};
-    return accountVar;
+function getUsername(){
+    const username =document.getElementById('username').value;
+    var usernameVar = {"username": username};
+    return usernameVar;
 }
 
 function getPassword(){
-    const memberPassword = document.getElementById('memberPassword').value;
-    var memberPasswordVar = {"memberPassword": memberPassword};
-    return memberPasswordVar;
+    const userPassword = document.getElementById('userPassword').value;
+    var userPasswordVar = {"userPassword": userPassword};
+    return userPasswordVar;
 }
 
 function getLastModifiedDate() {
@@ -34,7 +34,7 @@ function getHeaders(){
 // 統一導出
 export {
     getUserId,
-    getAccount,
+    getUsername,
     getPassword,
     getLastModifiedDate,
     getHeaders

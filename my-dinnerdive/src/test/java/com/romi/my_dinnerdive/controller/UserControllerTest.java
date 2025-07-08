@@ -36,8 +36,8 @@ public class UserControllerTest {
     @Test
     public void register_success() throws Exception {
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
-        userRegisterRequest.setAccount("test1");
-        userRegisterRequest.setMemberPassword("123");
+        userRegisterRequest.setUsername("test1");
+        userRegisterRequest.setUserPassword("123");
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
 
@@ -49,21 +49,21 @@ public class UserControllerTest {
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(201))
                 .andExpect(jsonPath("$.userId", notNullValue()))
-                .andExpect(jsonPath("$.account", equalTo("test1")))
+                .andExpect(jsonPath("$.username", equalTo("test1")))
                 .andExpect(jsonPath("$.roles", equalTo("一般帳號")))
                 .andExpect(jsonPath("$.createdDate", notNullValue()))
                 .andExpect(jsonPath("$.lastModifiedDate", notNullValue()));
 
         // 檢查資料庫中的密碼不為明碼
-        User user = userDao.getUserByAccount(userRegisterRequest.getAccount());
-        assertNotEquals(userRegisterRequest.getMemberPassword(), user.getMemberPassword());
+        User user = userDao.getUserByUsername(userRegisterRequest.getUsername());
+        assertNotEquals(userRegisterRequest.getUserPassword(), user.getUserPassword());
     }
 
     @Test
-    public void register_invalidAccountFormat() throws Exception {
+    public void register_invalidUsernameFormat() throws Exception {
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
-        userRegisterRequest.setAccount("3#9$$^^");
-        userRegisterRequest.setMemberPassword("123");
+        userRegisterRequest.setUsername("3#9$$^^");
+        userRegisterRequest.setUserPassword("123");
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
 
@@ -77,11 +77,11 @@ public class UserControllerTest {
     }
 
     @Test
-    public void register_accountAlreadyExist() throws Exception {
+    public void register_usernameAlreadyExist() throws Exception {
         // 先註冊一個帳號
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
-        userRegisterRequest.setAccount("test2");
-        userRegisterRequest.setMemberPassword("123");
+        userRegisterRequest.setUsername("test2");
+        userRegisterRequest.setUserPassword("123");
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
 
@@ -103,15 +103,15 @@ public class UserControllerTest {
     public void login_success() throws Exception {
         // 先註冊新帳號
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
-        userRegisterRequest.setAccount("test3");
-        userRegisterRequest.setMemberPassword("123");
+        userRegisterRequest.setUsername("test3");
+        userRegisterRequest.setUserPassword("123");
 
         register(userRegisterRequest);
 
         // 再測試登入功能
         UserLoginRequest userLoginRequest = new UserLoginRequest();
-        userLoginRequest.setAccount(userRegisterRequest.getAccount());
-        userLoginRequest.setMemberPassword(userRegisterRequest.getMemberPassword());
+        userLoginRequest.setUsername(userRegisterRequest.getUsername());
+        userLoginRequest.setUserPassword(userRegisterRequest.getUserPassword());
 
         String json = objectMapper.writeValueAsString(userRegisterRequest);
 
@@ -123,7 +123,7 @@ public class UserControllerTest {
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.userId", notNullValue()))
-                .andExpect(jsonPath("$.account", equalTo(userRegisterRequest.getAccount())))
+                .andExpect(jsonPath("$.username", equalTo(userRegisterRequest.getUsername())))
                 .andExpect(jsonPath("$.roles", equalTo("一般帳號")))
                 .andExpect(jsonPath("$.createdDate", notNullValue()))
                 .andExpect(jsonPath("$.lastModifiedDate", notNullValue()));
@@ -133,15 +133,15 @@ public class UserControllerTest {
     public void login_wrongPassword() throws Exception {
         // 先註冊新帳號
         UserRegisterRequest userRegisterRequest = new UserRegisterRequest();
-        userRegisterRequest.setAccount("test4");
-        userRegisterRequest.setMemberPassword("123");
+        userRegisterRequest.setUsername("test4");
+        userRegisterRequest.setUserPassword("123");
 
         register(userRegisterRequest);
 
         // 測試密碼輸入錯誤的情況
         UserLoginRequest userLoginRequest = new UserLoginRequest();
-        userLoginRequest.setAccount(userRegisterRequest.getAccount());
-        userLoginRequest.setMemberPassword("unknown");
+        userLoginRequest.setUsername(userRegisterRequest.getUsername());
+        userLoginRequest.setUserPassword("unknown");
 
         String json = objectMapper.writeValueAsString(userLoginRequest);
 
@@ -155,10 +155,10 @@ public class UserControllerTest {
     }
 
     @Test
-    public void login_invalidAccountFormat() throws Exception {
+    public void login_invalidUsernameFormat() throws Exception {
         UserLoginRequest userLoginRequest = new UserLoginRequest();
-        userLoginRequest.setAccount("hkbudsr324");
-        userLoginRequest.setMemberPassword("123");
+        userLoginRequest.setUsername("hkbudsr324");
+        userLoginRequest.setUserPassword("123");
 
         String json = objectMapper.writeValueAsString(userLoginRequest);
 
@@ -172,10 +172,10 @@ public class UserControllerTest {
     }
 
     @Test
-    public void login_accountNotExist() throws Exception {
+    public void login_usernameNotExist() throws Exception {
         UserLoginRequest userLoginRequest = new UserLoginRequest();
-        userLoginRequest.setAccount("unknown");
-        userLoginRequest.setMemberPassword("123");
+        userLoginRequest.setUsername("unknown");
+        userLoginRequest.setUserPassword("123");
 
         String json = objectMapper.writeValueAsString(userLoginRequest);
 

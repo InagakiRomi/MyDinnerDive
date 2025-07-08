@@ -1,5 +1,5 @@
 import {
-    getAccount,
+    getUsername,
     getPassword,
     getHeaders
 } from './modules/memberDataBuilder.js';
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function (){
 function memberRegister(){
     //轉成json格式
     var memberJson = {
-        ...getAccount(),
+        ...getUsername(),
         ...getPassword()
     }
 
