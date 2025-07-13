@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import com.romi.my_dinnerdive.dto.RestaurantRequest;
+import com.romi.my_dinnerdive.dto.RestaurantResponse;
 import com.romi.my_dinnerdive.dto.RestaurantQueryParams;
 import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
@@ -56,7 +57,7 @@ public class RestaurantController {
      * @return 回傳包含分頁資訊與餐廳資料的 Page 物件
      */
     @GetMapping("/restaurants")
-    public ResponseEntity<Page<Restaurant>> getRestaurants(
+    public ResponseEntity<Page<RestaurantResponse>> getRestaurants(
             // 查詢條件        
             @RequestParam(required = false) RestaurantCategory category,
             @RequestParam(required = false) String search,
@@ -83,12 +84,17 @@ public class RestaurantController {
         // 取得 restaurant 總數
         Integer total = restaurantService.countRestaurant(restaurantQueryParams);
 
+        // 將 Restaurant 轉成 RestaurantResponse
+        List<RestaurantResponse> responseList = restaurantList.stream()
+                .map(RestaurantResponse::new)
+                .toList();
+
         // 分頁
-        Page<Restaurant> page = new Page<>();
+        Page<RestaurantResponse> page = new Page<>();
         page.setLimit(limit);
         page.setOffset(offset);
         page.setTotal(total);
-        page.setResults(restaurantList);
+        page.setResults(responseList);
 
         return ResponseEntity.status(HttpStatus.OK).body(page);
     }
@@ -164,10 +170,11 @@ public class RestaurantController {
      * 抽選一筆隨機餐廳
      */
     @GetMapping("/random")
-    public Restaurant getRandomRestaurant(@RequestParam(required = false) RestaurantCategory category) {
+    public ResponseEntity<RestaurantResponse> getRandomRestaurant(@RequestParam(required = false) RestaurantCategory category) {
         RestaurantQueryParams params = new RestaurantQueryParams();
         params.setCategory(category);
-        return restaurantService.getRandomRestaurant(params);
+        Restaurant random = restaurantService.getRandomRestaurant(params);
+        return ResponseEntity.ok(new RestaurantResponse(random));
     }
 
     /**

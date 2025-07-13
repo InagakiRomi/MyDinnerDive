@@ -40,7 +40,7 @@ public class RestaurantControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.restaurantName", equalTo("今天吃兩藍")))
-                .andExpect(jsonPath("$.category", equalTo("主食")))
+                .andExpect(jsonPath("$.category", equalTo("MAIN")))
                 .andExpect(jsonPath("$.imageUrl", notNullValue()))
                 .andExpect(jsonPath("$.visitedCount", notNullValue()))
                 .andExpect(jsonPath("$.lastSelectedAt", notNullValue()))
@@ -62,7 +62,7 @@ public class RestaurantControllerTest {
     void createRestaurant_success() throws Exception{
         RestaurantRequest restaurantRequest = new RestaurantRequest();
         restaurantRequest.setRestaurantName("都不NONO");
-        restaurantRequest.setCategory(RestaurantCategory.飲料);
+        restaurantRequest.setCategory(RestaurantCategory.DRINK);
         restaurantRequest.setImageUrl("http://test.com");
         restaurantRequest.setNote("布丁五姊妹好喝");
 
@@ -76,7 +76,7 @@ public class RestaurantControllerTest {
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(201))
                 .andExpect(jsonPath("$.restaurantName", equalTo("都不NONO")))
-                .andExpect(jsonPath("$.category", equalTo("飲料")))
+                .andExpect(jsonPath("$.category", equalTo("DRINK")))
                 .andExpect(jsonPath("$.imageUrl", equalTo("http://test.com")))
                 .andExpect(jsonPath("$.visitedCount", equalTo(0)))
 	        .andExpect(jsonPath("$.lastSelectedAt", nullValue()))
@@ -90,7 +90,7 @@ public class RestaurantControllerTest {
     void updateRestaurant_success() throws Exception{
         RestaurantRequest restaurantRequest = new RestaurantRequest();
         restaurantRequest.setRestaurantName("好棒棒喔");
-        restaurantRequest.setCategory(RestaurantCategory.輕食);
+        restaurantRequest.setCategory(RestaurantCategory.SNACK);
         restaurantRequest.setImageUrl("http://test.food");
         restaurantRequest.setVisitedCount(6);
         restaurantRequest.setNote("肌肉猛男開的專賣店");
@@ -105,7 +105,7 @@ public class RestaurantControllerTest {
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.restaurantName", equalTo("好棒棒喔")))
-                .andExpect(jsonPath("$.category", equalTo("輕食")))
+                .andExpect(jsonPath("$.category", equalTo("SNACK")))
                 .andExpect(jsonPath("$.imageUrl", equalTo("http://test.food")))
                 .andExpect(jsonPath("$.visitedCount", equalTo(6)))
 	        .andExpect(jsonPath("$.lastSelectedAt", nullValue()))
@@ -118,7 +118,7 @@ public class RestaurantControllerTest {
     public void updateProduct_productNotFound() throws Exception {
         RestaurantRequest restaurantRequest = new RestaurantRequest();
         restaurantRequest.setRestaurantName("好棒棒喔");
-        restaurantRequest.setCategory(RestaurantCategory.輕食);
+        restaurantRequest.setCategory(RestaurantCategory.SNACK);
         restaurantRequest.setImageUrl("http://test.food");
         restaurantRequest.setVisitedCount(6);
         restaurantRequest.setNote("肌肉猛男開的專賣店");
@@ -175,7 +175,7 @@ public class RestaurantControllerTest {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get("/restaurants")
                 .param("search", "奶")
-                .param("category", "飲料");
+                .param("category", "DRINK");
 
         mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
@@ -229,7 +229,7 @@ public class RestaurantControllerTest {
     void chooseRestaurant_success() throws Exception{
         RestaurantRequest restaurantRequest = new RestaurantRequest();
         restaurantRequest.setRestaurantName("乾乾拌拌");
-        restaurantRequest.setCategory(RestaurantCategory.主食);
+        restaurantRequest.setCategory(RestaurantCategory.MAIN);
         restaurantRequest.setImageUrl("https://cdn.pixabay.com/photo/2020/03/31/01/56/fried-rice-4985989_1280.jpg");
         restaurantRequest.setVisitedCount(0);
         restaurantRequest.setNote("服務態度比飯好");
@@ -244,7 +244,7 @@ public class RestaurantControllerTest {
         mockMvc.perform(requestBuilder)
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$.restaurantName", equalTo("乾乾拌拌")))
-                .andExpect(jsonPath("$.category", equalTo("主食")))
+                .andExpect(jsonPath("$.category", equalTo("MAIN")))
                 .andExpect(jsonPath("$.imageUrl", equalTo("https://cdn.pixabay.com/photo/2020/03/31/01/56/fried-rice-4985989_1280.jpg")))
                 .andExpect(jsonPath("$.visitedCount", equalTo(1)))
 	        .andExpect(jsonPath("$.lastSelectedAt", notNullValue()))

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.romi.my_dinnerdive.constant.RestaurantCategory;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * 請求資料模型：RestaurantRequest
@@ -16,13 +16,13 @@ public class RestaurantRequest {
     /**
      * 餐廳名稱，不可為空。
      */
-    @NotNull
+    @NotBlank
     private String restaurantName;
 
     /**
      * 餐廳類別（列舉型態），不可為空。
      */
-    @NotNull
+    @NotBlank
     private RestaurantCategory category;
 
     /**
