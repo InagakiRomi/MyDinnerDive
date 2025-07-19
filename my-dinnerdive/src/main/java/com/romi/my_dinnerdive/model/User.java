@@ -1,24 +1,15 @@
 package com.romi.my_dinnerdive.model;
 
-import jakarta.persistence.*;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.romi.my_dinnerdive.constant.UserCategory;
 
-@Entity
-@Table(name = "users")
 public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-
-    @Column(nullable = false, unique = true)
     private String username;
 
     @JsonIgnore
-    @Column(name = "user_password", nullable = false)
     private String userPassword;
 
     private UserCategory roles;

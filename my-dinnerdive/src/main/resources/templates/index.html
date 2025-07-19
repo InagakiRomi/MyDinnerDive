@@ -12,6 +12,18 @@
     <h1 style="text-align: center;">Dinner Dive</h1>
     <div class="formContainer">
         <h1>會員登入</h1>
+        <!-- <form id="loginForm">
+            <label for="username">帳號：</label>
+            <input type="text" id="username" placeholder="只能輸入英文和數字" maxlength="256" pattern="^[a-zA-Z0-9]*$" required>
+
+            <label for="userPassword">密碼：</label>
+            <input type="password" id="userPassword" placeholder="只能輸入英文和數字和特殊符號" maxlength="256" required oninput="this.value = this.value.replace(/[^a-zA-Z0-9!@#$%^&*()_+\-=\\[\]{};':&quot;\\|,.&lt;&gt;\/?`~]/g, '')"/>
+            </select>
+
+            <button type="submit" class="functionBtn">登入</button>
+            <button type="button" class="functionBtn" onclick="window.location.href='/dinnerHome/memberRegister'">還沒有帳號？前往註冊</button>
+            <button type="button" class="quickLoginBtn" onclick="window.location.href='/dinnerHome/randomRestaurant'">快速登入</button>
+        </form> -->
         <form th:action="@{/login}" method="post">
             <div>
                 <label for="username">帳號：</label>
