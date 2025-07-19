@@ -18,7 +18,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/dinnerHome").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/images/**", "/dinnerHome", "/dinnerHome/memberRegister").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login
@@ -38,13 +38,13 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         // 建立兩個用戶，有不同的權限
-        UserDetails admin = User.withUsername("admin")
-            .password("{noop}1234") // {noop} 表示不加密密碼
+        UserDetails admin = User.withUsername("SS")
+            .password("{noop}123")
             .roles("ADMIN")
             .build();
 
-        UserDetails user = User.withUsername("user")
-            .password("{noop}1234")
+        UserDetails user = User.withUsername("123")
+            .password("{noop}123")
             .roles("USER")
             .build();
 
