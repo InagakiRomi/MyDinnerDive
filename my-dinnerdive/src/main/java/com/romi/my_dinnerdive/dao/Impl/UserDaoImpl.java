@@ -59,24 +59,27 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public Integer createUser(UserRegisterRequest userRegisterRequest) {
-    String sql = "INSERT INTO users (username, user_password, roles, created_date, last_modified_date) " +
-                 "VALUES (:username, :userPassword, :roles, :createdDate, :lastModifiedDate)";
+        String sql = "INSERT INTO users (username, user_password, roles, created_date, last_modified_date) " +
+                    "VALUES (:username, :userPassword, :roles, :createdDate, :lastModifiedDate)";
 
-    Map<String, Object> map = new HashMap<>();
-    map.put("username", userRegisterRequest.getUsername());
-    map.put("userPassword", userRegisterRequest.getUserPassword());
-    map.put("roles", userRegisterRequest.getRoles().name());
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", userRegisterRequest.getUsername());
+        map.put("userPassword", userRegisterRequest.getUserPassword());
+        map.put("roles", userRegisterRequest.getRoles().name());
 
-    Date now = new Date();
-    map.put("createdDate", now);
-    map.put("lastModifiedDate", now);
+        Date now = new Date();
+        map.put("createdDate", now);
+        map.put("lastModifiedDate", now);
 
-    KeyHolder keyHolder = new GeneratedKeyHolder();
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
-    namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
+        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
 
-    int userId = keyHolder.getKey().intValue();
-
-    return userId;
+        Number key = keyHolder.getKey();
+        if (key != null) {
+            return key.intValue();
+        } else {
+            throw new IllegalStateException("無法取得自動產生的 user_id");
+        }
     }
 }
