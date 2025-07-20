@@ -1,14 +1,8 @@
 package com.romi.my_dinnerdive.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +14,6 @@ import com.romi.my_dinnerdive.dto.UserRegisterRequest;
 import com.romi.my_dinnerdive.model.User;
 import com.romi.my_dinnerdive.service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 /**
@@ -62,22 +54,8 @@ public class UserController {
      * @return 若登入成功，回傳使用者資料與 HTTP 200；否則回傳 HTTP 400。
      */
     @PostMapping("/users/login")
-    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest,
-                                    HttpServletRequest request) {
-        User user = userService.login(userLoginRequest); // 驗證帳密
-
-        // 建立 Spring Security 的認證對象
-        UsernamePasswordAuthenticationToken authToken =
-            new UsernamePasswordAuthenticationToken(user.getUsername(), null,
-                List.of(new SimpleGrantedAuthority("ROLE_" + user.getRoles().name())));
-
-        // 把使用者登入狀態寫入 Spring Security Context
-        SecurityContextHolder.getContext().setAuthentication(authToken);
-
-        // 把 context 寫入 session，否則不會被記住
-        HttpSession session = request.getSession(true); // 建立 session（若無）
-        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
-                            SecurityContextHolder.getContext());
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
+        User user = userService.login(userLoginRequest);
 
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
