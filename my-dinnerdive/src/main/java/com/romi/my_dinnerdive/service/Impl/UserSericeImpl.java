@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.romi.my_dinnerdive.dao.UserDao;
@@ -25,6 +25,9 @@ public class UserSericeImpl implements UserService{
 
     @Autowired
     private LoggingDemo loggingDemo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     
     @Override
     public User getUserById(Integer userId){
@@ -41,11 +44,11 @@ public class UserSericeImpl implements UserService{
         
         if(user != null){
             logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 已經被註冊", userRegisterRequest.getUsername()));
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
 
-        //使用 MD5 生成密碼的雜湊值
-        String hashedPassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getUserPassword().getBytes());
+        // 密碼加密
+        String hashedPassword = passwordEncoder.encode(userRegisterRequest.getUserPassword());
         userRegisterRequest.setUserPassword(hashedPassword);
 
         // 創建帳號
@@ -64,11 +67,8 @@ public class UserSericeImpl implements UserService{
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
   
-        //使用 MD5 生成密碼的雜湊值
-        String hashedPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getUserPassword().getBytes());
-
-        //比較密碼
-        if(user.getUserPassword().equals(hashedPassword)){
+        // 使用 BCrypt 驗證密碼
+        if (passwordEncoder.matches(userLoginRequest.getUserPassword(), user.getUserPassword())) {
             return user;
         }else{
             logger.log(Level.WARNING, MessageFormat.format("帳號 {0} 的密碼不正確", userLoginRequest.getUsername()));
