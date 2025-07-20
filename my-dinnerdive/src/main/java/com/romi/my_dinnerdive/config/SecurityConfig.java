@@ -27,7 +27,7 @@ public class SecurityConfig {
             )
             .formLogin(login -> login
                 .loginPage("/dinnerHome")
-                .loginProcessingUrl("/login")
+                .loginProcessingUrl("/users/login")
                 .defaultSuccessUrl("/dinnerHome/randomRestaurant", true)
                 .permitAll()
             )
@@ -42,7 +42,9 @@ public class SecurityConfig {
                     response.setContentType("application/json");
                     response.getWriter().write("{\"error\": \"Unauthorized\"}");
                 })
-            );
+            )
+            .formLogin(form -> form.disable());
+            
         return http.build();
     }
 
