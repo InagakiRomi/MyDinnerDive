@@ -9,8 +9,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.romi.my_dinnerdive.service.Impl.UserDetailsServiceImpl;
 
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -78,16 +76,6 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/dinnerHome?logout")
                 // 允許所有使用者執行登出
                 .permitAll()
-            )
-
-            // 錯誤處理（例如未授權時的處理方式）
-            .exceptionHandling(ex -> ex
-                // 設定未授權時的回應邏輯
-                .authenticationEntryPoint((request, response, authException) -> {
-                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 回傳 401
-                    response.setContentType("application/json"); // 設定回應為 JSON 格式
-                    response.getWriter().write("{\"error\": \"Unauthorized\"}"); // 回應訊息
-                })
             );
 
         // 回傳組建完成的 SecurityFilterChain
