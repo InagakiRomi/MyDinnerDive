@@ -30,6 +30,15 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/dinnerHome", "/dinnerHome/memberRegister").permitAll()
                 .requestMatchers(HttpMethod.POST, "/users/register", "/users/login").permitAll()
+                .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/**").permitAll()
+
+                // API權限全開
+                // .requestMatchers(HttpMethod.DELETE, "/**").permitAll()
+                // .requestMatchers(HttpMethod.DELETE, "/**").permitAll()
+                // .requestMatchers(HttpMethod.PUT, "/**").permitAll()
+                // .requestMatchers(HttpMethod.PATCH, "/**").permitAll()
+
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login
