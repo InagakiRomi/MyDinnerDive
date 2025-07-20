@@ -44,7 +44,7 @@ public class UserSericeImpl implements UserService{
         
         if(user != null){
             logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 已經被註冊", userRegisterRequest.getUsername()));
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
 
         // 密碼加密
