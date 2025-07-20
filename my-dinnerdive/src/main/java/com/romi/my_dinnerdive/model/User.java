@@ -7,28 +7,31 @@ import com.romi.my_dinnerdive.constant.UserCategory;
 
 import jakarta.persistence.*;
 
+/**
+ * User 實體類別對應到資料庫中的 users 資料表
+ */
 @Entity
-@Table(name = "users") // 資料表名稱叫 users
+@Table(name = "users") // 指定資料表名稱為 "users"
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 主鍵自動生成（MySQL 使用 AUTO_INCREMENT）
     private Integer userId;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true) // 帳號名稱不可為 null 且不可重複
     private String username;
 
-    @JsonIgnore
-    @Column(nullable = false)
+    @JsonIgnore // 不讓密碼被序列化到 JSON（保護資料安全）
+    @Column(nullable = false) // 密碼不可為 null
     private String userPassword;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // 枚舉以字串形式存入資料庫（例如：ADMIN, USER）
     private UserCategory roles;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP) // 儲存建立時間，使用 TIMESTAMP 格式
     private Date createdDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP) // 儲存最後修改時間，使用 TIMESTAMP 格式
     private Date lastModifiedDate;
 
     public Integer getUserId() {

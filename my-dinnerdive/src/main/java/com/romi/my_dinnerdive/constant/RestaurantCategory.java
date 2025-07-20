@@ -1,10 +1,7 @@
 package com.romi.my_dinnerdive.constant;
 
 /**
- * 枚舉類別：RestaurantCategory
- * 
- * 定義可接受的餐廳類別，作為系統中餐廳分類的標準。 
- * 此列舉有助於限制輸入值，確保資料一致性與類型安全。
+ * 餐廳分類列舉（用於餐廳分類）
  */
 public enum RestaurantCategory {
 
@@ -12,12 +9,17 @@ public enum RestaurantCategory {
     SNACK("輕食"),
     DRINK("飲料");
 
+    // 顯示名稱，對應中文標籤或 UI 呈現使用
     private final String displayName;
 
+    // 建構子：將顯示名稱傳入枚舉
     RestaurantCategory(String displayName) {
         this.displayName = displayName;
     }
 
+    /**
+     * 取得該餐廳的分類（例如：在前端顯示「主食」或「輕食」）
+     */
     public String getDisplayName() {
         return displayName;
     }
