@@ -1,4 +1,5 @@
 package com.romi.my_dinnerdive.config;
+import com.romi.my_dinnerdive.filter.AuthRedirectFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import com.romi.my_dinnerdive.service.Impl.UserDetailsServiceImpl;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Spring Security 的主要設定類別
@@ -24,12 +26,19 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
+    @Autowired
+    private AuthRedirectFilter authRedirectFilter;
+
     /**
      * 定義 Spring Security 的安全過濾器鏈 (Filter Chain)
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+        
+            // 加入自訂的登入後導向過濾器，位置放在 UsernamePasswordAuthenticationFilter 之前
+            .addFilterBefore(authRedirectFilter, UsernamePasswordAuthenticationFilter.class)
+
             // 設定使用自定義的 UserDetailsService
             .userDetailsService(userDetailsServiceImpl)
             
