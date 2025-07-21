@@ -5,11 +5,14 @@ package com.romi.my_dinnerdive.constant;
  */
 public enum UserCategory {
 
-    // 管理員角色
+    // 管理員帳號
     ADMIN("管理員"),
 
-    // 一般使用者角色
-    USER("一般帳號");
+    // 一般使用者帳號
+    USER("一般帳號"),
+
+     // 訪客帳號
+    GUEST("訪客");
 
     // 顯示名稱，對應中文標籤或 UI 呈現使用
     private final String displayName;
