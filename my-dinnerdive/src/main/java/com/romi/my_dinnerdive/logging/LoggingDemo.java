@@ -2,29 +2,16 @@ package com.romi.my_dinnerdive.logging;
 
 import java.util.logging.Logger;
 
-/**
- * LoggingDemo 類別用於顯示log的相關訊息。
- */
+/** 顯示log的相關訊息 */
 public interface LoggingDemo {
     
-    /**
-     * 打印執行應用程式log。
-     */
+    /** 剛啟動時用的 logger */
     Logger printMainLog();
 
-    /**
-     * 打印啟動時撈資料庫的log。
-     */
-    Logger printDataSourceConfig();
-
-    /**
-     * 打印隨機抽取餐廳的log。
-     */
+    /** 提供隨機餐廳邏輯用的 logger */
     Logger printRandomRestaurantLog();
 
     
-    /**
-     * 帳號相關的log。
-     */
+    /** 提供帳號相關邏輯用的 logger */
     public Logger printUserLog();
 }

@@ -14,12 +14,6 @@ public class LoggingDemoImpl implements LoggingDemo{
         LoggerSettings(logger);
         return logger;
     }
-        
-    public Logger printDataSourceConfig() {
-        Logger logger = Logger.getLogger("DataSourceConfig");
-        LoggerSettings(logger);
-        return logger;
-    }
 
     public Logger printRandomRestaurantLog() {
         Logger logger = Logger.getLogger("RandomRestaurant");
@@ -34,21 +28,31 @@ public class LoggingDemoImpl implements LoggingDemo{
     }
 
     /**
-     * logger 共用設定方法。
-     * 這個方法會檢查 logger 是否已經有 handler，如果沒有，則設定一個 ConsoleHandler 並設置其等級為 ALL。
-     * 這樣可以避免重複添加 handler，並確保所有 log 都能被輸出到控制台。
-     * @param logger 要設定的 Logger 物件
+     * 共用 logger 設定方法，若該 logger 尚未設定 handler，則：
+     * <p>
+     * 1. 關閉預設父處理器，避免重複輸出
+     * <p>
+     * 2. 設定等級為 Level.ALL（顯示所有等級的 log）
+     * <p>
+     * 3. 加入 ConsoleHandler 並套用自定 formatter（MyCustomFormatter）
+     * 
+     * @param logger 要初始化設定的 Logger 物件
      */
     private void LoggerSettings(Logger logger) {
         if (logger.getHandlers().length == 0){
-            logger.setUseParentHandlers(false); //避免重複Log
+            // 避免重複輸出
+            logger.setUseParentHandlers(false);
+            // 顯示所有等級的 log
             logger.setLevel(Level.ALL);
 
             ConsoleHandler consoleHandler = new ConsoleHandler();
+            // handler 也設為 ALL
             consoleHandler.setLevel(Level.ALL);
 
+            // 套用自定格式
             consoleHandler.setFormatter(new MyCustomFormatter());
 
+            // 將處理器加進 logger
             logger.addHandler(consoleHandler);
         }
     }
