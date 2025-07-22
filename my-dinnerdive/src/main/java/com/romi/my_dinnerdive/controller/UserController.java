@@ -16,47 +16,56 @@ import com.romi.my_dinnerdive.service.UserService;
 
 import jakarta.validation.Valid;
 
-/**
- * 控制器類別：UserController
- * 
- * 提供與使用者相關的 RESTful API，包含註冊新使用者的功能。
- */
+/** 提供與使用者帳號相關的 API，包括註冊與登入功能 */
 @RestController
 public class UserController {
-    
+
+    // 注入 UserService，負責帳號邏輯處理（如註冊、驗證）
     @Autowired
     private UserService userService;
 
     /**
-     * 註冊新使用者。
+     * 註冊新使用者帳號
      *
-     * @param userRegisterRequest 包含使用者註冊資訊的請求物件
-     * @return 若註冊成功，回傳新使用者資料與 HTTP 201；否則回傳 HTTP 400。
+     * @param userRegisterRequest ：前端傳入的註冊資料（包含帳號、密碼、信箱等），會先進行格式驗證
+     * @param roles ：使用者角色，預設為 USER（如果前端未指定）
+     * @return 註冊成功時回傳使用者資料與 HTTP 201 Created；失敗時回傳 HTTP 400 Bad Request（由 Service 處理例外）
      */
     @PostMapping("/users/register")
-    public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest,
-                                         @RequestParam(defaultValue = "USER") UserCategory roles){
+    public ResponseEntity<User> register(
+            // 接收註冊表單資料 
+            @RequestBody @Valid UserRegisterRequest userRegisterRequest,
+            // 角色預設為 USER
+            @RequestParam(defaultValue = "USER") UserCategory roles){
         
+        // 如果前端沒傳角色，手動指定為 USER
         if (userRegisterRequest.getRoles() == null) {
         userRegisterRequest.setRoles(roles);
         }
 
+        // 呼叫 service 建立帳號，回傳新帳號的 userId
         Integer userId = userService.register(userRegisterRequest);
+
+        // 根據 ID 查詢該使用者資料
         User user = userService.getUserById(userId);
 
+        // 回傳使用者資料與 HTTP 201 Created
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     /**
-     * 使用者登入。
+     * 使用者登入
      *
-     * @param userLoginRequest 包含使用者登入資訊的請求物件
-     * @return 若登入成功，回傳使用者資料與 HTTP 200；否則回傳 HTTP 400。
+     * @param userLoginRequest ：前端傳入的登入資料（帳號與密碼），已加上格式驗證
+     * @return 登入成功時回傳使用者資料與 HTTP 200 OK；失敗時由 Service 拋出例外並處理為 400
      */
     @PostMapping("/users/login")
     public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
+
+        // 呼叫 service 執行帳號密碼驗證，成功會回傳使用者資料
         User user = userService.login(userLoginRequest);
 
+        // 回傳登入成功的使用者資料與 HTTP 200 OK
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 }
