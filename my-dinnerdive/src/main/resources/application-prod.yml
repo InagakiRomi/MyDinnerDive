@@ -1,11 +1,19 @@
 spring:
+  # 資料庫設定
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/dinner?serverTimezone=Asia/Taipei&characterEncoding=utf-8
     username: root
     password: 12345678
 
+  # SQL 初始化設定（預設不自動執行 schema.sql 或 data.sql）
   sql:
     init:
-      mode: never
-      encoding: UTF-8
+      mode: never         # never = 不執行初始化腳本
+      encoding: UTF-8     # 指定腳本編碼格式
+
+# Spring Security 權限控制開關
+# true：所有 API 不需驗證，通常用於本地測試階段
+# false：啟用權限驗證（用於正式環境）
+security:
+  permit-all: false

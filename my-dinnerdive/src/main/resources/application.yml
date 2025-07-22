@@ -1,7 +1,10 @@
 spring:
   profiles:
-    active: dev # 使用MySQL資料庫用「prod」； 使用H2資料庫用「dev」
+    # 啟用的執行環境設定：使用 MySQL 時請設為 "prod"，使用 H2 則設為 "dev"
+    active: dev
 
   jackson:
-    time-zone: GMT+8
+    # JSON 時間格式設定
     date-format: yyyy-MM-dd HH:mm
+    # 時區設定（GMT+8 為台灣時間）
+    time-zone: GMT+8

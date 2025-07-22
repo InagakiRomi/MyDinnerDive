@@ -1,17 +1,26 @@
 spring:
+  # 資料庫設定（使用 H2 記憶體資料庫）
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: sa
     password:
 
+  # 啟用 H2 Console（可在瀏覽器用 /h2-console 存取）
   h2:
     console:
       enabled: true
 
+  # SQL 初始化設定（啟動時自動執行 schema.sql 和 data.sql）
   sql:
     init:
-      mode: always
-      encoding: UTF-8
+      mode: always                      # 啟動時總是執行初始化腳本
+      encoding: UTF-8                   # 腳本編碼格式
       schema-locations: classpath:schema.sql
       data-locations: classpath:data.sql
+
+# Spring Security 權限控制開關
+# true：所有 API 不需驗證，通常用於本地測試階段
+# false：啟用權限驗證（用於正式環境）
+security:
+  permit-all: true
