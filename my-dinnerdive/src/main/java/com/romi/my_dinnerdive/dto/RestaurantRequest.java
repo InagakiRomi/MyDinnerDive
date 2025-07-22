@@ -7,48 +7,30 @@ import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-/**
- * 請求資料模型：RestaurantRequest
- * 
- * 用於接收前端送出的 JSON 請求資料，作為建立餐廳資訊的輸入物件。
- */
+/** 用於接收前端傳送過來的 JSON 資料，新增或修改餐廳時使用 */
 public class RestaurantRequest {
 
-    /**
-     * 餐廳名稱，不可為空。
-     */
+    /** 餐廳名稱，不可為空 */
     @NotBlank
     private String restaurantName;
 
-    /**
-     * 餐廳類別（列舉型態），不可為空。
-     */
+    /** 餐廳分類 */
     @NotNull
     private RestaurantCategory category;
 
-    /**
-     * 餐廳圖片 URL，可為空。
-     */
+    /** 餐廳圖片URL */
     private String imageUrl;
 
-    /**
-     * 選擇次數，可為空。
-     */
+    /** 選擇次數 */
     private Integer visitedCount;
 
-    /**
-     * 最後一次選擇時間，可為空。
-     */
+    /** 最後一次選擇時間 */
     private Date lastSelectedAt;
 
-    /**
-     * 最後一次更新時間，可為空。
-     */
+    /** 最後一次更新時間 */
     private Date updatedAt;
 
-    /**
-     * 備註欄，可為空。
-     */
+    /** 備註欄 */
     private String note;
 
     public String getRestaurantName() {

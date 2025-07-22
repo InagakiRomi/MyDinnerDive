@@ -5,28 +5,19 @@ import com.romi.my_dinnerdive.constant.UserCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-/**
- * 用戶註冊請求資料傳輸物件（DTO）
- * 此類別用來接收前端傳來的註冊資訊
- */
+/** 用來接收前端送出的註冊資訊，包含帳號、密碼與使用者角色，會在進入 Controller 前進行格式驗證 */
 public class UserRegisterRequest {
     
-    /**
-     * 使用者帳號（只能包含英文字母與數字，不能為 null）
-     */
+    /** 使用者帳號 */
     @NotBlank
     @Pattern(regexp = "^[A-Za-z0-9]+$", message = "帳號只能包含英文與數字")
     private String username;
 
-    /**
-     * 使用者密碼（不能為 null）
-     */
+    /** 使用者密碼 */
     @NotBlank
     private String userPassword;
 
-    /**
-     * 使用者權限類型
-     */
+    /** 使用者角色 */
     private UserCategory roles;
 
     public String getUsername() {
