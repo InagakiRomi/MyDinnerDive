@@ -1,30 +1,22 @@
 package com.romi.my_dinnerdive.constant;
 
-/**
- * 使用者分類列舉（用於設定角色權限）
- */
+/** 定義帳號有哪些使用者，用於設定角色權限 */
 public enum UserCategory {
 
-    // 管理員帳號
+    // 帳號分類，每個括號裡的是「對外顯示的中文名稱」
     ADMIN("管理員"),
-
-    // 一般使用者帳號
-    USER("一般帳號"),
-
-     // 訪客帳號
+    USER("一般使用者"),
     GUEST("訪客");
 
-    // 顯示名稱，對應中文標籤或 UI 呈現使用
+    // 用來存放「對外顯示的分類名稱」的變數，例如「管理員」
     private final String displayName;
 
-    // 建構子：將顯示名稱傳入枚舉
+    // 建構子：當 enum 被建立時，會把 displayName 的值設定進來
     UserCategory(String displayName) {
         this.displayName = displayName;
     }
 
-    /**
-     * 取得該角色的顯示名稱（例如：在前端顯示「管理員」或「一般帳號」）
-     */
+    /** 取得分類的中文名稱 */
     public String getDisplayName() {
         return displayName;
     }

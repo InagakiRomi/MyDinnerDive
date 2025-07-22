@@ -1,25 +1,22 @@
 package com.romi.my_dinnerdive.constant;
 
-/**
- * 餐廳分類列舉（用於餐廳分類）
- */
+/** 定義餐廳有哪些分類 */
 public enum RestaurantCategory {
 
+    // 餐廳分類，每個括號裡的是「對外顯示的中文名稱」
     MAIN("主食"),
     SNACK("輕食"),
     DRINK("飲料");
 
-    // 顯示名稱，對應中文標籤或 UI 呈現使用
+    // 用來存放「對外顯示的分類名稱」的變數，例如「主食」
     private final String displayName;
 
-    // 建構子：將顯示名稱傳入枚舉
+    // 建構子：當 enum 被建立時，會把 displayName 的值設定進來
     RestaurantCategory(String displayName) {
         this.displayName = displayName;
     }
 
-    /**
-     * 取得該餐廳的分類（例如：在前端顯示「主食」或「輕食」）
-     */
+    /** 取得分類的中文名稱 */
     public String getDisplayName() {
         return displayName;
     }

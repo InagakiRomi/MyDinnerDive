@@ -15,47 +15,47 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/** Spring Security 的主要設定類別，設定 API 權限、登入登出、密碼加密與自定過濾器等 */
+/** 設定網站的登入、登出、哪些頁面要登入才能看等功能 */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // 自定義的使用者驗證服務（查詢使用者帳密與角色）
+    // 用來查資料庫裡使用者帳號密碼的自訂服務
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
-    // 自定義登入後導向過濾器
+    // 判斷登入後要不要自動跳轉頁面
     @Autowired
     private AuthRedirectFilter authRedirectFilter;
 
-    // 是否允許所有 API 無需驗證（從 application-dev.yml 讀取）
+    // 變數會從 application-dev.yml 中讀取，決定是不是全部 API 都開放不用登入
     @Value("${security.permit-all:false}")
     private boolean permitAll;
 
-    /** 定義 Spring Security 的安全過濾器鏈 (SecurityFilterChain) */
+    /** 設定網站的安全規則，例如哪些網頁需要登入、要去哪裡登入等等 */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
         
-            // 加入自訂的過濾器，放在 UsernamePasswordAuthenticationFilter 前
+            // 加入登入跳轉規則，插在 Spring 原本處理登入的流程前面
             .addFilterBefore(authRedirectFilter, UsernamePasswordAuthenticationFilter.class)
 
-            // 使用自定義的使用者驗證服務
+            // 告訴 Spring 登入用自訂的查帳號密碼邏輯
             .userDetailsService(userDetailsServiceImpl)
             
-            // 關閉 CSRF 保護（通常前後端分離或 REST API 會關）
+            // 關掉 CSRF 功能
             .csrf(csrf -> csrf.disable())
 
-            // 設定各種路徑的授權規則
+            // 設定路徑的授權規則
             .authorizeHttpRequests(auth -> {auth
 
                 // 靜態資源與登入頁面、註冊頁面允許所有人訪問
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/dinnerHome", "/dinnerHome/memberRegister").permitAll()
 
-                // 註冊 API 允許所有人 POST 存取
+                // 註冊 API 允許所有人存取
                 .requestMatchers(HttpMethod.POST, "/users/register").permitAll();
 
-                // 若設定為開放全部 API 權限，則所有請求皆允許
+                // 如果設定成全部開放，就不需要登入
                 if (permitAll) {
                     auth
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()
@@ -65,17 +65,17 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/**").permitAll();
                 }
 
-                // 其餘所有請求皆需驗證登入
+                // 除了上面允許的，其他網址都需要登入才可以用
                 auth.anyRequest().authenticated();
             })
 
-            // 登入相關設定
+            // 設定登入相關行為
             .formLogin(login -> login
-                // 登入頁面路徑（顯示登入表單）
+                // 登入時會顯示的頁面
                 .loginPage("/dinnerHome")
                 // 表單提交的處理 URL
                 .loginProcessingUrl("/login")
-                // 登入成功後重新導向的路徑（true = 每次都導向該頁）
+                // 登入成功後自動跳轉的頁面（true 表示每次都固定跳）
                 .defaultSuccessUrl("/dinnerHome/randomRestaurant", true)
                 // 允許所有人訪問登入頁
                 .permitAll()
@@ -85,18 +85,20 @@ public class SecurityConfig {
             .logout(logout -> logout
                 // 登出提交的 URL
                 .logoutUrl("/logout")
-                // 登出成功後導向的頁面
+                // 登出成功後要跳轉的頁面
                 .logoutSuccessUrl("/dinnerHome?logout")
                 // 允許所有人執行登出
                 .permitAll()
             );
 
+        // 最後把這些設定回傳給 Spring 使用
         return http.build();
     }
 
-    /** 密碼編碼器設定：使用 BCrypt 加密演算法來存儲密碼（避免明文存入 DB）*/
+    /** 設定密碼加密方式，避免明碼存入 DB */
     @Bean
     public PasswordEncoder passwordEncoder() {
+        // 使用 BCrypt 加密演算法來存儲密碼
         return new BCryptPasswordEncoder();
     }
 }
