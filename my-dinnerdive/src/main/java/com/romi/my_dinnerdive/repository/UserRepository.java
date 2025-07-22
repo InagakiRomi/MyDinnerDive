@@ -6,18 +6,25 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 /**
- * UserRepository 是操作 User 實體資料的資料存取層 (DAO)
- * 繼承 JpaRepository，可以使用內建的 CRUD 操作與分頁查詢功能
- *
- * 第一個型別參數：User -> 指定實體類別
- * 第二個型別參數：Long -> 指定主鍵欄位的型別（你的 User 主鍵是 Integer，但這裡用 Long 會導致型別不一致 ❗）
+ * 繼承 JpaRepository 提供以下功能：<p>
+ * - 基本 CRUD 操作（如 save, findById, deleteById）<p>
+ * - 分頁與排序（如 findAll(Sort)、findAll(Pageable)）<p>
+ * - 批次處理（如 saveAllAndFlush, deleteAllInBatch）<p>
+ * - 自動解析命名查詢（如 findByXxx, existsByXxx）
+ * <p>
+ * 泛型說明：
+ * - User：對應操作的實體類別<p>
+ * - Integer：User 的主鍵型別（對應 userId）
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     /**
-     * 根據使用者名稱查詢 User
-     * Spring Data JPA 會自動依照命名規則解析成 SQL：
-     * SELECT * FROM users WHERE username = ?
+     * 根據帳號查詢使用者（由 Spring Data JPA 自動轉成 SQL）
+     * <p>
+     * 對應查詢語句：SELECT * FROM users WHERE username = ?
+     *
+     * @param username 使用者帳號
+     * @return 查到的使用者（用 Optional 包裝，避免回傳 null）
      */
     Optional<User> findByUsername(String username);
 }

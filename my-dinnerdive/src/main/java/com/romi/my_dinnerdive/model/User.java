@@ -7,31 +7,35 @@ import com.romi.my_dinnerdive.constant.UserCategory;
 
 import jakarta.persistence.*;
 
-/**
- * User 實體類別對應到資料庫中的 users 資料表
- */
+/** 使用者資料模型（對應資料表 users），主要用於 DAO ↔ Service 間的資料傳遞，封裝一筆使用者的所有資料 */
 @Entity
-@Table(name = "users") // 指定資料表名稱為 "users"
+@Table(name = "users") // 對應資料表名稱
 public class User {
 
+    /** 帳號 ID */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 主鍵自動生成（MySQL 使用 AUTO_INCREMENT）
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    @Column(nullable = false, unique = true) // 帳號名稱不可為 null 且不可重複
+    /** 使用者帳號 */
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @JsonIgnore // 不讓密碼被序列化到 JSON（保護資料安全）
-    @Column(nullable = false) // 密碼不可為 null
+    /** 使用者密碼 */
+    @JsonIgnore
+    @Column(nullable = false)
     private String userPassword;
 
-    @Enumerated(EnumType.STRING) // 枚舉以字串形式存入資料庫（例如：ADMIN, USER）
+    /** 使用者角色 */
+    @Enumerated(EnumType.STRING)
     private UserCategory roles;
 
-    @Temporal(TemporalType.TIMESTAMP) // 儲存建立時間，使用 TIMESTAMP 格式
+    /** 帳號建立日期 */
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
-    @Temporal(TemporalType.TIMESTAMP) // 儲存最後修改時間，使用 TIMESTAMP 格式
+    /** 帳號資料更新日期 */
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
     public Integer getUserId() {
