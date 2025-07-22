@@ -10,38 +10,37 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * 全域例外處理類別
- * 使用 @RestControllerAdvice 可攔截全站 Controller 的例外，統一回應錯誤格式
- */
+/** 負責統一處理 API 發生的錯誤，回傳格式化過的錯誤訊息（JSON）*/
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     /**
-     * 處理 ResponseStatusException（例如：手動丟出錯誤狀態碼與訊息）
-     * 常見於 Controller 中主動拋出，例如：
-     *   throw new ResponseStatusException(HttpStatus.CONFLICT, "帳號已存在");
+     * 處理開發者主動拋出的錯誤（通常用於業務邏輯）
+     * <p>
+     * 用法範例：
+     *   throw new ResponseStatusException(HttpStatus.CONFLICT, "帳號已存在")
      *
-     * @param ex 拋出的 ResponseStatusException 物件
-     * @return 包含錯誤訊息的 JSON 回應，以及對應的 HTTP 狀態碼
+     * @param ex 包含 HTTP 狀態與錯誤訊息
+     * @return 回傳錯誤訊息 JSON，例如：{ "error": "帳號已存在" }
      */
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<Map<String, String>> handleResponseStatus(ResponseStatusException ex) {
         Map<String, String> error = new HashMap<>();
 
-        // 將例外原因（文字訊息）放入回應 JSON 中
+        // 把錯誤訊息加到回傳資料中
         error.put("error", ex.getReason());
 
-        // 回傳對應的 HTTP 狀態碼與錯誤訊息
+        // 設定 HTTP 狀態碼，回傳錯誤內容
         return ResponseEntity.status(ex.getStatusCode()).body(error);
     }
 
     /**
-     * 處理 @Valid / @Validated 驗證失敗的例外
-     * 例如：欄位為 null、格式不符、長度超過等
+     * 處理輸入驗證失敗（例如欄位為空、格式錯）
+     * <p>
+     * 搭配@Valid 使用時，欄位驗證不通過會進到這裡
      *
-     * @param ex 驗證失敗例外物件，包含所有欄位的錯誤資訊
-     * @return Map 格式，key 為欄位名稱，value 為錯誤訊息
+     * @param ex 驗證錯誤資訊，內含所有欄位的錯誤訊息
+     * @return 回傳欄位錯誤對應訊息，例如：{ "email": "不能為空" }
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
