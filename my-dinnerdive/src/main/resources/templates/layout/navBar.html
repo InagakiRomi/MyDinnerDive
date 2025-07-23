@@ -1,13 +1,27 @@
+<!-- 導覽列共用設定 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
+    <!-- 可在其他頁面中使用最上方的導覽列 -->
     <th:block th:fragment="sharedNavBar">
         <nav class="navBar">
+
+            <!-- 導覽列標題 -->
             <div class="logo">🍜 美食地圖</div>
+
+            <!-- 導覽選單項目 -->
             <ul class="navLinks">
+                 <!-- 導向首頁（隨機餐廳推薦） -->
                 <li><a href="/dinnerHome/randomRestaurant">首頁</a></li>
+                
+                <!-- 導向新增餐廳頁面 -->
                 <li><a href="/dinnerHome/createRestaurant">新增餐廳</a></li>
+
+                <!-- 餐廳清單 -->
                 <li><a href="/dinnerHome/listRestaurant">餐廳一覽</a></li>
+
+                <!-- 登出按鈕（POST 請求） -->
                 <li>
                     <form th:action="@{/logout}" method="post">
                         <button type="submit">登出</button>

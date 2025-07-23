@@ -1,50 +1,84 @@
+<!-- 修改餐廳資料頁面 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <!-- 引入共用的 head -->
     <option th:replace="~{layout/headTitle :: commonHeadTitle}"></option>
+    
+    <!-- 匯入按鈕樣式 -->
     <link rel="stylesheet" href="/css/components/buttonStyle.css">
+
+    <!-- 匯入導覽列樣式 -->
     <link rel="stylesheet" href="/css/layout/navBar.css">
+
+    <!-- 匯入表單通用樣式 -->
     <link rel="stylesheet" href="/css/forms/formCommon.css">
 </head>
+
 <body>
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
     <div class="formContainer">
         <h1>修改餐廳</h1>
+
+        <!-- 餐廳修改表單 -->
         <form id="updateForm">
+             <!-- 餐廳ID（隱藏欄位，用於識別要更新哪筆資料） -->
             <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
 
+            <!-- 餐廳名稱輸入 -->
             <label for="restaurantName">餐廳名稱：</label>
-                <input type="text" id="restaurantName" th:value="${restaurants.restaurantName}"  required maxlength="64" placeholder="最多可輸入64個字">
+            <input type="text" id="restaurantName"
+                   th:value="${restaurants.restaurantName}"
+                   required maxlength="64"
+                   placeholder="最多可輸入64個字">
             <br>
 
+            <!-- 餐廳類別選單 -->
             <label for="category">餐廳類別：</label>
             <select id="category" th:value="${restaurants.category}">
+                <!-- 引用共用的餐廳類別選項（主食/輕食/飲料） -->
                 <option th:replace="~{modules/categoryButton :: foodCategory}"></option>
             </select>
             <br>
 
+            <!-- 餐廳被選擇次數 -->
             <label for="visitedCount">選擇次數：</label>
-            <input type="number" id="visitedCount" th:value="${restaurants.visitedCount}" min="0" required>
+            <input type="number" id="visitedCount"
+                   th:value="${restaurants.visitedCount}"
+                   min="0" required>
             <br>
 
+            <!-- 最後選擇時間（不顯示在畫面上） -->
             <div style="display: none;">
                 <label for="lastSelectedAt">最後選擇時間：</label>
                 <input type="text" id="lastSelectedAt" th:value="${restaurants.lastSelectedAt}">
                 <br>
             </div>
 
+            <!-- 備註欄位 -->
             <label for="note">備註：</label>
-            <textarea id="note" th:text="${restaurants.note}" maxlength="512" placeholder="最多可輸入512個字"></textarea>
+            <textarea id="note"
+                      th:text="${restaurants.note}"
+                      maxlength="512"
+                      placeholder="最多可輸入512個字"></textarea>
             <br>
 
+            <!-- 餐廳圖片連結 -->
             <label for="imageUrl">圖片Url：</label>
-            <input type="url" id="imageUrl" th:value="${restaurants.imageUrl}" maxlength="256" placeholder="最多可輸入256個字">
+            <input type="url" id="imageUrl"
+                   th:value="${restaurants.imageUrl}"
+                   maxlength="256"
+                   placeholder="最多可輸入256個字">
             <br>
 
+            <!-- 提交按鈕 -->
             <button type="submit" class="functionBtn">儲存修改</button>
         </form>
     </div>
+
+    <!-- 處理修改餐廳邏輯 -->
     <script type="module" src="/js/updateRestaurant.js"></script>
 </body>
 </html>

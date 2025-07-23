@@ -1,28 +1,37 @@
+<!-- 餐廳一覽頁面 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- 引入共用 head 標題 -->
     <option th:replace="~{layout/headTitle :: commonHeadTitle}"></option>
+
+    <!-- 匯入表格樣式 -->
     <link rel="stylesheet" href="/css/components/tableStyle.css">
+
+    <!-- 匯入導覽列樣式 -->
     <link rel="stylesheet" href="/css/layout/navBar.css">
 </head>
 <body>
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
+    <!-- 餐廳列表查詢表單 -->
     <form id="listForm">
         <div>
-            <!-- 篩選 -->
+            <!-- 類別篩選 -->
             <label for="category">餐廳類別：</label>
             <select id="category">
                 <option th:replace="~{modules/categoryButton :: foodCategoryAll}"></option>
             </select>
 
+            <!-- 關鍵字查詢 -->
             <label for="search">關鍵字：</label>
             <input type="text" id="search" placeholder="輸入餐廳名稱或備註內容">
 
+            <!-- 查詢按鈕 -->
             <button type="submit">查詢</button>
         </div>
 
-        <!-- 排序 -->
+        <!-- 排序方式 -->
         <div>
             <select id="orderBy">
                 <option value="restaurant_id">建立順序</option>
@@ -39,7 +48,7 @@
         </div>
     </form>
 
-    <!--餐廳清單-->
+    <!-- 餐廳清單表格 -->
     <table class="table">
         <thead>
             <tr>
@@ -56,17 +65,18 @@
         </thead>
 
         <tbody id="tableBody">
-            <!-- 資料列將由 JavaScript 動態插入 -->
+            <!-- 表格資料將由 JS 動態載入 -->
         </tbody>
     </table>
 
-    <!--分頁按鈕-->
+    <!-- 分頁控制 -->
     <div class="switchPageBtn">
         <button id="prevPage">上一頁</button>
-        <div style="white-space: nowrap;">第1頁 / 共10頁</div>
+        <div style="white-space: nowrap;">第1頁 / 共10頁</div> <!-- 數字是動態控制 -->
         <button id="nextPage">下一頁</button>
     </div>
 
+    <!-- 處理資料庫匯入列表裡邏輯 -->
     <script src="/js/listRestaurant.js"></script>
 </body>
 </html>

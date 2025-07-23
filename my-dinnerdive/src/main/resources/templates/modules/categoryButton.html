@@ -1,12 +1,16 @@
+<!-- 下拉選單共用設定 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
+    <!-- 可在其他模板中引用餐廳分類的拉選項 -->
     <th:block th:fragment="foodCategory">
         <option value="MAIN">主食</option>
         <option value="SNACK">輕食</option>
         <option value="DRINK">飲料</option>
     </th:block>
 
+    <!-- 可在其他模板中引用餐廳分類的拉選項，額外多一個「全部」選項 -->
     <th:block th:fragment="foodCategoryAll">
         <option value="">全部</option>
         <option value="MAIN">主食</option>

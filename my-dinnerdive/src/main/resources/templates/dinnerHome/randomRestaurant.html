@@ -1,18 +1,23 @@
-<!--入口頁面-->
+<!-- 首頁 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- 引入共用的 head -->
     <option th:replace="~{layout/headTitle :: commonHeadTitle}"></option>
+    <!-- 匯入按鈕樣式 -->
     <link rel="stylesheet" href="/css/components/buttonStyle.css">
-    <link rel="stylesheet" href="/css/imageStyle.css">
+
+    <!-- 匯入導覽列樣式 -->
     <link rel="stylesheet" href="/css/layout/navBar.css">
+
+    <!-- 匯入表單通用樣式 -->
     <link rel="stylesheet" href="/css/forms/formCommon.css">
+
+    <!-- 匯入表單內圖片通用樣式 -->
+    <link rel="stylesheet" href="/css/imageStyle.css">
 </head>
 <body>
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
-
-
-
     <div class="formContainer">
 
         <!--抽籤篩選-->
@@ -22,7 +27,6 @@
                 <option th:replace="~{modules/categoryButton :: foodCategoryAll}"></option>
             </select>
         </div>
-
 
         <!--顯示餐廳圖片-->
         <img id="imageUrl" class="restaurantImage" src="/images/start.jpg" alt="餐廳圖片"/>
@@ -38,7 +42,10 @@
         <!--抽籤功能-->
         <button id="random-btn" class="functionBtn">抽！</button>
         <button id="choose-btn" class="functionBtn">就決定選這間！</button>
+
+        <!-- 處理抽選餐廳邏輯 -->
         <script type="module" src="/js/randomRestaurant.js"></script>
+        <!-- 處理選擇餐廳邏輯 -->
         <script type="module" src="/js/chooseRestaurant.js"></script>
     </div>
 </body>
