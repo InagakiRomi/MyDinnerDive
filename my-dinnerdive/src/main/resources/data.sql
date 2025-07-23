@@ -1,3 +1,4 @@
+-- 餐廳資料
 INSERT INTO restaurants 
 (restaurant_id, restaurant_name, category, image_url, visited_count, last_selected_at, updated_at, note) VALUES
 (1,'今天吃兩藍','MAIN','https://images.unsplash.com/photo-1614563637806-1d0e645e0940?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',3,'2025-06-06 17:37:50','2025-05-18 23:06:13','吃完湯匙都想帶回家'),
@@ -44,8 +45,9 @@ INSERT INTO restaurants
 (42,'拌飯拌心情','MAIN','https://cdn.pixabay.com/photo/2015/04/10/00/41/food-715542_1280.jpg',1,'2024-10-04 21:09:25','2025-06-25 17:09:48','不錯吃，就是太貴'),
 (43,'吃完不後悔','SNACK','https://cdn.pixabay.com/photo/2020/02/22/08/55/the-cake-4869920_1280.jpg',4,'2025-05-20 16:45:33','2025-05-20 16:45:33','打卡專用');
 
--- INSERT INTO users 
--- (user_id, username, user_password, roles, created_date, last_modified_date) VALUES
--- (1,'zxc','$2a$10$IPcuuRROJ4dRttbvQtVm4.w98d5EjmIhjjtoGx5DpTbgPm8y40HXe','USER','2025-07-20 00:47:56','2025-07-20 00:47:56'),
--- (2,'SS','$2a$10$e2E9fmZ57LDm/TQGkztKcOFqOzkSPcZAcE5djm.W9nuRbvBKB6KpK','ADMIN','2025-07-20 00:48:31','2025-07-20 00:48:31'),
--- (3,'123','$2a$10$9ZcJtop4hkPDjD/7AtTjj./zB5mJgm7QcCnHeuIvHvRtMVycoLD.2','USER','2025-07-20 00:48:35','2025-07-20 00:48:35');
+-- 帳號資料
+INSERT INTO users
+(user_id, username, user_password, roles, created_date, last_modified_date) VALUES
+(1,'zxc','$2a$10$IPcuuRROJ4dRttbvQtVm4.w98d5EjmIhjjtoGx5DpTbgPm8y40HXe','USER','2025-07-20 00:47:56','2025-07-20 00:47:56'),
+(2,'SS','$2a$10$e2E9fmZ57LDm/TQGkztKcOFqOzkSPcZAcE5djm.W9nuRbvBKB6KpK','ADMIN','2025-07-20 00:48:31','2025-07-20 00:48:31'),
+(3,'123','$2a$10$9ZcJtop4hkPDjD/7AtTjj./zB5mJgm7QcCnHeuIvHvRtMVycoLD.2','USER','2025-07-20 00:48:35','2025-07-20 00:48:35');
