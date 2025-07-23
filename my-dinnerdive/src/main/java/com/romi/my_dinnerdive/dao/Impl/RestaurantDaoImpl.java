@@ -30,7 +30,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
         String sql = "SELECT count(*) FROM restaurants WHERE 1=1";
         Map<String, Object> map = new HashMap<>();
 
-        // 查詢條件
+        // 加入查詢條件
         sql = addFilteringSql(sql, map, restaurantQueryParams);
 
         Integer total = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
@@ -94,7 +94,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
 
-        // 檢查 keyHolder 是否為 null 或沒有 key，如果是則拋出 NullPointerException
+        // 檢查是否成功取得主鍵
         Number key = Objects.requireNonNull(keyHolder.getKey(), "找不到 keyHolder 的主鍵，請檢查 SQL 或資料庫設定。");
         return key.intValue();
     }
@@ -166,6 +166,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
         namedParameterJdbcTemplate.update(sql, map);
     }
 
+    /** 共用查詢條件處理方法，根據參數動態加上 WHERE 條件 */
     private String addFilteringSql(String sql, Map<String, Object> map, RestaurantQueryParams restaurantQueryParams){
         // 查詢條件
         if (restaurantQueryParams.getCategory() != null) {

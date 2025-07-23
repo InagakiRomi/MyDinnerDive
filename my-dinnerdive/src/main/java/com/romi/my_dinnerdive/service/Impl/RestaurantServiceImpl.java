@@ -15,9 +15,6 @@ import com.romi.my_dinnerdive.logging.LoggingDemo;
 import com.romi.my_dinnerdive.model.Restaurant;
 import com.romi.my_dinnerdive.service.RestaurantService;
 
-/**
- * 餐廳服務的實作類別，實作商業邏輯與資料處理流程。
- */
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
@@ -27,7 +24,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Autowired
     private LoggingDemo loggingDemo;
 
+    // 儲存未被抽過的餐廳 ID
     private List<Integer> idList;
+
+    // 標記是否首次抽籤
     private boolean firstRandom = true;
 
     @Override
@@ -63,12 +63,14 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Restaurant getRandomRestaurant(RestaurantQueryParams restaurantQueryParams) {
         Logger logger = loggingDemo.printRandomRestaurantLog();
-        
+     
+        // 首次抽籤：取得全部待抽清單
         if(firstRandom){             
             idList = restaurantDao.getAllRestaurantIds(restaurantQueryParams);
             firstRandom = false;
         }
 
+        // 從清單中隨機挑一個餐廳 ID 並移除
         int restaurantId = 0;
         Random random = new Random();
         if (!idList.isEmpty()){
@@ -78,6 +80,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 
             logger.log(Level.FINE,"本次抽到的食物ID為： " + restaurantId);
         }
+
+        // 所有餐廳抽完，清空狀態重來
         if(idList.isEmpty()){
             clearRandomRestaurant();
             logger.log(Level.INFO, "已抽完所有餐廳重新開始抽");

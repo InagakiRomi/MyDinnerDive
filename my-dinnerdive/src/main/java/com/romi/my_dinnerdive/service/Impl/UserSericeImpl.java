@@ -39,19 +39,18 @@ public class UserSericeImpl implements UserService{
 
         Logger logger = loggingDemo.printUserLog();
 
-        // 檢查註冊的帳號
+        // 檢查帳號是否已註冊
         User user = userDao.getUserByUsername(userRegisterRequest.getUsername());
-        
         if(user != null){
             logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 已經被註冊", userRegisterRequest.getUsername()));
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
 
-        // 密碼加密
+        // 密碼加密後儲存
         String hashedPassword = passwordEncoder.encode(userRegisterRequest.getUserPassword());
         userRegisterRequest.setUserPassword(hashedPassword);
 
-        // 創建帳號
+        // 新增使用者
         return userDao.createUser(userRegisterRequest);
     }
 
@@ -59,15 +58,14 @@ public class UserSericeImpl implements UserService{
     public User login(UserLoginRequest userLoginRequest){
         Logger logger = loggingDemo.printUserLog();
         
+        // 查詢帳號是否存在
         User user = userDao.getUserByUsername(userLoginRequest.getUsername());
-
-        //檢查 user 是否存在
         if(user == null){
             logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 尚未註冊", userLoginRequest.getUsername()));
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
   
-        // 使用 BCrypt 驗證密碼
+        // 驗證密碼是否正確
         if (passwordEncoder.matches(userLoginRequest.getUserPassword(), user.getUserPassword())) {
             return user;
         }else{

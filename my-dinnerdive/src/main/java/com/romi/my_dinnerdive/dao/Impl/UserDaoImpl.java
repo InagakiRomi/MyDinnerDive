@@ -71,8 +71,8 @@ public class UserDaoImpl implements UserDao{
         map.put("createdDate", now);
         map.put("lastModifiedDate", now);
 
+        // 取得資料庫自動產生的主鍵（user_id）
         KeyHolder keyHolder = new GeneratedKeyHolder();
-
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map), keyHolder);
 
         Number key = keyHolder.getKey();

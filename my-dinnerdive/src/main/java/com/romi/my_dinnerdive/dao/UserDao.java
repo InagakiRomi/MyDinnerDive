@@ -3,32 +3,15 @@ package com.romi.my_dinnerdive.dao;
 import com.romi.my_dinnerdive.dto.UserRegisterRequest;
 import com.romi.my_dinnerdive.model.User;
 
-/**
- * 使用者 DAO 介面，定義與資料庫互動的方法。
- */
+/** 定義與 users 資料表相關的資料操作方法 */
 public interface UserDao {
     
-    /**
-     * 根據使用者 ID 獲取使用者資訊。
-     *
-     * @param userId 使用者的 ID
-     * @return 對應的 User 物件，如果找不到則返回 null
-     */
+    /** 根據帳號名稱查詢使用者資料 */
     User getUserById(Integer userId);
 
-    /**
-     * 根據電子郵件獲取使用者資訊。
-     *
-     * @param username 使用者的電子郵件
-     * @return 對應的 User 物件，如果找不到則返回 null
-     */
+    /** 根據電子郵件獲取使用者資訊 */
     User getUserByUsername(String username);
 
-    /**
-     * 註冊新使用者。
-     *
-     * @param userRegisterRequest 包含使用者註冊資訊的請求物件
-     * @return 新使用者的 ID
-     */
+    /** 建立新使用者帳號 */
     Integer createUser(UserRegisterRequest userRegisterRequest);
 }
