@@ -1,7 +1,7 @@
 {
   "properties": [
     {
-      "name": "security.permit-all",
+      "name": "security.permit-all",  
       "type": "java.lang.Boolean",
       "defaultValue": false,
       "description": "是否開啟全部 API 無需登入驗證"
