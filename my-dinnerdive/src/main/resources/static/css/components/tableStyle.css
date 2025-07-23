@@ -1,118 +1,121 @@
 /* ==== 表格樣式 ==== */
 .table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    font-family: "Segoe UI", "微軟正黑體", sans-serif;
-    border-radius: 12px;
-    overflow: hidden;
+    width: 100%;                                      /* 表格寬度滿版 */
+    table-layout: fixed;                              /* 固定欄寬避免內容撐開 */
+    border-collapse: collapse;                        /* 移除欄位間的間距 */
+    font-family: "Segoe UI", "微軟正黑體", sans-serif; /* 設定字體樣式 */
+    border-radius: 12px;                              /* 加上圓角 */
+    overflow: hidden;                                 /* 超出範圍的內容隱藏（配合圓角） */
+}
+
+.table th,
+.table td {
+    padding: 10px;         /* 表格內距 */
+    font-size: 1em;        /* 字體大小 */
+    text-align: center;    /* 表頭與內容文字皆置中 */
+    border: 1px solid;     /* 初始邊框，顏色稍後指定 */
 }
 
 .table th {
-    background-color: #ffb27e;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    font-size: 1.05em;
-    border: 1px solid #e2935d;
+    padding: 12px;               /* 表頭內距 */
+    font-size: 1.05em;           /* 表頭文字略放大 */
+    color: white;              /* 表頭文字顏色 */
+    background-color: #ffb27e; /* 表頭背景顏色（橘色系） */
+    border-color: #e2935d;     /* 表頭邊框顏色（深橘） */
 }
 
 .table td {
-    background-color: #fffaf4;
-    color: #4a3b2c;
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #eee0cc;
-    font-size: 1em;
-    transition: background-color 0.2s ease;
-    word-break: break-word;
-    white-space: normal;
+    color: #4a3b2c;                       /* 表格文字顏色（咖啡色系） */
+    background-color: #fffaf4;            /* 表格內容背景色（米白） */
+    border-color: #eee0cc;                /* 表格格線顏色（淺米） */
+    word-break: break-word;                 /* 長單字自動換行 */
+    white-space: normal;                    /* 正常換行 */
+    transition: background-color 0.2s ease; /* 背景色滑過時動畫效果 */
 }
 
 .table tr:hover td {
-    background-color: #fff1e0;
+    background-color: #fff1e0; /* 滑過整列時背景變淡橘 */
 }
 
 .table td img {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    display: block;
-    max-width: 240px;
-    max-height: 160px;
-    margin: 0 auto;
+    display: block;                           /* 圖片轉為區塊，方便置中 */
+    width: 100%;                              /* 圖片寬度滿格 */
+    max-width: 240px;                         /* 限制最大寬度 */
+    max-height: 160px;                        /* 限制最大高度 */
+    height: auto;                             /* 自動調整高度 */
+    aspect-ratio: 3 / 2;                      /* 保持寬高比例為 3:2 */
+    margin: 0 auto;                           /* 水平置中 */
+    object-fit: cover;                        /* 圖片裁切填滿區域 */
+    border-radius: 8px;                       /* 圖片圓角 */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);  /* 圖片陰影 */
 }
 
+/* ==== 表格欄寬固定（操作欄）==== */
+.table th:nth-child(9),
+.table td:nth-child(9) {
+    width: 200px; /* 第 9 欄固定寬度，用於操作按鈕等 */
+}
+
+/* ==== 表格中的備註欄強制靠左對齊 ==== */
 .noteCell {
     text-align: left !important;
 }
 
-/* ==== 分頁按鈕 + 表單按鈕 ==== */
+/* ==== 按鈕樣式統一（含表單內）==== */
 button,
 form#listForm button {
-    max-width: 400px;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;                                           /* 按鈕最大寬度限制 */
+    padding: 12px 20px;                                         /* 內距設定，增強可點擊區域 */
+    font-size: 1.1rem;                                          /* 按鈕文字大小 */
+    color: white;                                             /* 按鈕文字顏色 */
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* 背景漸層（粉色系） */
+    border: none;                                               /* 移除邊框 */
+    border-radius: 8px;                                         /* 圓角按鈕 */
+    cursor: pointer;                                            /* 指標樣式改為手指 */
+    transition: all 0.3s ease;                                  /* 滑過/點擊動畫效果 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);                /* 陰影增添立體感 */
 }
 
 button:hover,
 form#listForm button:hover {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* 維持背景漸層 */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);                /* 滑過陰影加強 */
+    transform: translateY(-2px);                                /* 按鈕浮起效果 */
 }
 
-button:active
+button:active,
 form#listForm button:active {
-    transform: scale(0.98);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(0.98);                        /* 點擊時略縮小 */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);   /* 點擊時陰影縮小 */
 }
 
-/* ==== 表單樣式統一感 ==== */
+/* ==== 表單區塊樣式 ==== */
 form#listForm > div {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    margin: 20px auto;
-    max-width: 1200px;
+    display: flex;            /* 使用 Flex 排版 */
+    flex-wrap: wrap;          /* 超出寬度時自動換行 */
+    align-items: center;      /* 垂直置中對齊 */
+    gap: 12px;                /* 元素之間間距 */
+    margin: 20px 0 20px 20px; /* 上下外距 + 左距確保靠左不貼邊 */
+    max-width: 1200px;        /* 最大寬度限制 */
 }
 
-form#listForm select,
-form#listForm input[type="text"] {
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1em;
-    background-color: #fffaf4;
-    color: #5c4033;
+form#listForm input[type="text"],
+form#listForm select {
+    padding: 6px 12px;           /* 內距設定 */
+    font-size: 1em;              /* 字體大小一致化 */
+    color: #5c4033;            /* 字體顏色為深咖啡色 */
+    background-color: #fffaf4; /* 背景色統一為米白 */
+    border: 1px solid #ccc;    /* 邊框顏色設定 */
+    border-radius: 6px;          /* 圓角設計 */
 }
 
-/* 分頁區塊 */
+/* ==== 分頁按鈕區塊 ==== */
 .switchPageBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin: 30px 0;
-    font-weight: bold;
-    color: #5c4033;
-}
-
-/* ==== 表單寬度固定 ==== */
-
-/* 操作 */
-.table th:nth-child(9),
-.table td:nth-child(9) {
-    width: 200px; 
+    display: flex;             /* 使用 Flex 排列 */
+    justify-content: center;   /* 水平置中 */
+    align-items: center;       /* 垂直置中 */
+    gap: 20px;                 /* 按鈕間距 */
+    margin: 30px 0;            /* 區塊上下間距 */
+    font-weight: bold;         /* 字體加粗 */
+    color: #5c4033;          /* 文字顏色 */
 }

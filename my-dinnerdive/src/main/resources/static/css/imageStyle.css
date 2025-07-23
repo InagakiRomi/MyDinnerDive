@@ -1,10 +1,10 @@
-/* 首頁餐廳圖片顯示 */
+/* ==== 首頁餐廳圖片顯示樣式 ==== */
 .restaurantImage {
-    width: 480px;
-    height: 320px;
-    margin: 20px auto;
-    display: block;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    object-fit: cover;
+    display: block;                               /* 使圖片可置中對齊（配合 margin auto） */
+    width: 480px;                                 /* 設定圖片固定寬度 */
+    height: 320px;                                /* 設定圖片固定高度 */
+    margin: 20px auto;                            /* 上下留白並水平置中 */
+    border-radius: 12px;                          /* 圓角設計讓圖片更柔和 */
+    object-fit: cover;                            /* 圖片等比例裁切填滿容器，不變形 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* 添加陰影產生浮起感 */
 }

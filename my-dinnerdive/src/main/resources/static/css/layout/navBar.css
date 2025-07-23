@@ -1,49 +1,57 @@
-/* 網頁背景 */
+/* ==== 網頁背景設定 ==== */
 body {
-    background-color: #fff2ee;
-    margin: 0;
-    padding: 0;
-    font-family: "Noto Sans TC", "Segoe UI", sans-serif;
-    color: #444444;
-    line-height: 1.6;
+    margin: 0;                                           /* 移除預設外距 */
+    padding: 0;                                          /* 移除預設內距 */
+    background-color: #fff2ee;                         /* 整體背景 */
+    color: #444444;                                    /* 預設文字顏色 */
+    font-family: "Noto Sans TC", "Segoe UI", sans-serif; /* 設定中文字與英文字體 */
+    line-height: 1.6;                                    /* 行距設定 */
 }
 
-/* 背景上的圖層 */
+/* 另外一種背景色主題 */
+body.pinkTheme {
+    background-color: #ffb6c1;
+}
+
+/* ==== 導覽列樣式 ==== */
 .navBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffc3a0; 
-    padding: 15px 30px;
-    color: #5c4033;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;                               /* 使用 Flex 水平排列 */
+    justify-content: space-between;              /* LOGO 與連結分散 */
+    align-items: center;                         /* 垂直置中 */
+    padding: 15px 30px;                          /* 內距讓內容不貼邊 */
+    background-color: #ffc3a0;                 /* 導覽列底色（亮橘） */
+    color: #5c4033;                            /* 文字顏色 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 添加下方陰影 */
 }
 
-/* 頂端文字 */
+/* ==== 導覽列標誌 ==== */
 .navBar .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #4a2c2a; 
-    text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+    font-size: 1.8rem;                              /* 文字變大呈現標誌感 */
+    font-weight: bold;                              /* 粗體呈現品牌感 */
+    letter-spacing: 1px;                            /* 字距微調 */
+    color: #4a2c2a;                               /* 深咖啡色文字 */
+    text-shadow: 0 1px 1px rgba(255,255,255,0.4); /* 白色陰影提亮文字 */
 }
 
-/* 連結文字樣式 */
+/* ==== 連結列樣式 ==== */
 .navBar .navLinks {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+    display: flex;    /* 水平排列列表 */
+    gap: 20px;        /* 每個項目間距 */
+    list-style: none; /* 移除預設項目符號 */
+    margin: 0;        /* 移除外邊距 */
+    padding: 0;       /* 移除內邊距 */
 }
 
+/* ==== 導覽列中的連結樣式 ==== */
 .navBar .navLinks li a {
-    color: #5c4033;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    font-size: 1.1rem;           /* 字體大小 */
+    font-weight: 500;            /* 中等粗體 */
+    color: #5c4033;            /* 預設文字色 */
+    text-decoration: none;       /* 移除底線 */
+    transition: color 0.2s ease; /* 滑過變色加上動畫 */
 }
 
+/* ==== 滑過連結變色效果 ==== */
 .navBar .navLinks li a:hover {
-    color: #d24d57;
-    text-decoration: none;
+    color: #d24d57; /* 滑過時改為紅粉色 */
 }

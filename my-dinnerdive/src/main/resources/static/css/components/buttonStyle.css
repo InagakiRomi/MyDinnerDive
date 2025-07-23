@@ -1,57 +1,38 @@
-/* 美化並置中按鈕 */
-.functionBtn {
-    display: block;
-    margin: 20px auto 0 auto;
-    width: 60%;
-    max-width: 400px;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    color: white;
-    border: none;
-    padding: 14px 0;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* 通用按鈕樣式 */
+.btn {
+    display: block;                              /* 設定為區塊元素，讓按鈕能置中對齊 */
+    width: 60%;                                  /* 設定按鈕寬度比例 */
+    max-width: 400px;                            /* 設定最大寬度避免過寬 */
+    margin: 20px auto 0 auto;                    /* 上方間距，左右自動置中，下方無間距 */
+    padding: 14px 0;                             /* 垂直內距，讓按鈕更高 */
+    font-size: 1.1rem;                           /* 設定文字大小 */
+    color: white;                              /* 設定文字顏色為白色 */
+    border: none;                                /* 移除預設邊框 */
+    border-radius: 8px;                          /* 設定圓角，讓按鈕看起來更柔和 */
+    background: none;                            /* 預設背景清除（方便用組合類別覆蓋） */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 添加陰影讓按鈕有立體感 */
+    cursor: pointer;                             /* 滑鼠移到按鈕上顯示為手指 */
+    transition: all 0.3s ease;                   /* 所有變化加入平滑過渡動畫 */
 }
 
-/* 滑過按鈕時的效果 */
-.functionBtn:hover {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+/* 滑鼠滑過時的共用效果 */
+.btn:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* 陰影加強，產生浮起感 */
+    transform: translateY(-2px);                 /* 按鈕稍微往上移動，模擬懸浮 */
 }
 
-/* 點擊時的縮放效果 */
-.functionBtn:active {
-    transform: scale(0.98);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+/* 按鈕點擊時的共用效果 */
+.btn:active {
+    transform: scale(0.98);                      /* 按鈕縮小一點點，模擬被按下的效果 */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* 陰影變小，貼近底部 */
 }
 
-/* 快速登入按鈕 */
-.quickLoginBtn {
-    display: block;
-    margin: 20px auto 0 auto;
-    width: 60%;
-    max-width: 400px;
-    background: linear-gradient(135deg, #fddb3a, #fcb045); /* 黃色調 */
-    color: white;
-    border: none;
-    padding: 14px 0;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* 粉色系按鈕背景 */
+.btn-pink {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* 漸層按鈕 */
 }
 
-.quickLoginBtn:hover {
-    background: linear-gradient(135deg, #fddb3a, #fcb045); /* 黃色調 */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
-}
-
-.quickLoginBtn:active {
-    transform: scale(0.98);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+/* 黃色系按鈕背景 */
+.btn-yellow {
+    background: linear-gradient(135deg, #fddb3a, #fcb045); /* 漸層按鈕 */
 }

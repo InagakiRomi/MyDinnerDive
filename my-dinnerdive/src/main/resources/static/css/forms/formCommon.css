@@ -1,58 +1,49 @@
-/* 表單外框 */
+/* ==== 通用欄位樣式：輸入框、文字區塊、下拉選單 ==== */
+input,
+textarea,
+select {
+    width: 100%;              /* 欄位寬度撐滿容器 */
+    margin-top: 5px;          /* 與標籤之間拉開距離 */
+    padding: 10px;            /* 內邊距讓輸入更舒適 */
+    border: 1px solid #ccc; /* 淺灰色邊框 */
+    border-radius: 6px;       /* 圓角設計 */
+    box-sizing: border-box;   /* 計算寬度時包含 padding 與 border */
+    font-size: 1rem;          /* 字體大小統一 */
+}
+
+textarea {
+    resize: vertical; /* 僅允許垂直方向調整大小 */
+}
+
+/* ==== 標籤通用樣式 ==== */
+label {
+    display: block;    /* 標籤換行顯示 */
+    font-weight: bold; /* 字體加粗強調 */
+}
+
+/* ==== 表單外框樣式 ==== */
 .formContainer {
-    max-width: 600px;
-    margin: 40px auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    max-width: 600px;                         /* 最大寬度限制，避免表單過寬 */
+    margin: 40px auto;                        /* 上下留白，左右置中 */
+    padding: 30px;                            /* 內距讓內容不貼邊 */
+    background: #ffffff;                    /* 背景設為白色 */
+    border-radius: 10px;                      /* 四角圓角 */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* 淡淡陰影產生立體感 */
 }
 
-/* 表單標題 */
+/* ==== 表單標題樣式 ==== */
 .formContainer h1 {
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
+    margin-bottom: 20px; /* 與下方內容拉開距離 */
+    color: #333;       /* 文字顏色深灰 */
+    text-align: center;  /* 文字置中 */
 }
 
-/* 表單內部樣式 */
-form label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-form input, form textarea, form select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 1rem;
-}
-
-form textarea {
-    resize: vertical;
-}
-
-/* 篩選下拉視窗 */
+/* ==== 篩選區容器 ==== */
 .filterContainer {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* 下方間距拉開區塊 */
 }
 
 .filterContainer label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #4a3b2c;
-}
-
-.filterContainer select {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
+    margin-bottom: 8px; /* 與下方欄位間距 */
+    color: #4a3b2c;   /* 咖啡色字體作為視覺強調 */
 }
