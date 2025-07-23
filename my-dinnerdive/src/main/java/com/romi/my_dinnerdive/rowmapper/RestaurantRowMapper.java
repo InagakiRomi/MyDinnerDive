@@ -10,21 +10,18 @@ import com.romi.my_dinnerdive.constant.RestaurantCategory;
 import com.romi.my_dinnerdive.model.Restaurant;
 
 /**
- * 資料列對應器：RestaurantRowMapper
- *
- * 將查詢結果 {@link ResultSet} 中的資料列映射為 {@link Restaurant} 物件。
- * 此類別主要配合 {@link org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate}
- * 使用於查詢餐廳資料的轉換過程。
+ * RowMapper 實作：將 ResultSet 中的資料轉成 Restaurant 物件
+ * <p>
+ * 用於 NamedParameterJdbcTemplate 查詢餐廳時的資料轉換邏輯
  */
 public class RestaurantRowMapper implements RowMapper<Restaurant> {
 
     /**
-     * 將單筆資料列轉換為 {@link Restaurant} 實體。
+     * 將資料庫查詢結果的單筆 row 映射為 Restaurant 實體
      *
-     * @param resultSet 查詢結果的 ResultSet
-     * @param i 資料列索引（由 Spring 傳入）
-     * @return 映射後的 Restaurant 實例
-     * @throws SQLException 若資料存取有誤則拋出例外
+     * @param resultSet ：查詢結果
+     * @param i ：當前 row 的索引（可忽略）
+     * @return 對應的 Restaurant 物件
      */
     @Override
     public Restaurant mapRow(@NonNull ResultSet resultSet, int i) throws SQLException {
@@ -33,6 +30,7 @@ public class RestaurantRowMapper implements RowMapper<Restaurant> {
         restaurant.setRestaurantId(resultSet.getInt("restaurant_id"));
         restaurant.setRestaurantName(resultSet.getString("restaurant_name"));
 
+        // 餐廳分類轉為 enum
         String categoryStr = resultSet.getString("category");
         RestaurantCategory category = RestaurantCategory.valueOf(categoryStr);
         restaurant.setCategory(category);
