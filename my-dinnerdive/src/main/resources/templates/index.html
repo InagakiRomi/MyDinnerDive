@@ -61,25 +61,23 @@
                         onclick="window.location.href='/dinnerHome/memberRegister'">
                         還沒有帳號？前往註冊
                 </button>
-                
-                <!-- 快速登入（跳轉隨機餐廳） -->
-                <button type="button" class="btn btn-yellow"
-                        onclick="window.location.href='/dinnerHome/randomRestaurant'">
-                        快速登入
-                </button>
             </div>
-
-            <!-- 錯誤訊息：登入失敗 -->
-            <div th:if="${param.error}" style="text-align: center;">
-                <p style="color:red;">尚未註冊或密碼輸入錯誤</p>
-            </div>
-
-            <!-- 登出訊息 -->
-            <div th:if="${param.logout}" style="text-align: center;">
-                <p style="color:green;">你已登出</p>
-            </div>
-
         </form>
+
+        <!-- 快速登入（跳轉隨機餐廳） -->
+        <form th:action="@{/users/quickLogin}" method="get" style="display:inline;">
+            <button type="submit" class="btn btn-yellow">快速登入</button>
+        </form>
+
+        <!-- 錯誤訊息：登入失敗 -->
+        <div th:if="${param.error}" style="text-align: center;">
+            <p style="color:red;">尚未註冊或密碼輸入錯誤</p>
+        </div>
+
+        <!-- 登出訊息 -->
+        <div th:if="${param.logout}" style="text-align: center;">
+            <p style="color:green;">你已登出</p>
+        </div>
     </div>
 </body>
 </html>

@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * 自訂過濾器：
  * <p>
- * 若使用者已登入，並試圖進入登入或註冊介面，則自動導想首頁
+ * 若使用者已登入，並試圖進入登入或註冊介面，則自動導向首頁
  * */
 @Component
 public class AuthRedirectFilter extends OncePerRequestFilter {
