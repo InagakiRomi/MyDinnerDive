@@ -21,13 +21,15 @@ document.addEventListener("DOMContentLoaded", function (){
     preventForm.addEventListener("submit", preventFormSubmit);
 
     function preventFormSubmit(event) {
-        event.preventDefault();
-        updateRestaurant();
+        event.preventDefault(); // 防止瀏覽器預設的送出行為（會刷新頁面）
+        updateRestaurant();     // 執行自定義的更新函式
     }
 })
 
+/** 執行修改餐廳資料邏輯 */
 function updateRestaurant(){
 
+    // 整理所有欄位資料合併成一個 JSON 物件
     var restaurantJson = {
         ...getRestaurantName(),
         ...getCategory(),
@@ -37,13 +39,15 @@ function updateRestaurant(){
         ...getImageUrl()
     }
 
+    // 呼叫後端 API，更新指定 ID 的餐廳資料
     fetch(`/restaurants/${getRestaurantId()}`, {
         method: 'PUT',
-        headers: getHeaders(),
-        body: JSON.stringify(restaurantJson)
+        headers: getHeaders(),                // 設定標頭，例如 Content-Type: application/json
+        body: JSON.stringify(restaurantJson)  // 將資料物件轉成 JSON 字串
     })
     .then(response => {
         if (response.ok) {
+            // 修改成功後導回餐廳清單頁
             window.location.href = "/dinnerHome/listRestaurant";
             alert("修改成功！");
         } else {

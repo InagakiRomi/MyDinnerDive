@@ -3,11 +3,15 @@ import {
 } from './randomRestaurant.js';
 
 const chooseutton = document.getElementById("choose-btn");
+// 當使用者點擊按鈕時，執行 chooseRestaurant 函式
 chooseutton.addEventListener("click", chooseRestaurant);
 
+/** 使用者點選「我就吃這間」後執行的邏輯 */
 function chooseRestaurant(){
+    // 取得目前抽中的餐廳 ID
     const id = getCurrentId();
 
+    // 發送 PATCH 請求到後端，通知選擇這家餐廳
     fetch(`/choose/${id}`, {
         method: 'PATCH'
     })

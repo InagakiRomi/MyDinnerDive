@@ -1,19 +1,22 @@
-let offset;
-let limit;
-let total;
+// 定義全域變數：分頁用
+let offset; // 目前的資料起始位置（例如第幾筆開始）
+let limit;  // 每頁最多顯示幾筆（由後端回傳）
+let total;  // 總資料筆數（由後端回傳）
 
 document.addEventListener("DOMContentLoaded", function (){
-    listRestaurant();
+    listRestaurant(); // 初次載入時就列出餐廳
+
+    // 阻止表單預設提交行為，改為 AJAX 載入
     const preventForm = document.getElementById("listForm");
     preventForm.addEventListener("submit", preventFormSubmit);
 
     function preventFormSubmit(event) {
-        event.preventDefault();
-        offset = 0;
-        listRestaurant();
+        event.preventDefault(); // 不重新整理頁面
+        offset = 0;             // 重設分頁為第一頁
+        listRestaurant();       // 重新載入餐廳資料
     }
 
-    // 自動刷新：分類、排序條件、排序方向
+    // 如果使用者選擇分類、排序欄位或排序方式時，就重新查詢
     const categorySelect = document.getElementById("category");
     categorySelect.addEventListener("change", function () {
         offset = 0;
@@ -33,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function (){
     });
 })
 
+// 上一頁按鈕的事件處理
 const prevButton = document.getElementById("prevPage")
 prevButton.addEventListener("click", function () {
     if(offset >= limit){
@@ -41,21 +45,25 @@ prevButton.addEventListener("click", function () {
     }
 });
 
+// 下一頁按鈕的事件處理
 const nextButton = document.getElementById("nextPage")
 nextButton.addEventListener("click", function () {
     if(offset < total-limit){
         offset = offset + limit;
-        listRestaurant();
+        listRestaurant(); // 重新載入下一頁資料
     }
 });
 
+/** 根據查詢條件列出餐廳資料 */
 async function listRestaurant(){
 
+    // 從下拉選單和輸入框取得查詢條件
     const category = document.getElementById("category").value;
     const search = document.getElementById("search").value;
     const orderBy = document.getElementById("orderBy").value;
     const sort = document.getElementById("sort").value;
 
+    // 組合成查詢字串
     const params = new URLSearchParams();
     if (category){
         params.append("category", category);
@@ -70,22 +78,25 @@ async function listRestaurant(){
         params.append("sort", sort);
     }
 
+    // 設定分頁參數
     params.append("offset", offset || 0);
     const url = `/restaurants?${params.toString()}`;
 
+    // 發送 GET 請求向後端查資料
     const response = await fetch(url);
     const result = await response.json();
 
+    // 從回應中取得分頁資訊
     offset = result.offset
     limit = result.limit;
     total = result.total;
-
     const data = result.results;
 
-    // 撈取餐廳資訊並顯示
+    // 清空表格內容，重新塞資料
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
 
+    // 將每筆餐廳資料插入表格中
     data.forEach(restaurant => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -110,31 +121,36 @@ async function listRestaurant(){
         tbody.appendChild(tr);
     });
 
-    // 更新頁數顯示
+    // 顯示目前頁數與總頁數
     const pageInfo = document.querySelector(".switchPageBtn div");
     const currentPage = Math.floor(offset / limit) + 1;
     const totalPages = Math.ceil(total / limit);
     pageInfo.textContent = `第${currentPage}頁 / 共${totalPages}頁`;
 
-    // 控制上一頁與下一頁按鈕狀態
+    // 根據目前頁面來決定按鈕是否禁用
     prevButton.disabled = currentPage === 1;
     nextButton.disabled = currentPage === totalPages;
 };
 
+// 表格內綁定刪除按鈕事件（事件委派）
 const tableBody = document.getElementById('tableBody')
 tableBody.addEventListener('click', deleteRestaurant);
+
+/** 根刪除餐廳資料的處理邏輯 */
 async function deleteRestaurant(event) {
     const deleteButton = event.target.classList.contains('delete-btn');
 
     if (deleteButton) {
         const id = event.target.getAttribute('data-id');
+
+        // 發送 DELETE 請求刪除資料
         fetch(`/restaurants/${id}`, {
             method: "DELETE"
         })
         .then(response => {
             if (response.ok) {
                 alert("刪除成功！");
-                listRestaurant();
+                listRestaurant(); // 刪除成功後重新載入列表
             } else {
                 alert("刪除失敗！請確認資料是否正確");
             }
