@@ -1,11 +1,16 @@
 package com.romi.my_dinnerdive.service.Impl;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
@@ -57,20 +62,32 @@ public class UserSericeImpl implements UserService{
     @Override
     public User login(UserLoginRequest userLoginRequest){
         Logger logger = loggingDemo.printUserLog();
-        
+
         // 查詢帳號是否存在
         User user = userDao.getUserByUsername(userLoginRequest.getUsername());
-        if(user == null){
+        if (user == null) {
             logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 尚未註冊", userLoginRequest.getUsername()));
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "帳號不存在");
         }
-  
+
         // 驗證密碼是否正確
-        if (passwordEncoder.matches(userLoginRequest.getUserPassword(), user.getUserPassword())) {
-            return user;
-        }else{
+        if (!passwordEncoder.matches(userLoginRequest.getUserPassword(), user.getUserPassword())) {
             logger.log(Level.WARNING, MessageFormat.format("帳號 {0} 的密碼不正確", userLoginRequest.getUsername()));
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "密碼錯誤");
         }
+
+        // 登入成功，設定 Spring Security 認證狀態
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+            user.getUsername(),
+            user.getUserPassword(),
+            List.of(new SimpleGrantedAuthority("ROLE_" + user.getRoles().name()))
+        );
+
+        UsernamePasswordAuthenticationToken authentication =
+            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return user;
     }
 }

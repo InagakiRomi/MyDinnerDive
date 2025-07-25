@@ -1,8 +1,14 @@
 package com.romi.my_dinnerdive.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,10 +68,22 @@ public class UserController {
     @PostMapping("/users/login")
     public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
 
-        // 呼叫 service 執行帳號密碼驗證，成功會回傳使用者資料
+        // 呼叫 service 驗證帳密
         User user = userService.login(userLoginRequest);
 
-        // 回傳登入成功的使用者資料與 HTTP 200 OK
+        // 建立 UserDetails 給 Spring Security 認得
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+            user.getUsername(),
+            user.getUserPassword(),
+            List.of(new SimpleGrantedAuthority("ROLE_" + user.getRoles().name()))
+        );
+
+        // 建立 Authentication 並放進 SecurityContext
+        UsernamePasswordAuthenticationToken authToken = 
+            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(authToken);
+
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 }

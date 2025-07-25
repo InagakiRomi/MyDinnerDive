@@ -76,7 +76,7 @@ public class SecurityConfig {
                 // 登入時會顯示的頁面
                 .loginPage("/dinnerHome")
                 // 表單提交的處理 URL
-                .loginProcessingUrl("/login")
+                .loginProcessingUrl("/users/login")
                 // 登入成功後自動跳轉的頁面（true 表示每次都固定跳）
                 .defaultSuccessUrl("/dinnerHome/randomRestaurant", true)
                 // 允許所有人訪問登入頁
