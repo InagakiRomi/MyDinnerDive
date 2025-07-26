@@ -22,9 +22,9 @@ public class UserInitializer implements CommandLineRunner {
     public void run(String... args) {
 
         // 管理員帳號
-        if (userRepository.findByUsername("SS").isEmpty()) {
+        if (userRepository.findByUsername("super").isEmpty()) {
             User user = new User();
-            user.setUsername("SS");
+            user.setUsername("super");
             user.setUserPassword("$2a$10$e2E9fmZ57LDm/TQGkztKcOFqOzkSPcZAcE5djm.W9nuRbvBKB6KpK");
             user.setRoles(UserCategory.ADMIN);
             user.setCreatedDate(new Date());
@@ -33,9 +33,9 @@ public class UserInitializer implements CommandLineRunner {
         }
 
         // 一般使用者帳號
-        if (userRepository.findByUsername("123").isEmpty()) {
+        if (userRepository.findByUsername("user").isEmpty()) {
             User user = new User();
-            user.setUsername("123");
+            user.setUsername("user");
             user.setUserPassword("$2a$10$IPcuuRROJ4dRttbvQtVm4.w98d5EjmIhjjtoGx5DpTbgPm8y40HXe");
             user.setRoles(UserCategory.USER);
             user.setCreatedDate(new Date());
