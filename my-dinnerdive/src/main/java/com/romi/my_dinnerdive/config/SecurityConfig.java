@@ -53,9 +53,7 @@ public class SecurityConfig {
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/dinnerHome", "/dinnerHome/memberRegister").permitAll()
 
                 // 註冊 API 允許所有人存取
-                .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
-                // 快速登入允許所有人存取
-                .requestMatchers(HttpMethod.GET, "/users/quickLogin").permitAll();
+                .requestMatchers(HttpMethod.POST, "/users/login", "/users/register", "/users/quickLogin").permitAll();
 
                 // 如果設定成全部開放，就不需要登入
                 if (permitAll) {

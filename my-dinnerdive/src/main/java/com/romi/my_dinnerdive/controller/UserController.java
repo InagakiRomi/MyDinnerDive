@@ -1,20 +1,17 @@
 package com.romi.my_dinnerdive.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
+import com.romi.my_dinnerdive.config.SecurityHelper;
 import com.romi.my_dinnerdive.constant.UserCategory;
+import com.romi.my_dinnerdive.dao.UserDao;
 import com.romi.my_dinnerdive.dto.UserLoginRequest;
 import com.romi.my_dinnerdive.dto.UserRegisterRequest;
 import com.romi.my_dinnerdive.model.User;
@@ -29,6 +26,12 @@ public class UserController {
     // 注入 UserService，負責帳號邏輯處理（如註冊、驗證）
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private SecurityHelper securityHelper;
 
     /**
      * 註冊新使用者帳號
@@ -66,24 +69,29 @@ public class UserController {
      * @return 登入成功時回傳使用者資料與 HTTP 200 OK；失敗時由 Service 拋出例外並處理為 400
      */
     @PostMapping("/users/login")
-    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
-
-        // 呼叫 service 驗證帳密
-        User user = userService.login(userLoginRequest);
+    public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
+        User user = userService.login(userLoginRequest); // 驗證帳密成功後返回 User
 
         // 建立 UserDetails 給 Spring Security 認得
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
-            user.getUsername(),
-            user.getUserPassword(),
-            List.of(new SimpleGrantedAuthority("ROLE_" + user.getRoles().name()))
-        );
+        securityHelper.authenticateUser(user);
 
-        // 建立 Authentication 並放進 SecurityContext
-        UsernamePasswordAuthenticationToken authToken = 
-            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        return ResponseEntity.ok(user);
+    }
 
-        SecurityContextHolder.getContext().setAuthentication(authToken);
+    @PostMapping("/users/quickLogin")
+    public ResponseEntity<User> autoLogin() {
+        // 假設這是你要自動登入的帳號
+        String autoLoginUsername = "guest";
 
-        return ResponseEntity.status(HttpStatus.OK).body(user);
+        // 取得帳號資料
+        User user = userDao.getUserByUsername(autoLoginUsername);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "自動登入帳號不存在");
+        }
+
+        // 建立 UserDetails 給 Spring Security 認得
+        securityHelper.authenticateUser(user);
+
+        return ResponseEntity.ok(user);
     }
 }
