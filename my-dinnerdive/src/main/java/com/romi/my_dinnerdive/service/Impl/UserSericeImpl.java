@@ -43,7 +43,7 @@ public class UserSericeImpl implements UserService{
         User user = userDao.getUserByUsername(userRegisterRequest.getUsername());
         if(user != null){
             logger.log(Level.WARNING, MessageFormat.format("該帳號 {0} 已經被註冊", userRegisterRequest.getUsername()));
-            throw new ResponseStatusException(HttpStatus.CONFLICT);
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "該帳號已經被註冊");
         }
 
         // 密碼加密後儲存
