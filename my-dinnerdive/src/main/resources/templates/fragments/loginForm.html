@@ -1,0 +1,16 @@
+<!-- 帳號密碼共用設定 -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="usernameImput">
+            <!-- 帳號欄位 -->
+            <label for="username">帳號：</label>
+            <input type="text" name="username" id="username"
+                placeholder="只能輸入英文和數字"
+                maxlength="256"
+                pattern="^[a-zA-Z0-9]*$"
+                required />
+        </div>
+    </body>
+</html>

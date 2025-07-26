@@ -29,44 +29,27 @@
         <h1>會員登入</h1>
 
         <!-- 登入表單，送出至 `/login`（POST 方法） -->
-        <form th:action="@{/users/login}" method="post">
+         <form th:action="@{/users/login}" method="post">
 
             <!-- 帳號欄位 -->
-            <div>
-                <label for="username">帳號：</label>
-                <input type="text" name="username" id="username"
-                       placeholder="只能輸入英文和數字"
-                       maxlength="256"
-                       pattern="^[a-zA-Z0-9]*$"
-                       required />
-            </div>
+            <div th:replace="~{fragments/loginForm :: usernameImput}"></div>
 
             <!-- 密碼欄位 -->
-            <div>
-                <label for="password">密碼：</label>
-                <input type="password" name="password" id="password"
-                       placeholder="只能輸入英文和數字和特殊符號"
-                       maxlength="256"
-                       oninput="this.value = this.value.replace(/[^a-zA-Z0-9!@#$%^&*()_+\-=\\[\]{};':&quot;\\|,.&lt;&gt;\/?`~]/g, '')"
-                       required />
-            </div>
+            <label for="password">密碼：</label>
+            <input type="password" name="password" id="password"
+                    placeholder="只能輸入英文和數字和特殊符號"
+                    maxlength="256"
+                    oninput="this.value = this.value.replace(/[^a-zA-Z0-9!@#$%^&*()_+\-=\\[\]{};':&quot;\\|,.&lt;&gt;\/?`~]/g, '')"
+                    required />
 
-            <!-- 功能按鈕 -->
-            <div>
-                <!-- 登入 -->
-                <button type="submit" class="btn btn-pink">登入</button>
-                
-                <!-- 導向註冊頁 -->
-                <button type="button" class="btn btn-pink"
-                        onclick="window.location.href='/dinnerHome/memberRegister'">
-                        還沒有帳號？前往註冊
-                </button>
-            </div>
-        </form>
-
-        <!-- 快速登入（跳轉隨機餐廳） -->
-        <form th:action="@{/users/quickLogin}" method="get" style="display:inline;">
-            <button type="submit" class="btn btn-yellow">快速登入</button>
+            <!-- 登入按鈕 -->
+            <button type="submit" class="btn btn-pink">登入</button>
+            
+            <!-- 導向註冊頁按鈕 -->
+            <button type="button" class="btn btn-pink"
+                    onclick="window.location.href='/dinnerHome/memberRegister'">
+                    還沒有帳號？前往註冊
+            </button>
         </form>
 
         <!-- 錯誤訊息：登入失敗 -->

@@ -25,12 +25,7 @@
         <form id="registerForm">
 
             <!-- 帳號欄位 -->
-            <label for="username">帳號：</label>
-            <input type="text" id="username"
-                   placeholder="只能輸入英文和數字"
-                   maxlength="256"
-                   pattern="^[a-zA-Z0-9]*$"
-                   required>
+            <div th:replace="~{fragments/loginForm :: usernameImput}"></div>
 
             <!-- 密碼欄位 -->
             <label for="userPassword">密碼：</label>

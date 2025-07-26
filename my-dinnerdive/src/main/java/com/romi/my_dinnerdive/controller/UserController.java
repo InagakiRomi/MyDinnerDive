@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.romi.my_dinnerdive.config.SecurityHelper;
 import com.romi.my_dinnerdive.constant.UserCategory;
-import com.romi.my_dinnerdive.dao.UserDao;
 import com.romi.my_dinnerdive.dto.UserLoginRequest;
 import com.romi.my_dinnerdive.dto.UserRegisterRequest;
 import com.romi.my_dinnerdive.model.User;
@@ -26,9 +24,6 @@ public class UserController {
     // 注入 UserService，負責帳號邏輯處理（如註冊、驗證）
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserDao userDao;
 
     @Autowired
     private SecurityHelper securityHelper;
@@ -71,23 +66,6 @@ public class UserController {
     @PostMapping("/users/login")
     public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
         User user = userService.login(userLoginRequest); // 驗證帳密成功後返回 User
-
-        // 建立 UserDetails 給 Spring Security 認得
-        securityHelper.authenticateUser(user);
-
-        return ResponseEntity.ok(user);
-    }
-
-    @PostMapping("/users/quickLogin")
-    public ResponseEntity<User> autoLogin() {
-        // 假設這是你要自動登入的帳號
-        String autoLoginUsername = "guest";
-
-        // 取得帳號資料
-        User user = userDao.getUserByUsername(autoLoginUsername);
-        if (user == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "自動登入帳號不存在");
-        }
 
         // 建立 UserDetails 給 Spring Security 認得
         securityHelper.authenticateUser(user);
