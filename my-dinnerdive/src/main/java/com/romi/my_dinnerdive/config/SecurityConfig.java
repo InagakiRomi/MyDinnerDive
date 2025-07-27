@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,6 +33,21 @@ public class SecurityConfig {
     @Value("${security.permit-all:false}")
     private boolean permitAll;
 
+    /** 定義一個「白名單」的陣列，裡面列出所有不需要登入認證就可以訪問的網址 */
+    private static final String[] SWAGGER_URL_AUTH_WHITELIST = {
+            "/swagger-resources",              // Swagger 資源設定
+            "/swagger-resources/**",           // 所有 Swagger 子資源
+            "/configuration/ui",               // Swagger UI 的設定檔
+            "/configuration/security",         // Swagger 安全設定
+            "/swagger-ui.html",                // Swagger 的主頁面 (舊版 UI)
+            "/webjars/**",                     // 前端使用的 JavaScript/CSS 套件
+            "/v3/api-docs/**",                 // Swagger 3 的 API 文件路徑
+            "/api/public/**",                  // 所有開放給外部使用的 API（不需登入）
+            "/users/login",                    // 登入 API，也不應該需要登入才能用
+            "/actuator/*",                     // Spring Boot Actuator 健康檢查等功能
+            "/swagger-ui/**"                   // Swagger UI 所有資源（新版 UI）
+    };
+
     /** 設定網站的安全規則，例如哪些網頁需要登入、要去哪裡登入等等 */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -49,11 +65,14 @@ public class SecurityConfig {
             // 設定路徑的授權規則
             .authorizeHttpRequests(auth -> {auth
 
+                // Swagger 白名單
+                .requestMatchers(SWAGGER_URL_AUTH_WHITELIST).permitAll()
+
                 // 靜態資源與登入頁面、註冊頁面允許所有人訪問
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/dinnerHome", "/dinnerHome/memberRegister").permitAll()
 
                 // 註冊 API 允許所有人存取
-                .requestMatchers(HttpMethod.POST, "/users/register", "/users/quickLogin").permitAll()
+                .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
 
                 // 只有管理員可以使用的 API
                 .requestMatchers(HttpMethod.DELETE, "/restaurants/{restaurantId}").hasRole("ADMIN");
@@ -83,6 +102,9 @@ public class SecurityConfig {
                 // 允許所有人訪問登入頁
                 .permitAll()
             )
+
+            // Basic Auth 給 Swagger
+            .httpBasic(Customizer.withDefaults())
 
             // 登出相關設定
             .logout(logout -> logout
