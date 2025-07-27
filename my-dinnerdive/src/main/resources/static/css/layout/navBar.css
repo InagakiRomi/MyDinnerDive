@@ -51,10 +51,17 @@ body.pinkTheme {
 /* ==== 導覽列標誌 ==== */
 .navBar .logo {
     font-size: 1.8rem;                                  /* 文字變大呈現標誌感 */
-    font-weight: bold;                                  /* 粗體呈現品牌感 */
+    font-weight: bold;                                  /* 粗體文字 */
     letter-spacing: 1px;                                /* 字距微調 */
     color: var(--color-logo);                           /* 文字 */
     text-shadow: 0 1px 1px var(--color-logo-shadow);    /* 白色陰影提亮文字 */
+}
+
+/* ==== 導覽列中間文字 ==== */
+.label-bold {
+    font-size: 1.1rem;               /* 字體大小 */
+    font-weight: 500;                /* 中等粗體 */
+    color: var(--color-nav-text);    /* 文字顏色 */
 }
 
 /* ==== 連結列樣式 ==== */

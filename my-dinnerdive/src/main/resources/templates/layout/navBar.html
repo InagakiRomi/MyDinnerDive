@@ -13,7 +13,9 @@
             <!-- 帳號名稱 -->
             <div class="logo" th:text="'Hello！' + ${username}"></div>
             <!-- 帳號權限 -->
-            <div th:text="帳號權限： + ${roles}"></div>
+            <div>
+                <span class="label-bold" th:text="帳號權限： + ${roles}"></span>
+            </div>
 
             <!-- 導覽選單項目 -->
             <ul class="navLinks">
