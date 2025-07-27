@@ -9,7 +9,11 @@
 
             <!-- 導覽列標題 -->
             <!-- <div class="logo">🍜 美食地圖</div> -->
+
+            <!-- 帳號名稱 -->
             <div class="logo" th:text="'Hello！' + ${username}"></div>
+            <!-- 帳號權限 -->
+            <div th:text="帳號權限： + ${roles}"></div>
 
             <!-- 導覽選單項目 -->
             <ul class="navLinks">
