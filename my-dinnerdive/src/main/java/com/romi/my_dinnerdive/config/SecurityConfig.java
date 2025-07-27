@@ -53,7 +53,10 @@ public class SecurityConfig {
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/dinnerHome", "/dinnerHome/memberRegister").permitAll()
 
                 // 註冊 API 允許所有人存取
-                .requestMatchers(HttpMethod.POST, "/users/register", "/users/quickLogin").permitAll();
+                .requestMatchers(HttpMethod.POST, "/users/register", "/users/quickLogin").permitAll()
+
+                // 只有管理員可以使用的 API
+                .requestMatchers("/restaurants/{restaurantId}").hasRole("ADMIN");
 
                 // 如果設定成全部開放，就不需要登入
                 if (permitAll) {

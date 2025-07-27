@@ -152,7 +152,7 @@ async function deleteRestaurant(event) {
                 alert("刪除成功！");
                 listRestaurant(); // 刪除成功後重新載入列表
             } else {
-                alert("刪除失敗！請確認資料是否正確");
+                alert("只有管理員帳號可以刪除餐廳資料！");
             }
         });
     }
