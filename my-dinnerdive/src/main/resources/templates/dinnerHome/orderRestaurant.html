@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 引入共用 head 標題 -->
+    <option th:replace="~{layout/headTitle :: commonHeadTitle}"></option>
+
+    <!-- 匯入按鈕樣式 -->
+    <link rel="stylesheet" href="/css/components/buttonStyle.css">
+
+    <!-- 匯入導覽列樣式 -->
+    <link rel="stylesheet" href="/css/layout/navBar.css">
+
+    <!-- 匯入表單通用樣式 -->
+    <link rel="stylesheet" href="/css/forms/formCommon.css">
+</head>
+<body>
+    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
+
+    <!--新增餐廳資訊-->
+    <div class="formContainer">
+        <h1>點餐</h1>
+        <form id="createForm">
+
+            <!-- 餐點名稱 -->
+            <label for="restaurantName">餐點名稱：</label>
+            <input type="text" id="restaurantName"
+                   required maxlength="64"
+                   placeholder="最多可輸入64個字">
+
+            <!-- 提交按鈕 -->
+            <button type="submit" class="btn btn-pink">點餐！</button>
+        </form>
+    </div>
+</body>
+</html>

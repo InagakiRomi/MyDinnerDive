@@ -48,6 +48,12 @@ public class ThymeleafController {
         return "dinnerHome/updateRestaurant";
     }
 
+    /** 點餐頁面 */
+    @GetMapping("dinnerHome/orderRestaurant")
+    public String orderPage() {
+        return "dinnerHome/orderRestaurant";
+    }
+
     /** 使用者註冊頁面 */
     @GetMapping("/dinnerHome/memberRegister")
     public String memberRegister() {

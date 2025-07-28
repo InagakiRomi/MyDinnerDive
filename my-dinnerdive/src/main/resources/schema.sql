@@ -5,9 +5,17 @@ CREATE TABLE IF NOT EXISTS restaurants (
     category         VARCHAR(32)  NOT NULL,                                             -- 餐廳分類
     image_url        VARCHAR(256),                                                      -- 餐廳圖片URL
     visited_count    INT DEFAULT 0,                                                     -- 選擇次數
-    last_selected_at         TIMESTAMP NULL DEFAULT NULL,                               -- 最後選擇時間
+    last_selected_at TIMESTAMP NULL DEFAULT NULL,                                       -- 最後選擇時間
     updated_at       TIMESTAMP NULL DEFAULT NULL,                                       -- 最後更新資料時間
     note             VARCHAR(512)                                                       -- 備註
+);
+
+-- 餐點資料
+CREATE TABLE IF NOT EXISTS dishes (
+    dish_id       INT AUTO_INCREMENT PRIMARY KEY,  -- 餐點編號
+    restaurant_id INT NOT NULL,                    -- 餐點對應餐廳編號
+    price         INT NOT NULL,                    -- 餐點價格
+    dish_name     VARCHAR(32) NOT NULL             -- 餐點名稱
 );
 
 -- 帳號資料
