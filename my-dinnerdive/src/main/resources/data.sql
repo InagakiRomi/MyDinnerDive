@@ -1,6 +1,15 @@
+INSERT INTO dishes 
+(dish_id, restaurant_id, price, dish_name) VALUES
+(1, 1, 280, '豚骨拉麵'),
+(2, 1, 260, '地獄辣味拉麵'),
+(3, 1, 240, '醬油拉麵'),
+(4, 1, 250, '味噌拉麵'),
+(5, 1, 230, '鹽味拉麵'),
+(6, 1, 290, '秘密拉麵');
+
 INSERT INTO restaurants 
 (restaurant_id, restaurant_name, category, image_url, visited_count, last_selected_at, updated_at, note) VALUES
-(1, '今天吃兩藍', 'MAIN', 'https://images.unsplash.com/photo-1614563637806-1d0e645e0940?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 3, '2025-06-06 17:37:50', '2025-05-18 23:06:13', '吃完湯匙都想帶回家'),
+(1, '一番湯屋', 'MAIN', 'https://images.unsplash.com/photo-1614563637806-1d0e645e0940?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 3, '2025-06-06 17:37:50', '2025-07-29 12:07:33', '這湯的香味可以拿去當香水賣'),
 (2, '咖哩煮很濃', 'MAIN', 'https://images.unsplash.com/photo-1694953593181-6ce423500712?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 1, '2025-05-24 12:00:00', '2025-05-18 23:06:13', '咖哩比我人生還濃'),
 (3, '鬆餅老師', 'SNACK', 'https://images.unsplash.com/photo-1669277038512-2dc8b3a2aac8?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 1, '2025-05-24 15:06:58', '2025-05-18 23:06:13', '鬆餅厚到可以當枕頭'),
 (4, '吃飽客', 'MAIN', 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 1, '2025-05-24 12:00:00', '2025-05-18 23:06:13', '披薩大到可以當盾牌'),
