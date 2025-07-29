@@ -1,0 +1,12 @@
+package com.romi.my_dinnerdive.dao;
+
+import java.util.List;
+
+import com.romi.my_dinnerdive.model.Dish;
+
+/** 定義餐廳餐點所有與資料庫互動的方法 */
+public interface DishDao {
+
+    /** 根據餐廳 ID 查詢餐點資料 */
+    List<Dish> findByRestaurantId(Integer restaurantId);
+}
