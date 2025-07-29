@@ -20,14 +20,14 @@
     padding: 12px;               /* 表頭內距 */
     font-size: 1.05em;           /* 表頭文字略放大 */
     color: white;              /* 表頭文字顏色 */
-    background-color: #ffb27e; /* 表頭背景顏色（橘色系） */
-    border-color: #e2935d;     /* 表頭邊框顏色（深橘） */
+    background-color: #ffb27e; /* 表頭背景顏色 */
+    border-color: #e2935d;     /* 表頭邊框顏色 */
 }
 
 .table td {
-    color: #4a3b2c;                       /* 表格文字顏色（咖啡色系） */
-    background-color: #fffaf4;            /* 表格內容背景色（米白） */
-    border-color: #eee0cc;                /* 表格格線顏色（淺米） */
+    color: #4a3b2c;                       /* 表格文字顏色 */
+    background-color: #fffaf4;            /* 表格內容背景色 */
+    border-color: #eee0cc;                /* 表格格線顏色 */
     word-break: break-word;                 /* 長單字自動換行 */
     white-space: normal;                    /* 正常換行 */
     transition: background-color 0.2s ease; /* 背景色滑過時動畫效果 */
@@ -68,7 +68,7 @@ form#listForm button {
     padding: 12px 20px;                                         /* 內距設定，增強可點擊區域 */
     font-size: 1.1rem;                                          /* 按鈕文字大小 */
     color: white;                                             /* 按鈕文字顏色 */
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* 背景漸層（粉色系） */
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* 背景漸層 */
     border: none;                                               /* 移除邊框 */
     border-radius: 8px;                                         /* 圓角按鈕 */
     cursor: pointer;                                            /* 指標樣式改為手指 */
@@ -118,4 +118,18 @@ form#listForm select {
     margin: 30px 0;            /* 區塊上下間距 */
     font-weight: bold;         /* 字體加粗 */
     color: #5c4033;          /* 文字顏色 */
+}
+
+/* ==== 操作按鈕群組區塊，自動換行 ==== */
+.buttonGroup {
+    display: flex;            /* 使用 Flex 排列 */
+    flex-wrap: wrap;          /* 超過寬度時自動換行 */
+    gap: 8px;                 /* 按鈕間距 */
+    justify-content: center;  /* 水平置中排列 */
+}
+
+.buttonGroup button {
+    flex: 1 1 calc(50% - 8px);  /* 每排最多 2 顆按鈕，扣除間距後平均分配寬度 */
+    min-width: 90px;           /* 設定按鈕最小寬度，避免太窄 */
+    box-sizing: border-box;     /* 包含 padding 與 border，確保寬度計算正確 */
 }
