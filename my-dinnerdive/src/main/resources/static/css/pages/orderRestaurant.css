@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  margin-top: 20px;
+}
+
+.mainContent {
+  flex: 2;
+  padding-right: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.dish {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.dishName,
+.dishPrice {
+  font-size: 18px;
+}
+
+.selectBtn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.selectBtn:hover {
+  background-color: #0056b3;
+}
+
+.sidebar {
+  flex: 1;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.selected-items {
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: #fafafa;
+}
+
+.item {
+  padding: 6px 0;
+  border-bottom: 1px dashed #ccc;
+  font-size: 16px;
+}
+
+.purchase-btn {
+  padding: 15px;
+  font-size: 18px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.purchase-btn:hover {
+  background-color: #218838;
+}

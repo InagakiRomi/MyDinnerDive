@@ -12,6 +12,7 @@
 
     <!-- 匯入表單通用樣式 -->
     <link rel="stylesheet" href="/css/forms/formCommon.css">
+    <link rel="stylesheet" href="/css/pages/orderRestaurant.css">
 </head>
 <body>
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
@@ -20,15 +21,42 @@
     <div class="formContainer">
         <h1>點餐</h1>
         <form id="createForm">
+            <div class="container">
 
-            <!-- 餐點名稱 -->
-            <label for="restaurantName">餐點名稱：</label>
-            <input type="text" id="restaurantName"
-                   required maxlength="64"
-                   placeholder="最多可輸入64個字">
+                <!-- 中間欄位 -->
+                <div class="mainContent">
+                    <div class="dish">
+                        <div class="dishName">炸雞套餐</div>
+                        <div class="dishPrice">$150</div>
+                        <button class="selectBtn">選擇</button>
+                    </div>
+                    <div class="dish">
+                        <div class="dishName">炸雞套餐</div>
+                        <div class="dishPrice">$150</div>
+                        <button class="selectBtn">選擇</button>
+                    </div>
+                    <div class="dish">
+                        <div class="dishName">炸雞套餐</div>
+                        <div class="dishPrice">$150</div>
+                        <button class="selectBtn">選擇</button>
+                    </div>
+                    <div class="dish">
+                        <div class="dishName">炸雞套餐</div>
+                        <div class="dishPrice">$150</div>
+                        <button class="selectBtn">選擇</button>
+                    </div>
+                </div>
 
-            <!-- 提交按鈕 -->
-            <button type="submit" class="btn btn-pink">點餐！</button>
+                <!-- 右邊欄位 -->
+                <div class="sidebar">
+                    <div class="selected-items">
+                        <div class="item">炸雞套餐 x1</div>
+                        <div class="item">可樂（大）x2</div>
+                        <div class="item">牛肉漢堡 x1</div>
+                    </div>
+                    <button class="purchase-btn">點餐！</button>
+                </div>
+            </div>
         </form>
     </div>
 </body>
