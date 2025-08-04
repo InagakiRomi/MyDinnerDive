@@ -49,8 +49,10 @@ public class ThymeleafController {
     }
 
     /** 點餐頁面 */
-    @GetMapping("dinnerHome/orderRestaurant")
-    public String orderPage() {
+    @GetMapping("dinnerHome/restaurants/{restaurantId}/dishes")
+    public String orderPage(@PathVariable Integer restaurantId, Model model) {
+        Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+        model.addAttribute("restaurants", restaurant);
         return "dinnerHome/orderRestaurant";
     }
 

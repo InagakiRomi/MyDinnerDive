@@ -24,27 +24,8 @@
             <div class="container">
 
                 <!-- 中間欄位 -->
-                <div class="mainContent">
-                    <div class="dish">
-                        <div class="dishName">炸雞套餐</div>
-                        <div class="dishPrice">$150</div>
-                        <button class="selectBtn">選擇</button>
-                    </div>
-                    <div class="dish">
-                        <div class="dishName">炸雞套餐</div>
-                        <div class="dishPrice">$150</div>
-                        <button class="selectBtn">選擇</button>
-                    </div>
-                    <div class="dish">
-                        <div class="dishName">炸雞套餐</div>
-                        <div class="dishPrice">$150</div>
-                        <button class="selectBtn">選擇</button>
-                    </div>
-                    <div class="dish">
-                        <div class="dishName">炸雞套餐</div>
-                        <div class="dishPrice">$150</div>
-                        <button class="selectBtn">選擇</button>
-                    </div>
+                <div class="mainContent" id="dishContainer">
+                    <!-- 將由 JavaScript 動態產生餐點項目 -->
                 </div>
 
                 <!-- 右邊欄位 -->
@@ -59,5 +40,8 @@
             </div>
         </form>
     </div>
+
+    <!-- 處理資料庫匯入餐點邏輯 -->
+    <script src="/js/orderRestaurant.js"></script>
 </body>
 </html>
