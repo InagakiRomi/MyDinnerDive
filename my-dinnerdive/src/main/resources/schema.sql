@@ -28,3 +28,23 @@ CREATE TABLE IF NOT EXISTS users
     created_date       TIMESTAMP NOT NULL,                                                -- 建立時間
     last_modified_date TIMESTAMP NOT NULL                                                 -- 最後修改時間
 );
+
+-- 訂單主表：紀錄每一筆訂單的整體資訊
+CREATE TABLE orders
+(
+    order_id           INT       NOT NULL PRIMARY KEY AUTO_INCREMENT, -- 訂單編號
+    user_id            INT       NOT NULL,                            -- 下訂單的用戶ID
+    total_amount       INT       NOT NULL,                            -- 訂單總金額
+    created_date       TIMESTAMP NOT NULL,                            -- 訂單建立時間
+    last_modified_date TIMESTAMP NOT NULL                             -- 訂單最後修改時間
+);
+
+-- 訂單項目明細表：記錄每張訂單中所包含的餐點明細
+CREATE TABLE order_item
+(
+    order_item_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- 訂單項目編號
+    order_id      INT NOT NULL,                            -- 對應的訂單編號
+    dish_id       INT NOT NULL,                            -- 餐點ID
+    quantity      INT NOT NULL,                            -- 該餐點的購買數量
+    amount        INT NOT NULL                             -- 該餐點的總金額
+);

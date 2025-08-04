@@ -380,3 +380,7 @@ INSERT INTO users
 (2, 'Michael', '$2a$10$e2E9fmZ57LDm/TQGkztKcOFqOzkSPcZAcE5djm.W9nuRbvBKB6KpK', 'ADMIN', '2025-07-20 00:48:31', '2025-07-20 00:48:31'),
 (3, 'Jessica', '$2a$10$9ZcJtop4hkPDjD/7AtTjj./zB5mJgm7QcCnHeuIvHvRtMVycoLD.2', 'USER', '2025-07-20 00:48:35', '2025-07-20 00:48:35');
 
+INSERT INTO orders (user_id, total_amount, created_date, last_modified_date) VALUES (6, 100110, '2022-06-02 16:51:49', '2022-06-02 16:51:49');
+INSERT INTO order_item (order_id, dish_id, quantity, amount) VALUES (1, 4, 2, 60);
+INSERT INTO order_item (order_id, dish_id, quantity, amount) VALUES (1, 6, 5, 50);
+INSERT INTO order_item (order_id, dish_id, quantity, amount) VALUES (1, 7, 1, 100000);
