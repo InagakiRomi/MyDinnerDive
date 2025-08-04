@@ -2,7 +2,7 @@ const restaurantId = document.body.getAttribute('dataRestaurantId');
 const container = document.getElementById('dishContainer');
 
 // 取得餐點資料
-fetch('/restaurants/${restaurantId}/dishes')
+fetch(`/restaurants/${restaurantId}/dishes`)
     .then(response => response.json())
     .then(dishes => {
         dishes.forEach(dish => {

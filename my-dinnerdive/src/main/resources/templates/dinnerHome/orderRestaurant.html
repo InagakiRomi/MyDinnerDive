@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/forms/formCommon.css">
     <link rel="stylesheet" href="/css/pages/orderRestaurant.css">
 </head>
-<body>
+<body th:attr="dataRestaurantId=${restaurantId}">
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
     <!--新增餐廳資訊-->
