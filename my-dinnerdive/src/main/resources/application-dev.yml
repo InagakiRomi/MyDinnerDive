@@ -26,4 +26,4 @@ spring:
 security:
   # false = 啟用權限驗證，API 會檢查使用者是否登入或有權限
   # 若設為 true，所有 API 都可以不登入直接使用
-  permit-all: false
+  permit-all: true

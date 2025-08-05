@@ -89,6 +89,35 @@ form#listForm button:active {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);   /* 點擊時陰影縮小 */
 }
 
+/* ==== 金色按鈕樣式 ==== */
+button.btn-gold {
+    background: linear-gradient(135deg, #FFE082, #FFC107 );
+    color: white;
+}
+
+button.btn-gold:hover {
+    background: linear-gradient(135deg, #FFE082, #FFC107);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+button.btn-gold:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* ==== 新增餐廳按鈕 ==== */
+form#listForm button.btn-add {
+    background: linear-gradient(135deg, #61cc7a, #2cb34c) !important;
+}
+
+.rightButtonWrapper {
+    margin-left: auto;      /* 推到右邊 */
+    padding-right: 20px;    /* 與右邊留白 */
+    display: flex;          /* 使用 Flex 容器 */
+    align-items: center;    /* 垂直置中 */
+}
+
 /* ==== 表單區塊樣式 ==== */
 form#listForm > div {
     display: flex;            /* 使用 Flex 排版 */
@@ -132,4 +161,9 @@ form#listForm select {
     flex: 1 1 calc(50% - 8px);  /* 每排最多 2 顆按鈕，扣除間距後平均分配寬度 */
     min-width: 90px;           /* 設定按鈕最小寬度，避免太窄 */
     box-sizing: border-box;     /* 包含 padding 與 border，確保寬度計算正確 */
+}
+
+/* 第一個按鈕為單獨一行 */
+.buttonGroup button:first-child {
+    flex: 1 1 100%;  /* 讓第一顆按鈕獨占一整行 */
 }

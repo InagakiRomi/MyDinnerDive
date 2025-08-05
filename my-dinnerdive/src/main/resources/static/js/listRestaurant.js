@@ -115,9 +115,9 @@ async function listRestaurant(){
             <td class="noteCell">${restaurant.note}</td>
             <td>
                 <div class="buttonGroup">
+                    <button class="btn-gold" onclick="location.href='/dinnerHome/restaurants/${restaurant.restaurantId}/dishes'">點餐</button>
                     <button onclick="location.href='/dinnerHome/restaurants/${restaurant.restaurantId}/edit'">修改</button>
                     <button class="delete-btn" data-id="${restaurant.restaurantId}">刪除</button>
-                    <button onclick="location.href='/dinnerHome/restaurants/${restaurant.restaurantId}/dishes'">點餐</button>
                 </div>
             </td>
         `;

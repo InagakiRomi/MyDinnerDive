@@ -29,10 +29,19 @@
 
             <!-- 查詢按鈕 -->
             <button type="submit">查詢</button>
+
+            <!-- 右側按鈕區塊 -->
+            <div class="rightButtonWrapper">
+                <!-- 新增餐廳按鈕 -->
+                <button type="button" class="btn-add" 
+                        onclick="window.location.href='/dinnerHome/createRestaurant'">
+                        新增餐廳
+                </button>
+            </div>
         </div>
 
-        <!-- 排序方式 -->
         <div>
+            <!-- 排序方式 -->
             <select id="orderBy">
                 <option value="restaurant_id">建立順序</option>
                 <option value="category">類別</option>
