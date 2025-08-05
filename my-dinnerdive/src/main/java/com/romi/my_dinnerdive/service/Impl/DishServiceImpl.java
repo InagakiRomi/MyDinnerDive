@@ -18,4 +18,9 @@ public class DishServiceImpl implements DishService{
     public List<Dish> findByRestaurantId(Integer restaurantId) {
         return dishDao.findByRestaurantId(restaurantId);
     }
+
+    @Override
+    public void deleteDishById(Integer dishId){
+        dishDao.deleteDishById(dishId);
+    }
 }

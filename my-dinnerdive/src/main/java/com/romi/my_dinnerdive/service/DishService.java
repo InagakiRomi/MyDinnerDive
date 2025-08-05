@@ -9,4 +9,7 @@ public interface DishService {
 
     /** 查詢指定餐廳餐點資料 */
     List<Dish> findByRestaurantId(Integer restaurantId);
+
+    /** 刪除指定餐點 */
+    void deleteDishById(Integer dishId);
 }

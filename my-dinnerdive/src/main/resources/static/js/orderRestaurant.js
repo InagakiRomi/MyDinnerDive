@@ -25,9 +25,13 @@ fetch(`/restaurants/${restaurantId}/dishes`)
                     <div class="dishName">${dish.dishName}</div>
                     <div class="dishPrice">$${dish.price}</div>
                     <!-- <button class="updateBtn">修改</button> -->
-                    <button class="deleteBtn">刪除</button>
+                    <button class="deleteBtn delete-btn" data-id="${dish.dishId}">刪除</button>
                 </div>
             `;
+
+            // 綁定刪除按鈕點擊事件
+            const deleteBtn = dishDiv.querySelector('.delete-btn');
+            deleteBtn.addEventListener('click', deleteDish);
 
             // 把 div 加到網頁上的 container 中
             container.appendChild(dishDiv);
@@ -48,3 +52,24 @@ fetch(`/restaurants/${restaurantId}`)
     .catch(error => {
         console.error('取得餐廳資訊時出錯:', error);
     });
+
+/** 刪除餐點資料的處理邏輯 */
+async function deleteDish(event) {
+    const deleteButton = event.target.classList.contains('delete-btn');
+
+    if (deleteButton) {
+        const id = event.target.getAttribute('data-id');
+
+        // 發送 DELETE 請求刪除資料
+        fetch(`/dishes/${id}`, {
+            method: "DELETE"
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("刪除成功！");
+            } else {
+                alert("只有管理員帳號可以刪除餐廳資料！");
+            }
+        });
+    }
+};

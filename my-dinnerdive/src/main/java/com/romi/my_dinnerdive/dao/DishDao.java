@@ -9,4 +9,7 @@ public interface DishDao {
 
     /** 根據餐廳 ID 查詢餐點資料 */
     List<Dish> findByRestaurantId(Integer restaurantId);
+
+    /** 刪除指定 ID 的餐點資料 */
+    void deleteDishById(Integer dishId);
 }

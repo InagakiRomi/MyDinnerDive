@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +26,16 @@ public class DishController {
         List<Dish> dish = dishService.findByRestaurantId(restaurantId);
 
         return ResponseEntity.status(HttpStatus.OK).body(dish);
+    }
+
+    /** 刪除指定的餐點資料 */
+    @DeleteMapping("/dishes/{dishId}")
+    public ResponseEntity<?> deleteDish(@PathVariable Integer dishId) {
+
+        // 呼叫 Service 層刪除該餐點資料（若不存在也不會報錯）
+        dishService.deleteDishById(dishId);
+
+        // 回傳 HTTP 204（No Content），代表刪除成功
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

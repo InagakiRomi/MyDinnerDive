@@ -29,4 +29,14 @@ public class DishDaoImpl implements DishDao {
 
         return dishList;
     }
+
+    @Override
+    public void deleteDishById(Integer dishId){
+        String sql = "DELETE FROM dishes WHERE dish_id = :dishId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("dishId", dishId);
+
+        namedParameterJdbcTemplate.update(sql, map);
+    }
 }
