@@ -26,3 +26,14 @@ fetch(`/restaurants/${restaurantId}/dishes`)
         // 如果有錯誤，就在 console 顯示錯誤訊息
         console.error('取得菜單時出錯:', error);
     });
+
+// 取得餐廳資訊並更新標題
+fetch(`/restaurants/${restaurantId}`)
+    .then(response => response.json())
+    .then(restaurant => {
+        const title = document.getElementById('restaurantTitle');
+        title.textContent = `${restaurant.restaurantName}`;
+    })
+    .catch(error => {
+        console.error('取得餐廳資訊時出錯:', error);
+    });
