@@ -5,6 +5,16 @@ const container = document.getElementById('dishContainer');
 fetch(`/restaurants/${restaurantId}/dishes`)
     .then(response => response.json())
     .then(dishes => {
+
+        // 如果資料是空的，就顯示提示文字
+        if (dishes.length === 0) {
+            const emptyMessage = document.createElement('div');
+            emptyMessage.textContent = '請新增餐點';
+            emptyMessage.className = 'noDishMessage';
+            container.appendChild(emptyMessage);
+            return;
+        }
+
         dishes.forEach(dish => {
             // 建立一個新的 div 元素來顯示菜色
             const dishDiv = document.createElement('div');
@@ -14,7 +24,8 @@ fetch(`/restaurants/${restaurantId}/dishes`)
                 <div class="dishRow">
                     <div class="dishName">${dish.dishName}</div>
                     <div class="dishPrice">$${dish.price}</div>
-                    <button class="selectBtn">選擇</button>
+                    <!-- <button class="updateBtn">修改</button> -->
+                    <button class="deleteBtn">刪除</button>
                 </div>
             `;
 

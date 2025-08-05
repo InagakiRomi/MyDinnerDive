@@ -6,9 +6,9 @@
 
 /* ==== 主內容區塊：菜單項目列表區域樣式 ==== */
 .mainContent {
-  flex: 2;                         /* 佔據較大寬度 */
-  padding-right: 20px;             /* 右側內距 */
-  border-right: 1px solid #ccc;  /* 與側邊欄的分隔線 */
+  flex: 2;                            /* 佔據較大寬度 */
+  padding-right: 20px;                /* 右側內距 */
+  /* border-right: 1px solid #ccc; */ /* 與側邊欄的分隔線 */
 }
 
 /* ==== 單一道菜項目樣式區塊 ==== */
@@ -32,24 +32,41 @@
 
 .dishPrice {
   width: 60px;        /* 固定寬度，讓所有價格數字在同一條線上對齊 */
-  text-align: left;  /* 將價格文字靠左對齊 */
+  text-align: left;   /* 將價格文字靠左對齊 */
   font-size: 18px;    /* 字體大小統一設定 */
 }
 
 /* ==== 選擇按鈕樣式設定 ==== */
-.selectBtn {
-  padding: 8px 12px;                  /* 按鈕內距 */
-  font-size: 14px;                    /* 字體大小 */
-  background-color: #007bff;        /* 背景色 - 藍色 */
-  color: white;                     /* 文字顏色 */
-  border: none;                       /* 移除預設邊框 */
-  border-radius: 4px;                 /* 圓角設定 */
-  cursor: pointer;                    /* 滑鼠變成手指 */
-  transition: background-color 0.3s;  /* 背景色變化動畫 */
+/* ==== 藍色按鈕樣式 ==== */
+.updateBtn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.selectBtn:hover {
-  background-color: #0056b3;  /* 滑過按鈕時變深藍 */
+.updateBtn:hover {
+  background-color: #0056b3;
+}
+
+/* ==== 紅色按鈕樣式 ==== */
+.deleteBtn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.deleteBtn:hover {
+  background-color: #a71d2a;
 }
 
 /* ==== 側邊欄樣式：顯示已選項目與操作按鈕 ==== */
@@ -91,4 +108,12 @@
 
 .purchase-btn:hover {
   background-color: #218838;  /* 滑過時變深綠色 */
+}
+
+/* ==== 無餐點的餐廳 ==== */
+.noDishMessage {
+    font-size: 24px;     /* 放大字體 */
+    color: gray;       /* 灰色文字（可依喜好調整） */
+    text-align: center;  /* 文字置中 */
+    margin-top: 20px;    /* 與上方元素保持距離 */
 }

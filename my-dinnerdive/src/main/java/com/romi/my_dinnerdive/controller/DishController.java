@@ -25,5 +25,5 @@ public class DishController {
         List<Dish> dish = dishService.findByRestaurantId(restaurantId);
 
         return ResponseEntity.status(HttpStatus.OK).body(dish);
-    }  
+    }
 }
