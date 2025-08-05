@@ -55,21 +55,28 @@ fetch(`/restaurants/${restaurantId}`)
 
 /** 刪除餐點資料的處理邏輯 */
 async function deleteDish(event) {
-    const deleteButton = event.target.classList.contains('delete-btn');
+    const deleteBtn = event.target;
+    if (!deleteBtn.classList.contains('delete-btn')) return;
 
-    if (deleteButton) {
-        const id = event.target.getAttribute('data-id');
+    // 取得要刪除的餐點 ID
+    const id = deleteBtn.getAttribute('data-id');
 
-        // 發送 DELETE 請求刪除資料
-        fetch(`/dishes/${id}`, {
+    // 發送 DELETE 請求刪除資料
+    try {
+        const response = await fetch(`/dishes/${id}`, {
             method: "DELETE"
-        })
-        .then(response => {
-            if (response.ok) {
-                alert("刪除成功！");
-            } else {
-                alert("只有管理員帳號可以刪除餐廳資料！");
-            }
         });
+
+        if (response.ok) {
+            alert("刪除成功！");
+            const dishRow = deleteBtn.closest('.dish');
+            if (dishRow) {
+                dishRow.remove();
+            }
+        } else {
+            alert("只有管理員帳號可以刪除餐廳資料！");
+        }
+    } catch (error) {
+        alert("系統發生錯誤！");
     }
-};
+}
