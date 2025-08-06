@@ -27,6 +27,15 @@
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* 陰影變小，貼近底部 */
 }
 
+/* 較小且固定在左上角的按鈕 */
+.btn-small-fixed {
+    display: inline-block;    /* 改為 inline-block，不會自動佔滿整行 */
+    margin: 20px;             /* 四周留白 */
+    width: auto;              /* 寬度自動由內容決定 */
+    padding: 10px 16px;       /* 比原本稍微小一點的 padding */
+    font-size: 1rem;          /* 字體適中 */
+}
+
 /* 粉色系按鈕背景 */
 .btn-pink {
     background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* 漸層按鈕 */

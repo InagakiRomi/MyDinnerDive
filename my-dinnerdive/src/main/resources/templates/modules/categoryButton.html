@@ -17,5 +17,13 @@
         <option value="SNACK">輕食</option>
         <option value="DRINK">飲料</option>
     </th:block>
+
+    <!-- 可在其他模板中引用返回餐廳一覽的按鈕 -->
+    <th:block th:fragment="listButton">
+        <button class="btn btn-yellow btn-small-fixed"
+                onclick="location.href='/dinnerHome/listRestaurant'">
+                返回餐廳一覽
+        </button>
+    </th:block>
 </body>
 </html>
