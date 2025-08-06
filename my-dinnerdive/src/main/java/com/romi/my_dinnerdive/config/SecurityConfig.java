@@ -75,7 +75,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
 
                 // 只有管理員可以使用的 API
-                .requestMatchers(HttpMethod.DELETE, "/restaurants/{restaurantId}").hasRole("ADMIN");
+                .requestMatchers(HttpMethod.DELETE, "/restaurants/{restaurantId}", "/dishes/{dishId}").hasRole("ADMIN");
 
                 // 如果設定成全部開放，就不需要登入
                 if (permitAll) {

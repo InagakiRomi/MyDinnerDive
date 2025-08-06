@@ -61,34 +61,6 @@
     text-align: left !important;
 }
 
-/* ==== 按鈕樣式統一（含表單內）==== */
-button,
-form#listForm button {
-    max-width: 400px;                                           /* 按鈕最大寬度限制 */
-    padding: 12px 20px;                                         /* 內距設定，增強可點擊區域 */
-    font-size: 1.1rem;                                          /* 按鈕文字大小 */
-    color: white;                                             /* 按鈕文字顏色 */
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* 背景漸層 */
-    border: none;                                               /* 移除邊框 */
-    border-radius: 8px;                                         /* 圓角按鈕 */
-    cursor: pointer;                                            /* 指標樣式改為手指 */
-    transition: all 0.3s ease;                                  /* 滑過/點擊動畫效果 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);                /* 陰影增添立體感 */
-}
-
-button:hover,
-form#listForm button:hover {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* 維持背景漸層 */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);                /* 滑過陰影加強 */
-    transform: translateY(-2px);                                /* 按鈕浮起效果 */
-}
-
-button:active,
-form#listForm button:active {
-    transform: scale(0.98);                        /* 點擊時略縮小 */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);   /* 點擊時陰影縮小 */
-}
-
 /* ==== 表單區塊樣式 ==== */
 form#listForm > div {
     display: flex;            /* 使用 Flex 排版 */
@@ -132,4 +104,9 @@ form#listForm select {
     flex: 1 1 calc(50% - 8px);  /* 每排最多 2 顆按鈕，扣除間距後平均分配寬度 */
     min-width: 90px;           /* 設定按鈕最小寬度，避免太窄 */
     box-sizing: border-box;     /* 包含 padding 與 border，確保寬度計算正確 */
+}
+
+/* 第一個按鈕為單獨一行 */
+.buttonGroup button:first-child {
+    flex: 1 1 100%;  /* 讓第一顆按鈕獨占一整行 */
 }

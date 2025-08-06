@@ -17,9 +17,15 @@
 <body th:attr="dataRestaurantId=${restaurantId}">
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
+    <!-- 返回餐廳一覽按鈕 -->
+    <button th:replace="~{modules/categoryButton :: listButton}"></button>
+
+    <!-- 新增餐點按鈕 -->
+    <button type="button" class="btn btn-green btn-top-right" id="addDishBtn">新增餐點</button>
+    
     <!--新增餐廳資訊-->
     <div class="formContainer">
-        <h1>點餐</h1>
+        <h1 id="restaurantTitle">餐廳名稱</h1>
         <form id="createForm">
             <div class="container">
 
@@ -29,14 +35,14 @@
                 </div>
 
                 <!-- 右邊欄位 -->
-                <div class="sidebar">
+                <!-- <div class="sidebar">
                     <div class="selected-items">
                         <div class="item">炸雞套餐 x1</div>
                         <div class="item">可樂（大）x2</div>
                         <div class="item">牛肉漢堡 x1</div>
                     </div>
                     <button class="purchase-btn">點餐！</button>
-                </div>
+                </div> -->
             </div>
         </form>
     </div>
