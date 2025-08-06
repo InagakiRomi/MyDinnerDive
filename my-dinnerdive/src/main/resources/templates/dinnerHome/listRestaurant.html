@@ -5,6 +5,9 @@
     <!-- 引入共用 head 標題 -->
     <option th:replace="~{layout/headTitle :: commonHeadTitle}"></option>
 
+    <!-- 匯入按鈕樣式 -->
+    <link rel="stylesheet" href="/css/components/buttonStyle.css">
+
     <!-- 匯入表格樣式 -->
     <link rel="stylesheet" href="/css/components/tableStyle.css">
 
@@ -13,6 +16,12 @@
 </head>
 <body>
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
+
+    <!-- 新增餐廳按鈕 -->
+    <button type="button" class="btn btn-green btn-top-right" 
+            onclick="window.location.href='/dinnerHome/createRestaurant'">
+            新增餐廳
+    </button>
 
     <!-- 餐廳列表查詢表單 -->
     <form id="listForm">
@@ -28,11 +37,11 @@
             <input type="text" id="search" placeholder="輸入餐廳名稱或備註內容">
 
             <!-- 查詢按鈕 -->
-            <button type="submit">查詢</button>
+            <button type="submit" class="btn btn-pink">查詢</button>
         </div>
 
-        <!-- 排序方式 -->
         <div>
+            <!-- 排序方式 -->
             <select id="orderBy">
                 <option value="restaurant_id">建立順序</option>
                 <option value="category">類別</option>
@@ -71,9 +80,9 @@
 
     <!-- 分頁控制 -->
     <div class="switchPageBtn">
-        <button id="prevPage">上一頁</button>
+        <button id="prevPage" class="btn btn-pink">上一頁</button>
         <div style="white-space: nowrap;">第1頁 / 共10頁</div> <!-- 數字是動態控制 -->
-        <button id="nextPage">下一頁</button>
+        <button id="nextPage" class="btn btn-pink">下一頁</button>
     </div>
 
     <!-- 處理資料庫匯入列表裡邏輯 -->

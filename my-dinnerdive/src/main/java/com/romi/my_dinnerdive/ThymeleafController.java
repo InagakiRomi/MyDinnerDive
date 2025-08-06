@@ -48,6 +48,22 @@ public class ThymeleafController {
         return "dinnerHome/updateRestaurant";
     }
 
+    /** 點餐頁面 */
+    @GetMapping("dinnerHome/restaurants/{restaurantId}/dishes")
+    public String orderPage(@PathVariable Integer restaurantId, Model model) {
+        Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+        model.addAttribute("restaurants", restaurant);
+        return "dinnerHome/orderRestaurant";
+    }
+
+    /** 新增餐點頁面 */
+    @GetMapping("dinnerHome/restaurants/{restaurantId}/dishes/createDish")
+    public String createDishPage(@PathVariable Integer restaurantId, Model model) {
+        Restaurant restaurant = restaurantService.getRestaurantById(restaurantId);
+        model.addAttribute("restaurants", restaurant);
+        return "dinnerHome/createDish";
+    }
+
     /** 使用者註冊頁面 */
     @GetMapping("/dinnerHome/memberRegister")
     public String memberRegister() {

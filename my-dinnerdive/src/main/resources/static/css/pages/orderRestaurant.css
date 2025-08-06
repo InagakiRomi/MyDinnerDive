@@ -1,0 +1,119 @@
+/* ==== 主容器區塊：頁面主要結構設定 ==== */
+.container {
+  display: flex;     /* 使用 Flex 排版主要區塊 */
+  margin-top: 20px;  /* 主容器上方間距 */
+}
+
+/* ==== 主內容區塊：菜單項目列表區域樣式 ==== */
+.mainContent {
+  flex: 2;                            /* 佔據較大寬度 */
+  padding-right: 20px;                /* 右側內距 */
+  /* border-right: 1px solid #ccc; */ /* 與側邊欄的分隔線 */
+}
+
+/* ==== 單一道菜項目樣式區塊 ==== */
+.dish {
+  padding: 10px 0;                  /* 上下內距 */
+  border-bottom: 1px solid #eee;  /* 每道菜下方的分隔線 */
+}
+
+.dishRow {
+  display: flex;                   /* 使用 Flex 排版菜名與價格 */
+  justify-content: space-between;  /* 左右分散排列 */
+  align-items: center;             /* 垂直置中對齊 */
+  gap: 30px;                       /* 元素之間的水平間距 */
+}
+
+/* ==== 菜名與價格樣式設定 ==== */
+.dishName {
+  flex: 1;          /* 讓 dishName 自動撐滿可用空間，使價格與按鈕被推到右邊 */
+  font-size: 18px;  /* 字體大小統一設定 */
+}
+
+.dishPrice {
+  width: 60px;        /* 固定寬度，讓所有價格數字在同一條線上對齊 */
+  text-align: left;   /* 將價格文字靠左對齊 */
+  font-size: 18px;    /* 字體大小統一設定 */
+}
+
+/* ==== 選擇按鈕樣式設定 ==== */
+/* ==== 藍色按鈕樣式 ==== */
+.updateBtn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.updateBtn:hover {
+  background-color: #0056b3;
+}
+
+/* ==== 紅色按鈕樣式 ==== */
+.deleteBtn {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.deleteBtn:hover {
+  background-color: #a71d2a;
+}
+
+/* ==== 側邊欄樣式：顯示已選項目與操作按鈕 ==== */
+.sidebar {
+  flex: 1;                         /* 側欄佔比較小的寬度 */
+  padding-left: 20px;              /* 左側內距 */
+  display: flex;                   /* Flex 排列子項 */
+  flex-direction: column;          /* 垂直排列子元素 */
+  justify-content: space-between;  /* 上下分散對齊 */
+}
+
+/* ==== 已選項目列表容器樣式 ==== */
+.selected-items {
+  flex-grow: 1;              /* 擴展填滿可用空間 */
+  border: 1px solid #ddd;  /* 外框線條 */
+  padding: 10px;             /* 內距 */
+  margin-bottom: 20px;       /* 下方間距 */
+  background: #fafafa;     /* 淺灰底色 */
+}
+
+/* ==== 每個已選項目的樣式 ==== */
+.item {
+  padding: 6px 0;                    /* 垂直間距 */
+  border-bottom: 1px dashed #ccc;  /* 虛線分隔 */
+  font-size: 16px;                   /* 字體大小 */
+}
+
+/* ==== 購買按鈕樣式設定 ==== */
+.purchase-btn {
+  padding: 15px;                      /* 內距大一點 */
+  font-size: 18px;                    /* 字體稍大 */
+  background-color: #28a745;        /* 綠色背景 */
+  color: white;                     /* 白色文字 */
+  border: none;                       /* 無邊框 */
+  cursor: pointer;                    /* 指標變手 */
+  border-radius: 5px;                 /* 圓角設計 */
+  transition: background-color 0.3s;  /* 背景色過渡 */
+}
+
+.purchase-btn:hover {
+  background-color: #218838;  /* 滑過時變深綠色 */
+}
+
+/* ==== 無餐點的餐廳 ==== */
+.noDishMessage {
+    font-size: 24px;     /* 放大字體 */
+    color: gray;       /* 灰色文字（可依喜好調整） */
+    text-align: center;  /* 文字置中 */
+    margin-top: 20px;    /* 與上方元素保持距離 */
+}

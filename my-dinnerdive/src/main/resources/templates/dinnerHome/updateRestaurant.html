@@ -19,9 +19,11 @@
 <body>
     <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
 
+    <!-- 返回餐廳一覽按鈕 -->
+    <button th:replace="~{modules/categoryButton :: listButton}"></button>
+
     <div class="formContainer">
         <h1>修改餐廳</h1>
-
         <!-- 餐廳修改表單 -->
         <form id="updateForm">
              <!-- 餐廳ID（隱藏欄位，用於識別要更新哪筆資料） -->
@@ -74,7 +76,7 @@
             <br>
 
             <!-- 提交按鈕 -->
-            <button type="submit" class="btn btn-pink">儲存修改</button>
+            <button type="submit" class="btn btn-pink btn-wide">儲存修改</button>
         </form>
     </div>
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 引入共用 head 標題 -->
+    <option th:replace="~{layout/headTitle :: commonHeadTitle}"></option>
+
+    <!-- 匯入按鈕樣式 -->
+    <link rel="stylesheet" href="/css/components/buttonStyle.css">
+
+    <!-- 匯入導覽列樣式 -->
+    <link rel="stylesheet" href="/css/layout/navBar.css">
+
+    <!-- 匯入表單通用樣式 -->
+    <link rel="stylesheet" href="/css/forms/formCommon.css">
+    <link rel="stylesheet" href="/css/pages/orderRestaurant.css">
+</head>
+<body th:attr="dataRestaurantId=${restaurantId}">
+    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
+
+    <!-- 返回餐廳一覽按鈕 -->
+    <button th:replace="~{modules/categoryButton :: listButton}"></button>
+
+    <!-- 新增餐點按鈕 -->
+    <button type="button" class="btn btn-green btn-top-right" id="addDishBtn">新增餐點</button>
+    
+    <!--新增餐廳資訊-->
+    <div class="formContainer">
+        <h1 id="restaurantTitle">餐廳名稱</h1>
+        <form id="createForm">
+            <div class="container">
+
+                <!-- 中間欄位 -->
+                <div class="mainContent" id="dishContainer">
+                    <!-- 將由 JavaScript 動態產生餐點項目 -->
+                </div>
+
+                <!-- 右邊欄位 -->
+                <!-- <div class="sidebar">
+                    <div class="selected-items">
+                        <div class="item">炸雞套餐 x1</div>
+                        <div class="item">可樂（大）x2</div>
+                        <div class="item">牛肉漢堡 x1</div>
+                    </div>
+                    <button class="purchase-btn">點餐！</button>
+                </div> -->
+            </div>
+        </form>
+    </div>
+
+    <!-- 處理資料庫匯入餐點邏輯 -->
+    <script src="/js/orderRestaurant.js"></script>
+</body>
+</html>
