@@ -88,3 +88,10 @@ async function deleteDish(event) {
         });
     }
 }
+
+/** 導向新增餐點頁面 */
+document.getElementById('addDishBtn').addEventListener("click", addDishPage);
+async function addDishPage() {
+    // 導向新增餐點頁面
+    window.location.href = `/dinnerHome/restaurants/${restaurantId}/dishes/createDish`;
+}

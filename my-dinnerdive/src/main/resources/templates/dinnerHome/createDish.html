@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 引入共用 head 標題 -->
+    <option th:replace="~{layout/headTitle :: commonHeadTitle}"></option>
+
+    <!-- 匯入按鈕樣式 -->
+    <link rel="stylesheet" href="/css/components/buttonStyle.css">
+
+    <!-- 匯入導覽列樣式 -->
+    <link rel="stylesheet" href="/css/layout/navBar.css">
+
+    <!-- 匯入表單通用樣式 -->
+    <link rel="stylesheet" href="/css/forms/formCommon.css">
+</head>
+<body>
+    <option th:replace="~{layout/navBar :: sharedNavBar}"></option>
+
+    <button class="btn btn-yellow btn-top-left" id="previousBtn">返回菜單</button>
+
+    <!-- 處理創建餐點資料邏輯 -->
+    <script type="module" src="/js/createDish.js"></script>
+    
+    <!--新增餐廳資訊-->
+    <div class="formContainer">
+        <h1>新增餐點</h1>
+        <form id="createForm">
+
+            <!-- 餐點名稱 -->
+            <label for="dishName">餐點名稱：</label>
+            <input type="text" id="dishName"
+                   maxlength="32" required
+                   placeholder="最多可輸入32個字">
+
+            <!-- 餐點價格 -->
+            <label for="price">餐點價格：</label>
+            <input type="number" id="price"
+                   min="1" max="9999" required
+                   placeholder="請輸入1~9999之間的數字">
+            <br>
+
+            <!-- 提交按鈕 -->
+            <button type="submit" class="btn btn-pink btn-wide">新增餐點</button>
+        </form>
+    </div>
+</body>
+</html>
