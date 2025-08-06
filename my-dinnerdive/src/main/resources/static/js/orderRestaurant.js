@@ -1,10 +1,34 @@
-const restaurantId = document.body.getAttribute('dataRestaurantId');
+let restaurantId;
 const container = document.getElementById('dishContainer');
 
-// 取得餐點資料
+document.addEventListener("DOMContentLoaded", function () {
+    restaurantId = document.body.getAttribute('dataRestaurantId');
+
+    loadRestaurantInfo(); // 顯示餐廳名稱
+    listDishes();         // 初始載入菜單資料
+});
+
+/** 取得餐廳資訊並更新標題 */
+async function loadRestaurantInfo() {
+    fetch(`/restaurants/${restaurantId}`)
+        .then(response => response.json())
+        .then(restaurant => {
+            const title = document.getElementById('restaurantTitle');
+            title.textContent = `${restaurant.restaurantName}`;
+        })
+        .catch(error => {
+            console.error('取得餐廳資訊時出錯:', error);
+        });
+}
+
+/** 取得餐點資料 */
+async function listDishes() {
 fetch(`/restaurants/${restaurantId}/dishes`)
     .then(response => response.json())
     .then(dishes => {
+
+        // 清空容器避免重複顯示
+        container.innerHTML = '';
 
         // 如果資料是空的，就顯示提示文字
         if (dishes.length === 0) {
@@ -29,54 +53,38 @@ fetch(`/restaurants/${restaurantId}/dishes`)
                 </div>
             `;
 
-            // 綁定刪除按鈕點擊事件
-            const deleteBtn = dishDiv.querySelector('.delete-btn');
-            deleteBtn.addEventListener('click', deleteDish);
-
             // 把 div 加到網頁上的 container 中
             container.appendChild(dishDiv);
         });
     })
     .catch(error => {
-        // 如果有錯誤，就在 console 顯示錯誤訊息
         console.error('取得菜單時出錯:', error);
     });
-
-// 取得餐廳資訊並更新標題
-fetch(`/restaurants/${restaurantId}`)
-    .then(response => response.json())
-    .then(restaurant => {
-        const title = document.getElementById('restaurantTitle');
-        title.textContent = `${restaurant.restaurantName}`;
-    })
-    .catch(error => {
-        console.error('取得餐廳資訊時出錯:', error);
-    });
+}
 
 /** 刪除餐點資料的處理邏輯 */
+container.addEventListener("click", deleteDish);
 async function deleteDish(event) {
-    const deleteBtn = event.target;
-    if (!deleteBtn.classList.contains('delete-btn')) return;
+    const target = event.target;
+    const deleteButton = target.classList.contains('delete-btn');
+    if (deleteButton) {
+        // 取得要刪除的餐點 ID
+        const id = target.getAttribute('data-id');
 
-    // 取得要刪除的餐點 ID
-    const id = deleteBtn.getAttribute('data-id');
-
-    // 發送 DELETE 請求刪除資料
-    try {
-        const response = await fetch(`/dishes/${id}`, {
+        // 發送 DELETE 請求刪除資料
+        fetch(`/dishes/${id}`, {
             method: "DELETE"
-        });
-
-        if (response.ok) {
-            alert("刪除成功！");
-            const dishRow = deleteBtn.closest('.dish');
-            if (dishRow) {
-                dishRow.remove();
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("刪除成功！");
+                listDishes(); // 刪除成功後重新載入列表
+            } else {
+                alert("只有管理員帳號可以刪除餐廳資料！");
             }
-        } else {
-            alert("只有管理員帳號可以刪除餐廳資料！");
-        }
-    } catch (error) {
-        alert("系統發生錯誤！");
+        })
+        .catch(error => {
+            alert("系統發生錯誤！");
+        });
     }
 }
