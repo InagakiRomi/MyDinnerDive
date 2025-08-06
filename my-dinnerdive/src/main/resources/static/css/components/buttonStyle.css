@@ -1,47 +1,63 @@
-/* 通用按鈕樣式 */
+/* 通用按鈕樣式 - 預設為短的（內容自適應） */
 .btn {
-    display: block;                              /* 設定為區塊元素，讓按鈕能置中對齊 */
-    width: 60%;                                  /* 設定按鈕寬度比例 */
-    max-width: 400px;                            /* 設定最大寬度避免過寬 */
-    margin: 20px auto 0 auto;                    /* 上方間距，左右自動置中，下方無間距 */
-    padding: 14px 0;                             /* 垂直內距，讓按鈕更高 */
-    font-size: 1.1rem;                           /* 設定文字大小 */
-    color: white;                              /* 設定文字顏色為白色 */
-    border: none;                                /* 移除預設邊框 */
-    border-radius: 8px;                          /* 設定圓角，讓按鈕看起來更柔和 */
-    background: none;                            /* 預設背景清除（方便用組合類別覆蓋） */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 添加陰影讓按鈕有立體感 */
-    cursor: pointer;                             /* 滑鼠移到按鈕上顯示為手指 */
-    transition: all 0.3s ease;                   /* 所有變化加入平滑過渡動畫 */
+    display: inline-block;                           /* 設定為 inline-block，使按鈕不佔滿整行，並根據內容自動寬度 */
+    padding: 14px 24px;                              /* 上下內距 14px，左右 24px，讓按鈕外觀適中 */
+    font-size: 1.1rem;                               /* 設定按鈕文字大小 */
+    color: white;                                  /* 按鈕文字為白色 */
+    border: none;                                    /* 移除邊框 */
+    border-radius: 8px;                              /* 圓角設計，提升視覺柔和感 */
+    background: none;                                /* 預設無背景，等待加上主題色 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);     /* 輕微陰影讓按鈕有立體感 */
+    cursor: pointer;                                 /* 滑鼠移上時顯示為可點擊的手指圖示 */
+    transition: all 0.3s ease;                       /* 所有變化效果加上平滑過渡動畫 */
+    text-align: center;                              /* 按鈕內文字置中對齊 */
 }
 
-/* 滑鼠滑過時的共用效果 */
+/* 長按鈕：需額外加上 btn-wide 類別 */
+.btn-wide {
+    display: block;                                  /* 設為 block，並可搭配 margin 自動置中 */
+    width: 60%;                                      /* 寬度設定為容器的 60% */
+    max-width: 400px;                                /* 最大寬度不超過 400px，避免過寬 */
+    margin: 20px auto 0 auto;                        /* 上方留白 20px，左右自動置中，下方 0 */
+    padding: 14px 0;                                 /* 內距調整為上下有 padding，左右無 */
+}
+
+/* 滑鼠滑過按鈕的效果 */
 .btn:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* 陰影加強，產生浮起感 */
-    transform: translateY(-2px);                 /* 按鈕稍微往上移動，模擬懸浮 */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);     /* 加強陰影，產生懸浮感 */
+    transform: translateY(-2px);                     /* 按鈕略微上移，產生浮起的動態感 */
 }
 
-/* 按鈕點擊時的共用效果 */
+/* 按鈕被點擊時的效果 */
 .btn:active {
-    transform: scale(0.98);                      /* 按鈕縮小一點點，模擬被按下的效果 */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* 陰影變小，貼近底部 */
-}
-
-/* 較小且固定在左上角的按鈕 */
-.btn-small-fixed {
-    display: inline-block;    /* 改為 inline-block，不會自動佔滿整行 */
-    margin: 20px;             /* 四周留白 */
-    width: auto;              /* 寬度自動由內容決定 */
-    padding: 10px 16px;       /* 比原本稍微小一點的 padding */
-    font-size: 1rem;          /* 字體適中 */
+    transform: scale(0.98);                          /* 略為縮小，模擬按壓效果 */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);     /* 陰影變小，感覺更貼近底部 */
 }
 
 /* 粉色系按鈕背景 */
 .btn-pink {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* 漸層按鈕 */
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* 漸層背景 */
 }
 
 /* 黃色系按鈕背景 */
 .btn-yellow {
-    background: linear-gradient(135deg, #fddb3a, #fcb045); /* 漸層按鈕 */
+    background: linear-gradient(135deg, #fddb3a, #fcb045); /* 漸層背景 */
+}
+
+/* 綠色系按鈕背景 */
+.btn-green {
+    background: linear-gradient(135deg, #61cc7a, #2cb34c); /* 漸層背景 */
+}
+
+/* 在左上角的按鈕 */
+.btn-top-left {
+    margin-top: 20px;   /* 上方留白 */
+    margin-left: 20px;  /* 左方留白 */
+}
+
+/* 在右上角的按鈕 */
+.btn-top-right {
+    position: absolute;  /* 絕對定位 */
+    top: 95px;           /* 上方距離 */
+    right: 20px;         /* 右方距離 */
 }

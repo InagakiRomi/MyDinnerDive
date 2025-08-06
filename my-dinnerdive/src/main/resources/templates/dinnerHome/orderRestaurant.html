@@ -20,6 +20,12 @@
     <!-- 返回餐廳一覽按鈕 -->
     <button th:replace="~{modules/categoryButton :: listButton}"></button>
 
+    <!-- 新增餐點按鈕 -->
+    <button type="button" class="btn btn-green btn-top-right" 
+            onclick="window.location.href='/dinnerHome/createRestaurant'">
+            新增餐點
+    </button>
+
     <!--新增餐廳資訊-->
     <div class="formContainer">
         <h1 id="restaurantTitle">餐廳名稱</h1>

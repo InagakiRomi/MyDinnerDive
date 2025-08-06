@@ -61,63 +61,6 @@
     text-align: left !important;
 }
 
-/* ==== 按鈕樣式統一（含表單內）==== */
-button,
-form#listForm button {
-    max-width: 400px;                                           /* 按鈕最大寬度限制 */
-    padding: 12px 20px;                                         /* 內距設定，增強可點擊區域 */
-    font-size: 1.1rem;                                          /* 按鈕文字大小 */
-    color: white;                                             /* 按鈕文字顏色 */
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* 背景漸層 */
-    border: none;                                               /* 移除邊框 */
-    border-radius: 8px;                                         /* 圓角按鈕 */
-    cursor: pointer;                                            /* 指標樣式改為手指 */
-    transition: all 0.3s ease;                                  /* 滑過/點擊動畫效果 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);                /* 陰影增添立體感 */
-}
-
-button:hover,
-form#listForm button:hover {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* 維持背景漸層 */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);                /* 滑過陰影加強 */
-    transform: translateY(-2px);                                /* 按鈕浮起效果 */
-}
-
-button:active,
-form#listForm button:active {
-    transform: scale(0.98);                        /* 點擊時略縮小 */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);   /* 點擊時陰影縮小 */
-}
-
-/* ==== 金色按鈕樣式 ==== */
-button.btn-gold {
-    background: linear-gradient(135deg, #FFE082, #FFC107 );
-    color: white;
-}
-
-button.btn-gold:hover {
-    background: linear-gradient(135deg, #FFE082, #FFC107);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
-}
-
-button.btn-gold:active {
-    transform: scale(0.98);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* ==== 新增餐廳按鈕 ==== */
-form#listForm button.btn-add {
-    background: linear-gradient(135deg, #61cc7a, #2cb34c) !important;
-}
-
-.rightButtonWrapper {
-    margin-left: auto;      /* 推到右邊 */
-    padding-right: 20px;    /* 與右邊留白 */
-    display: flex;          /* 使用 Flex 容器 */
-    align-items: center;    /* 垂直置中 */
-}
-
 /* ==== 表單區塊樣式 ==== */
 form#listForm > div {
     display: flex;            /* 使用 Flex 排版 */
