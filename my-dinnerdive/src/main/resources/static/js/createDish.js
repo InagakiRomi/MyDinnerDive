@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function (){
     }
 })
 
+/** 導向餐點列表頁面 */
+function redirectToDishesPage(restaurantId) {
+    window.location.href = `/dinnerHome/restaurants/${restaurantId}/dishes`;
+}
+
 /** 使用者「新增餐廳」後執行的邏輯 */
 function createDish(){
     // 整理表單輸入資料，合併成一個 JSON 格式的物件
@@ -37,7 +42,7 @@ function createDish(){
     .then((response) => {
         if (response.ok) {
             alert("餐點新增成功！");
-            window.location.href = `/dinnerHome/restaurants/${restaurantId}/dishes`;
+            redirectToDishesPage(dishJson.restaurantId);
         } else {
             alert("新增失敗，請再試一次");
         }
@@ -51,5 +56,6 @@ function createDish(){
 document.getElementById('previousBtn').addEventListener("click", previousPage);
 async function previousPage() {
     // 導向新增餐點頁面
-    window.location.href = `/dinnerHome/restaurants/${restaurantId}/dishes`;
+    const { restaurantId } = getRestaurantId();
+    redirectToDishesPage(restaurantId);
 }

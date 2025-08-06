@@ -26,6 +26,9 @@
         <h1>新增餐點</h1>
         <form id="createForm">
 
+            <!-- 餐廳編號 -->
+            <input type="hidden" id="restaurantId" th:value="${restaurants.restaurantId}">
+
             <!-- 餐點名稱 -->
             <label for="dishName">餐點名稱：</label>
             <input type="text" id="dishName"
