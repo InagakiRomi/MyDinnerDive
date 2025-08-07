@@ -26,24 +26,19 @@ Dinner Dive 是我為練習後端整合開發而實作的 Web 系統，透過「
 - 功能權限管理
 
 ---
-<!-- 
-## 📽️ 展示動畫
-
-![錄製_2025_06_22_12_21_56_8](https://github.com/user-attachments/assets/02b07827-a52c-44f5-bd58-d85f3794cc69)
-
----
--->
 
 ## 🖼️ 介面展示
 
-![image](https://github.com/user-attachments/assets/c9f2722f-5799-4e0d-ab92-53e7654ccf63)
-![image](https://github.com/user-attachments/assets/fb9954c8-6219-4eb1-b5dd-c93fee45ccb4)
-![image](https://github.com/user-attachments/assets/9fb1b528-a3a8-45b1-b145-cc70ae078a69)
-![image](https://github.com/user-attachments/assets/16f19ef1-a0a8-4eaa-ad84-58b629a16695)
-![image](https://github.com/user-attachments/assets/fa7925cb-cb09-44be-953b-b493ac767d4c)
-![image](https://github.com/user-attachments/assets/3e4cd6c7-8972-40fa-9619-9df700e34717)
-![image](https://github.com/user-attachments/assets/0dba0b21-7245-4e9f-99cf-8c0c79e2daaa)
-![image](https://github.com/user-attachments/assets/e03d7576-fc75-4686-908c-69f736a0a298)
+<img width="1919" height="859" alt="image01" src="https://github.com/user-attachments/assets/fd5872d5-b37e-44e4-a031-b5bdf1200c11" />
+<img width="1919" height="864" alt="image02" src="https://github.com/user-attachments/assets/c0c5e8c4-7c42-4544-a1be-fc7f522a1ec9" />
+<img width="1891" height="856" alt="image03" src="https://github.com/user-attachments/assets/1956ea9d-06ae-44c7-8cfd-ecf95f189f84" />
+<img width="1894" height="853" alt="image04" src="https://github.com/user-attachments/assets/799996dc-2cb8-4d29-a9c0-cc449071b748" />
+<img width="1919" height="864" alt="image05" src="https://github.com/user-attachments/assets/86bbcaf7-eda6-4f20-8007-42ec8d6bf767" />
+<img width="1919" height="857" alt="image06" src="https://github.com/user-attachments/assets/ae691395-02e3-4733-ac54-0c57c4e1ab64" />
+<img width="1893" height="853" alt="image08" src="https://github.com/user-attachments/assets/5f61cdc7-bdad-41cd-94b2-5f5ea7bfee78" />
+<img width="1915" height="861" alt="image07" src="https://github.com/user-attachments/assets/ea08efd4-0920-482f-8894-70436511f7a3" />
+<img width="1910" height="861" alt="image09" src="https://github.com/user-attachments/assets/71907003-497b-40be-881f-c2bdd40d4d56" />
+<img width="1918" height="862" alt="image10" src="https://github.com/user-attachments/assets/89d1d06a-b244-4829-b954-8ccd7d8f27d1" />
 
 ---
 
@@ -55,8 +50,4 @@ Dinner Dive 是我為練習後端整合開發而實作的 Web 系統，透過「
 
 ## 📃 資料庫清單
 
-![image](https://github.com/user-attachments/assets/37cd08c7-3ae1-4460-9512-45cbe160dd85)
-![image](https://github.com/user-attachments/assets/2d721c74-ee59-4236-86b6-48183530654f)
-![image](https://github.com/user-attachments/assets/6c387b35-d383-4e4d-9dcf-d9f6081c082a)
-![image](https://github.com/user-attachments/assets/daea70c9-5ffe-4e17-b81c-7e515cf2331f)
-![image](https://github.com/user-attachments/assets/000d1838-5e44-4600-ae68-adcd17e391e1)
+<img width="836" height="578" alt="image" src="https://github.com/user-attachments/assets/804784dc-b4f4-4b86-9e04-328acba12ba8" />
