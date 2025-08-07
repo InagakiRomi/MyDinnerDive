@@ -9,3 +9,6 @@ spring:
     init:
       mode: never
       encoding: UTF-8
+
+security:
+  permit-all: false

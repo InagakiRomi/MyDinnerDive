@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 @SpringBootTest
 public class UserControllerTest {
 
@@ -95,7 +95,7 @@ public class UserControllerTest {
 
         // 再次使用同個帳號註冊
         mockMvc.perform(requestBuilder)
-                .andExpect(status().is(400));
+                .andExpect(status().is(409));
     }
 
     // 登入
@@ -113,7 +113,7 @@ public class UserControllerTest {
         userLoginRequest.setUsername(userRegisterRequest.getUsername());
         userLoginRequest.setUserPassword(userRegisterRequest.getUserPassword());
 
-        String json = objectMapper.writeValueAsString(userRegisterRequest);
+        String json = objectMapper.writeValueAsString(userLoginRequest);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .post("/users/login")

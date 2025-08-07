@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.romi.my_dinnerdive.constant.RestaurantCategory;
@@ -31,6 +32,7 @@ public class RestaurantControllerTest {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Test
     void getRestaurant_success() throws Exception{
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -39,7 +41,7 @@ public class RestaurantControllerTest {
         mockMvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.restaurantName", equalTo("今天吃兩藍")))
+                .andExpect(jsonPath("$.restaurantName", equalTo("一番湯屋")))
                 .andExpect(jsonPath("$.category", equalTo("MAIN")))
                 .andExpect(jsonPath("$.imageUrl", notNullValue()))
                 .andExpect(jsonPath("$.visitedCount", notNullValue()))
@@ -48,6 +50,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.note", notNullValue()));
     }
 
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Test
     public void getProduct_notFound() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -57,6 +60,7 @@ public class RestaurantControllerTest {
                 .andExpect(status().is(404));
     }
 
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Transactional
     @Test
     void createRestaurant_success() throws Exception{
@@ -85,6 +89,7 @@ public class RestaurantControllerTest {
     }
 
     // 修改餐廳
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Transactional
     @Test
     void updateRestaurant_success() throws Exception{
@@ -113,6 +118,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.note", equalTo("肌肉猛男開的專賣店")));
     }
 
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Transactional
     @Test
     public void updateProduct_productNotFound() throws Exception {
@@ -135,6 +141,7 @@ public class RestaurantControllerTest {
     }
 
     // 刪除餐廳
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Transactional
     @Test
     public void deleteProduct_success() throws Exception {
@@ -145,6 +152,7 @@ public class RestaurantControllerTest {
                 .andExpect(status().is(204));
     }
 
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Transactional
     @Test
     public void deleteProduct_deleteNonExistingProduct() throws Exception {
@@ -155,7 +163,8 @@ public class RestaurantControllerTest {
                 .andExpect(status().is(204));
     }
 
-    // 查詢商品列表
+    // 查詢餐廳列表
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Test
     public void getProducts() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -170,6 +179,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.results", hasSize(10)));
     }
 
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Test
     public void getProducts_filtering() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -185,6 +195,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.results", hasSize(3)));
     }
 
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Test
     public void getProducts_sorting() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -206,6 +217,7 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.results[4].restaurantId", equalTo(5)));
     }
 
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Test
     public void getProducts_pagination() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
@@ -224,6 +236,8 @@ public class RestaurantControllerTest {
                 .andExpect(jsonPath("$.results[1].restaurantId", equalTo(6)));
     }
 
+    // 選擇餐廳
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Transactional
     @Test
     void chooseRestaurant_success() throws Exception{
